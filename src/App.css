@@ -1,0 +1,17 @@
+.home-section,.cart-section,.wishlist-section{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 90vw;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */

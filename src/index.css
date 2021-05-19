@@ -1,0 +1,20 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@import url('./main.css');
+
+:root{
+    --nav-gray-primary:#333;
+    --nav-gray-secondary:#888;
+}
+
+
+
+@import url('./component/Nav/NavBar.css');
+@import url('./view/Products/Products.css');
+@import url('./component/ProductCard/ProductCard.css');
+@import url('./view/Cart/Cart.css');
+
+*{
+    font-family: 'Poppins', sans-serif;
+}

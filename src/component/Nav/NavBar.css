@@ -1,0 +1,36 @@
+/* .secondary-navbar {
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar{
+    flex: 1 1;
+} */
+.site-nav-top{
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--light-border);
+}
+
+.logo-text{
+    border: 2px solid var(--primary-black);
+    padding: .6rem ;
+    font-size: 1.3rem;
+	letter-spacing: .2em;
+
+}
+.navbar{
+    border-bottom: 1px solid var(--light-border);
+}
+
+.navbar li{
+    color: var(--nav-gray-primary);
+
+}
+
+.nav-icon{
+    margin-left: 1rem;
+}
+
+/* .site-top-icons{
+    display: flex;
+} */
