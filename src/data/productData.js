@@ -3,8 +3,6 @@ import faker from "faker";
 faker.seed(123);
 
 const jacketImageArray = [
-  "https://cdn.shopify.com/s/files/1/1947/9551/products/RynoxStealthEvoJacketBlack1_376x.jpg?v=1611824616",
-  "https://cdn.shopify.com/s/files/1/1947/9551/products/RynoxStealthEvoJacketGrey1_376x.jpg?v=1611824943",
   "https://cdn.shopify.com/s/files/1/1947/9551/products/Rynox_Tornado_Pro_3_Jacket_Orange_1_376x.jpg?v=1611827730",
   "https://cdn.shopify.com/s/files/1/1947/9551/products/Rynox_Tornado_Pro_3_Jacket_Blue_1_376x.jpg?v=1611827799",
   "https://cdn.shopify.com/s/files/1/1947/9551/products/Rynox_Tornado_Pro_3_Jacket_Red_1_376x.jpg?v=1611828010",
@@ -19,27 +17,25 @@ const jacketImageArray = [
   "https://cdn.shopify.com/s/files/1/1947/9551/products/Rynox_Storm_Grey-01_376x.jpg?v=1610447203",
 ];
 
-export const brandNameArray = [
-  "RYNOX","MUNRO","SCIMITAR","MACNA","ASPIDA"
-];
+export const brandNameArray = ["RYNOX", "MUNRO", "SCIMITAR", "MACNA", "ASPIDA"];
 
 const descriptionArray = [
   "STEALTH EVO 3 JACKET",
   "TORNADO PRO 3 JACKET",
   "STORM EVO JACKET",
   "URBAN JACKET",
-  "AIR GT 3 JACKET"
+  "AIR GT 3 JACKET",
 ];
 
-const priceArray = [6000,8000,7000,9000,5000]
+const priceArray = [6000, 8000, 7000, 9000, 5000];
 
 const discountArray = [10, 20, 30];
 
-const ratingArray = [1,2, 3, 4, 5];
+const ratingArray = [1, 2, 3, 4, 5];
 
-const countArray = [2,20,50,6,10,15];
+const countArray = [2, 20, 50, 6, 10, 15];
 
-const sellerArray = ["Gear UP","Riding Kart","Motonation","Biking Spirit"]
+const sellerArray = ["Gear UP", "Riding Kart", "Motonation", "Biking Spirit"];
 
 export const allJackets = [...Array(12)].map((item) => ({
   id: faker.datatype.uuid(),
@@ -53,10 +49,10 @@ export const allJackets = [...Array(12)].map((item) => ({
   inStock: faker.datatype.boolean(),
   discountByPercentage: faker.random.arrayElement(discountArray),
   rating: faker.random.arrayElement(ratingArray),
-  count:faker.random.arrayElement(countArray),
-  isInWishlist:false,
-  isInCart:false,
-  seller:faker.random.arrayElement(sellerArray),
+  count: faker.random.arrayElement(countArray),
+  isInWishlist: false,
+  isInCart: false,
+  seller: faker.random.arrayElement(sellerArray),
   type: "male",
-  quantity:1,
+  quantity: 1,
 }));

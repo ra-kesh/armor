@@ -1,3 +1,4 @@
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -9,20 +10,23 @@ import {
   WishListProvider,
 } from "./context";
 import { BrowserRouter as Router } from "react-router-dom";
+import { UserDataProvider } from "./context/userData-context";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <ControlProvider>
-          <ProductProvider>
-            <CartProvider>
-              <WishListProvider>
-                <App />
-              </WishListProvider>
-            </CartProvider>
-          </ProductProvider>
-        </ControlProvider>
+        <UserDataProvider>
+          <ControlProvider>
+            <ProductProvider>
+              <CartProvider>
+                <WishListProvider>
+                  <App />
+                </WishListProvider>
+              </CartProvider>
+            </ProductProvider>
+          </ControlProvider>
+        </UserDataProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,
