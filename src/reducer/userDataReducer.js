@@ -9,12 +9,12 @@ export const userDataReducer = (state, action) => {
       return {
         ...state,
         loading: false,
-        cartList: action.payload || [],
+        cartList: action.payload,
       };
     case "GET WISHLIST ITEMS":
       return {
         ...state,
-        cartList: action.payload,
+        wishList: action.payload,
       };
     case "ADD TO CART":
       return {
@@ -27,7 +27,7 @@ export const userDataReducer = (state, action) => {
     case "ADD TO WISHLIST":
       return {
         ...state,
-        cartList: state.cartList.concat({
+        wishList: state.wishList.concat({
           product: action.payload.product,
         }),
       };
@@ -41,7 +41,7 @@ export const userDataReducer = (state, action) => {
     case "REMOVE FROM WISHLIST":
       return {
         ...state,
-        cartList: state.cartList.filter(
+        wishList: state.wishList.filter(
           ({ product }) => product !== action.payload.product
         ),
       };

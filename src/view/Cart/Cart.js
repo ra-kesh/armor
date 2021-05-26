@@ -17,7 +17,7 @@ export const Cart = () => {
         const {
           data: { data: cartList },
         } = await axios.get(`${apiUrl}/cart/${userInfo._id}`);
-        setCartItems(cartList.cartItems);
+        setCartItems(cartList?.cartItems || []);
       })();
     }
   }, [userInfo, cartList]);

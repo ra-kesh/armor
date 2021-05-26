@@ -9,9 +9,9 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
 export const Navbar = () => {
-  const { cartList } = useUserData();
+  const { cartList, wishList } = useUserData();
 
-  const { itemsInWishList } = useWishList();
+  // const { itemsInWishList } = useWishList();
 
   //   useEffect(()=>{
   //     if(itemsInCart.length >0){
@@ -66,8 +66,8 @@ export const Navbar = () => {
                 </Link>
                 <Link to="/wishlist">
                   <li className="inline-block nav-icon">
-                    {itemsInWishList.length > 0 && <FavoriteIcon />}
-                    {itemsInWishList.length <= 0 && <FavoriteBorderIcon />}
+                    {wishList.length > 0 && <FavoriteIcon />}
+                    {wishList.length <= 0 && <FavoriteBorderIcon />}
                   </li>
                 </Link>
                 <Link to="/cart">

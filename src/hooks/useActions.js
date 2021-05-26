@@ -26,6 +26,7 @@ export const useActions = () => {
       }
     }
   };
+
   const addToWishList = async (_id) => {
     if (userInfo) {
       const {
@@ -35,7 +36,6 @@ export const useActions = () => {
           _id,
         },
       });
-      console.log(success);
       if (success) {
         dispatch({
           type: "ADD TO WISHLIST",
@@ -124,6 +124,67 @@ export const useActions = () => {
     return wishList.some(({ product }) => product === id);
   };
 
+  const moveToCart = async (_id) => {
+    if (!isInCart(_id)) {
+      let {
+        data: { success },
+      } = await axios.post(`${apiUrl}/cart/${userInfo._id}`, {
+        product: {
+          _id,
+        },
+      });
+
+      if (success) {
+        dispatch({
+          type: "ADD TO CART",
+          payload: {
+            product: _id,
+          },
+        });
+      }
+      let res = await axios.delete(`${apiUrl}/wishlist/${userInfo._id}/${_id}`);
+
+      if (res.data.success) {
+        dispatch({
+          type: "REMOVE FROM WISHLIST",
+          payload: {
+            product: _id,
+          },
+        });
+      }
+    }
+  };
+  const moveToWishList = async (_id) => {
+    if (!isInWishList(_id)) {
+      let {
+        data: { success },
+      } = await axios.post(`${apiUrl}/wishlist/${userInfo._id}`, {
+        product: {
+          _id,
+        },
+      });
+
+      if (success) {
+        dispatch({
+          type: "ADD TO WISHLIST",
+          payload: {
+            product: _id,
+          },
+        });
+      }
+      let res = await axios.delete(`${apiUrl}/cart/${userInfo._id}/${_id}`);
+
+      if (res.data.success) {
+        dispatch({
+          type: "REMOVE FROM CART",
+          payload: {
+            product: _id,
+          },
+        });
+      }
+    }
+  };
+
   return {
     addToCart,
     addToWishList,
@@ -133,5 +194,7 @@ export const useActions = () => {
     decrement,
     isInCart,
     isInWishList,
+    moveToCart,
+    moveToWishList,
   };
 };

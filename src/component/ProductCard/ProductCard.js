@@ -39,7 +39,7 @@ export const ProductCard = ({ item }) => {
             </Link>
           </div>
           <div className="flex-col-2 text-right">
-            {isInWishList() && !isInCart() && (
+            {isInWishList(item._id) && !isInCart(item._id) && (
               <div onClick={() => removeFromWishList(item._id)}>
                 <FavoriteIcon />
               </div>

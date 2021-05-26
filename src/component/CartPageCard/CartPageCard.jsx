@@ -1,7 +1,7 @@
 import { useActions } from "../../hooks";
 
 export const CartPageCard = ({ item, moveToWishlist }) => {
-  const { increment, decrement, removeFromCart } = useActions();
+  const { increment, decrement, removeFromCart, moveToWishList } = useActions();
 
   return (
     <div className="container cart-card">
@@ -54,7 +54,10 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
           </span>
         </div>
         <div className="flex-col-lg-10 center-vertically">
-          <span className="pointer" onClick={moveToWishlist}>
+          <span
+            className="pointer"
+            onClick={() => moveToWishList(item.product._id)}
+          >
             Move to wishlist
           </span>
         </div>

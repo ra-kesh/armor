@@ -22,6 +22,7 @@ export const useUserData = () => {
             }
           );
           dispatch({ type: "GET CART ITEMS", payload: user.cartList });
+          dispatch({ type: "GET WISHLIST ITEMS", payload: user.wishList });
         })();
       } catch (error) {
         console.log(error);
