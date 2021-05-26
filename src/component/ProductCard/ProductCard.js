@@ -1,4 +1,4 @@
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useActions } from "../../hooks";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -7,8 +7,6 @@ import { useState } from "react";
 import { ProductPageModal } from "../ProductPageModal/ProductPageModal";
 
 export const ProductCard = ({ item }) => {
-  const { pathname } = useLocation();
-
   const {
     addToCart,
     addToWishList,
@@ -62,58 +60,19 @@ export const ProductCard = ({ item }) => {
     );
   }
 
-  // function WishListPageCard() {
-  //   return (
-  //     <div className="ecom-card">
-  //       <div className="ecom-card-pic hover-image">
-  //         <img src={item.image} alt="jackets" />
-  //         {/* {!isInCart()&&( */}
-  //         <button className="ecom-card-btn trans-04" onClick={moveToCart}>
-  //           Move to cart
-  //         </button>
-  //         {/* )} */}
-  //         {/* {isInCart()&&(
-  //                <Link to='/cart'>
-  //                 <button className='ecom-card-btn trans-04'onClick={removeFromWishlist}>Go to cart</button>
-  //                </Link>
-  //             )} */}
-  //       </div>
-  //       <div className="ecom-card-desc flex-row">
-  //         <div className="flex-col-10 flex-dir-col text-left">
-  //           <span>₹{item.price}</span>
-  //           <Link to={`/products/${item.id}`}>
-  //             <span>{item.description}</span>
-  //           </Link>
-  //         </div>
-  //         <div className="flex-col-2 text-right">
-  //           <div onClick={removeFromWishlist}>
-  //             <CloseIcon />
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   return (
     <>
-      {pathname === "/products" && (
-        <>
-          <ProductPageCard />
-          {showModal && (
-            <ProductPageModal
-              setShowModal={setShowModal}
-              item={item}
-              isInCart={isInCart}
-              isInWishList={isInWishList}
-              addToCart={addToCart}
-              addToWishList={addToWishList}
-            />
-          )}
-        </>
+      <ProductPageCard />
+      {showModal && (
+        <ProductPageModal
+          setShowModal={setShowModal}
+          item={item}
+          isInCart={isInCart}
+          isInWishList={isInWishList}
+          addToCart={addToCart}
+          addToWishList={addToWishList}
+        />
       )}
-
-      {/* {pathname === "/wishlist" && <WishListPageCard />} */}
     </>
   );
 };

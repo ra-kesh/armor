@@ -1,4 +1,4 @@
-import { useWishList, useUserData } from "../../hooks";
+import { useUserData } from "../../hooks";
 // import {useEffect,useState} from 'react'
 import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";

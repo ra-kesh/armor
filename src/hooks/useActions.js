@@ -45,6 +45,7 @@ export const useActions = () => {
         });
       }
     }
+    return;
   };
 
   const removeFromCart = async (_id) => {
@@ -125,7 +126,7 @@ export const useActions = () => {
   };
 
   const moveToCart = async (_id) => {
-    if (!isInCart(_id)) {
+    if (isInWishList(_id)) {
       let {
         data: { success },
       } = await axios.post(`${apiUrl}/cart/${userInfo._id}`, {
@@ -155,7 +156,7 @@ export const useActions = () => {
     }
   };
   const moveToWishList = async (_id) => {
-    if (!isInWishList(_id)) {
+    if (isInCart(_id)) {
       let {
         data: { success },
       } = await axios.post(`${apiUrl}/wishlist/${userInfo._id}`, {

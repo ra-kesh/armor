@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useProduct, useControl } from "../../hooks";
 import { Filter, Sort, ProductCard } from "../../component";
 import FilterListIcon from "@material-ui/icons/FilterList";
@@ -7,6 +7,14 @@ import CloseIcon from "@material-ui/icons/Close";
 export const Products = () => {
   const { productList, getSortedProductList, getFilteredProductList } =
     useProduct();
+
+  // const [products, setProducts] = useState([]);
+
+  // useEffect(() => {
+  //   if (productList) {
+  //     setProducts(productList);
+  //   }
+  // }, [productList]);
 
   const { sortBy, filters } = useControl();
 

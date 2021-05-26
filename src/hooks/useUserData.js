@@ -9,18 +9,12 @@ export const useUserData = () => {
   const { userInfo } = useAuth();
 
   useEffect(() => {
-    const request = axios.CancelToken.source();
-    if (userInfo?._id) {
+    if (userInfo) {
       try {
         (async function () {
           const {
             data: { data: user },
-          } = await axios.get(
-            `${apiUrl}/userdata/${userInfo._id}?${Date.now()}`,
-            {
-              cancelToken: request.token,
-            }
-          );
+          } = await axios.get(`${apiUrl}/userdata/${userInfo._id}`);
           dispatch({ type: "GET CART ITEMS", payload: user.cartList });
           dispatch({ type: "GET WISHLIST ITEMS", payload: user.wishList });
         })();
@@ -28,9 +22,6 @@ export const useUserData = () => {
         console.log(error);
       }
     }
-    return () => {
-      request.cancel();
-    };
   }, [dispatch, userInfo]);
 
   return {

@@ -2,13 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import {
-  AuthProvider,
-  CartProvider,
-  ControlProvider,
-  ProductProvider,
-  WishListProvider,
-} from "./context";
+import { AuthProvider, ControlProvider, ProductProvider } from "./context";
 import { BrowserRouter as Router } from "react-router-dom";
 import { UserDataProvider } from "./context/userData-context";
 
@@ -19,11 +13,7 @@ ReactDOM.render(
         <UserDataProvider>
           <ControlProvider>
             <ProductProvider>
-              <CartProvider>
-                <WishListProvider>
-                  <App />
-                </WishListProvider>
-              </CartProvider>
+              <App />
             </ProductProvider>
           </ControlProvider>
         </UserDataProvider>

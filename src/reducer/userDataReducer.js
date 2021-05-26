@@ -14,6 +14,7 @@ export const userDataReducer = (state, action) => {
     case "GET WISHLIST ITEMS":
       return {
         ...state,
+        lading: false,
         wishList: action.payload,
       };
     case "ADD TO CART":
