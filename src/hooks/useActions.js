@@ -36,6 +36,8 @@ export const useActions = () => {
           _id,
         },
       });
+      console.log(success);
+
       if (success) {
         dispatch({
           type: "ADD TO WISHLIST",
@@ -45,7 +47,6 @@ export const useActions = () => {
         });
       }
     }
-    return;
   };
 
   const removeFromCart = async (_id) => {

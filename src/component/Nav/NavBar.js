@@ -11,30 +11,6 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 export const Navbar = () => {
   const { cartList, wishList } = useUserData();
 
-  // const { itemsInWishList } = useWishList();
-
-  //   useEffect(()=>{
-  //     if(itemsInCart.length >0){
-  //         const totalQuantity = itemsInCart.reduce((total,item)=>{
-  //             return total+item.quantity;
-  //         },0)
-  //         setCartQuantity(totalQuantity)
-  //     }else{
-  //         setCartQuantity(0)
-  //     }
-  // },[itemsInCart])
-
-  //   useEffect(()=>{
-  //     if(itemsInWishList.length >0){
-  //         const totalQuantity = itemsInWishList.reduce((total,item)=>{
-  //             return total+item.quantity;
-  //         },0)
-  //         setWishListQuantity(totalQuantity)
-  //     }else{
-  //         setWishListQuantity(0)
-  //     }
-  // },[itemsInWishList])
-
   return (
     <header role="banner">
       <div className="site-nav-top">

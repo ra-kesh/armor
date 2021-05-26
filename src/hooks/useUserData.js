@@ -15,8 +15,8 @@ export const useUserData = () => {
           const {
             data: { data: user },
           } = await axios.get(`${apiUrl}/userdata/${userInfo._id}`);
-          dispatch({ type: "GET CART ITEMS", payload: user.cartList });
           dispatch({ type: "GET WISHLIST ITEMS", payload: user.wishList });
+          dispatch({ type: "GET CART ITEMS", payload: user.cartList });
         })();
       } catch (error) {
         console.log(error);
@@ -25,8 +25,8 @@ export const useUserData = () => {
   }, [dispatch, userInfo]);
 
   return {
-    cartList: state.cartList,
     wishList: state.wishList,
+    cartList: state.cartList,
     dispatch,
   };
 };
