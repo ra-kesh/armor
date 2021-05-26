@@ -87,8 +87,6 @@ export const useActions = () => {
       quantity: quantity + 1,
     });
 
-    console.log(success);
-
     if (success) {
       dispatch({
         type: "INCREMENT CART",

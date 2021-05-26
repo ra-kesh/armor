@@ -1,4 +1,4 @@
-import { useCart, useWishList, useUserData } from "../../hooks";
+import { useWishList, useUserData } from "../../hooks";
 // import {useEffect,useState} from 'react'
 import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
@@ -11,10 +11,6 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 export const Navbar = () => {
   const { cartList } = useUserData();
 
-  // const [cartQuantity,setCartQuantity] = useState(0)
-  // const [wishListQuantity,setWishListQuantity] = useState(0)
-
-  const { itemsInCart } = useCart();
   const { itemsInWishList } = useWishList();
 
   //   useEffect(()=>{

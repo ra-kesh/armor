@@ -86,8 +86,8 @@ export const Products = () => {
       <div className="container">
         <div className="flex-row product-grid">
           {filteredProductList.map((item) => (
-            <div className="flex-col-sm-6 flex-col-lg-4" key={item.id}>
-              <ProductCard item={item} key={item._id} />
+            <div className="flex-col-sm-6 flex-col-lg-4" key={item._id}>
+              <ProductCard item={item} />
             </div>
           ))}
         </div>
