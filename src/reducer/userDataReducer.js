@@ -1,10 +1,9 @@
 export const userDataReducer = (state, action) => {
   switch (action.type) {
-    case "FETCH CART ITEMS":
-      return {
-        ...state,
-        loading: true,
-      };
+    case "SHOW LOADING":
+      return { ...state, loading: true };
+    case "HIDE LOADING":
+      return { ...state, loading: false };
     case "GET CART ITEMS":
       return {
         ...state,

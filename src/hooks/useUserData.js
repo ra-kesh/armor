@@ -10,17 +10,31 @@ export const useUserData = () => {
 
   useEffect(() => {
     if (userInfo) {
-      try {
-        (async function () {
+      (async () => {
+        try {
+          dispatch({ type: "SHOW LOADING" });
           const {
             data: { data: user },
           } = await axios.get(`${apiUrl}/userdata/${userInfo._id}`);
           dispatch({ type: "GET WISHLIST ITEMS", payload: user.wishList });
           dispatch({ type: "GET CART ITEMS", payload: user.cartList });
-        })();
-      } catch (error) {
-        console.log(error);
-      }
+          dispatch({ type: "HIDE LOADING" });
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+
+      // try {
+      //   (async function () {
+      //     const {
+      //       data: { data: user },
+      //     } = await axios.get(`${apiUrl}/userdata/${userInfo._id}`);
+      //     dispatch({ type: "GET WISHLIST ITEMS", payload: user.wishList });
+      //     dispatch({ type: "GET CART ITEMS", payload: user.cartList });
+      //   })();
+      // } catch (error) {
+      //   console.log(error);
+      // }
     }
   }, [dispatch, userInfo]);
 
@@ -28,5 +42,6 @@ export const useUserData = () => {
     wishList: state.wishList,
     cartList: state.cartList,
     dispatch,
+    dataloading: state.loading,
   };
 };

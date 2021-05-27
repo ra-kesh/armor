@@ -1,4 +1,4 @@
-import { useUserData } from "../../hooks";
+import { useUserData, useProduct } from "../../hooks";
 // import {useEffect,useState} from 'react'
 import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
@@ -8,8 +8,47 @@ import SearchIcon from "@material-ui/icons/Search";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
+// export default function Loader() {
+//   const {
+//     state: { loading },
+//   } = useData();
+//   return (
+//     <div className="loader">
+//       {/* {console.log(loading)} */}
+//       {loading && (
+//         <>
+//           <div className="loader__start"></div>
+//           <div className="loader__end"></div>
+//         </>
+//       )}
+//     </div>
+//   );
+// }
+
 export const Navbar = () => {
-  const { cartList, wishList } = useUserData();
+  const { cartList, wishList, dataloading } = useUserData();
+  const { loading } = useProduct();
+
+  console.log(loading);
+
+  const Loader = () => {
+    return (
+      <div className="loader">
+        {loading && (
+          <>
+            <div className="starting-loader"></div>
+            <div className="ending-loader"></div>
+          </>
+        )}
+        {dataloading && (
+          <>
+            <div className="starting-loader"></div>
+            <div className="ending-loader"></div>
+          </>
+        )}
+      </div>
+    );
+  };
 
   return (
     <header role="banner">
@@ -74,6 +113,7 @@ export const Navbar = () => {
           </ul>
         </div>
       </nav>
+      <Loader />
     </header>
   );
 };

@@ -5,15 +5,16 @@ import { apiUrl } from "../constants";
 
 export const useProduct = () => {
   const { state, dispatch } = useContext(ProductContext);
-  const { productList } = state;
 
   useEffect(() => {
     (async () => {
       try {
+        dispatch({ type: "SHOW LOADING" });
         const {
           data: { data: products },
         } = await axios.get(`${apiUrl}/products`);
         dispatch({ type: "GET PRODUCT LIST", payload: products });
+        dispatch({ type: "HIDE LOADING" });
       } catch (err) {
         console.log({ error: err.message });
       }
@@ -46,10 +47,13 @@ export const useProduct = () => {
       );
   };
 
+  const { productList, loading } = state;
+
   return {
     productList,
     getSortedProductList,
     getFilteredProductList,
     dispatch,
+    loading,
   };
 };
