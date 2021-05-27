@@ -1,1 +1,2 @@
-export const apiUrl = "https://salty-retreat-16710.herokuapp.com/api";
+export const apiUrl = "https://agile-reef-70986.herokuapp.com/api";
+// export const apiUrl = "http://localhost:8000/api";
