@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useProduct, useControl } from "../../hooks";
-import { Filter, Sort, ProductCard } from "../../component";
+import { Filter, Sort, ProductCard, Navbar } from "../../component";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -77,6 +77,7 @@ export const Products = () => {
 
   return (
     <>
+      <Navbar />
       <ProductBar />
       {showFilterModal && (
         <div className="container">

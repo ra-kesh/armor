@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks";
 
-export const Login = () => {
+export const Signup = () => {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { error, userInfo, login, loading } = useAuth();
-  const navigate = useNavigate();
-
-  console.log(userInfo);
+  const { signup } = useAuth();
 
   function submitHandeller(e) {
     e.preventDefault();
-    login(email, password);
+    if (password === confirmPassword) {
+      signup(name, email, password);
+    }
   }
 
   return (
@@ -22,9 +22,12 @@ export const Login = () => {
         <div className="flex-row">
           <div className="flex-col-lg-6">
             <div className="container">
-              {loading && <div>ruko zara sabar karo</div>}
-              {error && <div>{error}</div>}
-              <form onSubmit={submitHandeller} className="login-form">
+              <form onSubmit={submitHandeller} className="signup-form">
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
                 <input
                   type="email"
                   value={email}
@@ -35,17 +38,18 @@ export const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
                 <button>submit</button>
               </form>
-              <div className="container">
-                <h5>new user ? signup here</h5>
-                <button onClick={() => navigate("/signup")}>signup</button>
-              </div>
             </div>
           </div>
           <div className="flex-col-lg-6">
             <div className="container center-vertically">
-              <h3>Login</h3>
+              <h3>signup</h3>
             </div>
           </div>
         </div>

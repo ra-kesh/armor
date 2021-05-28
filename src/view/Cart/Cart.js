@@ -1,6 +1,6 @@
 import { useAuth, useUserData } from "../../hooks";
 import { useEffect, useState } from "react";
-import { CartPageCard } from "../../component";
+import { CartPageCard, Navbar } from "../../component";
 import { apiUrl } from "../../constants";
 import axios from "axios";
 
@@ -70,6 +70,7 @@ export const Cart = () => {
 
   return (
     <>
+      <Navbar />
       <>
         <CartBar />
         {cartItems.length >= 1 && (

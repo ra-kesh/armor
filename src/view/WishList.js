@@ -1,5 +1,5 @@
 import { useUserData, useAuth } from "../hooks";
-import { WishListPageCard } from "../component";
+import { Navbar, WishListPageCard } from "../component";
 import { apiUrl } from "../constants";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -33,6 +33,7 @@ export const Wishlist = () => {
   }
   return (
     <>
+      <Navbar />
       <WishListbar />
       <div className="container">
         <div className="flex-row wishlist-grid">
