@@ -6,7 +6,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useState } from "react";
 import { ProductPageModal } from "../ProductPageModal/ProductPageModal";
 
-export const ProductCard = ({ item }) => {
+export const ProductCard = ({ item, path }) => {
   const {
     addToCart,
     addToWishList,
@@ -16,6 +16,8 @@ export const ProductCard = ({ item }) => {
   } = useActions();
 
   const [showModal, setShowModal] = useState(false);
+
+  console.log(path);
 
   function ProductPageCard() {
     return (
@@ -43,7 +45,7 @@ export const ProductCard = ({ item }) => {
               </div>
             )}
             {!isInWishList(item._id) && !isInCart(item._id) && (
-              <div onClick={() => addToWishList(item._id)}>
+              <div onClick={() => addToWishList(item._id, path)}>
                 <FavoriteBorderIcon />
               </div>
             )}
@@ -71,6 +73,7 @@ export const ProductCard = ({ item }) => {
           isInWishList={isInWishList}
           addToCart={addToCart}
           addToWishList={addToWishList}
+          path={path}
         />
       )}
     </>

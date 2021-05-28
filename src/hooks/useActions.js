@@ -1,12 +1,14 @@
 import { useAuth, useUserData } from "../hooks";
 import axios from "axios";
 import { apiUrl } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 export const useActions = () => {
   const { userInfo } = useAuth();
   const { dispatch, cartList, wishList } = useUserData();
+  const navigate = useNavigate();
 
-  const addToCart = async (_id) => {
+  const addToCart = async (_id, path) => {
     if (userInfo) {
       const {
         data: { success },
@@ -25,9 +27,15 @@ export const useActions = () => {
         });
       }
     }
+    navigate("/login", {
+      state: {
+        from: path,
+        message: "Before adding to cart you need to login first",
+      },
+    });
   };
 
-  const addToWishList = async (_id) => {
+  const addToWishList = async (_id, path) => {
     if (userInfo) {
       const {
         data: { success },
@@ -47,6 +55,12 @@ export const useActions = () => {
         });
       }
     }
+    navigate("/login", {
+      state: {
+        from: path,
+        message: "Before adding to wishlist you need to login first ",
+      },
+    });
   };
 
   const removeFromCart = async (_id) => {

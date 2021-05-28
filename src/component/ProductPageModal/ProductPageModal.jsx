@@ -7,6 +7,7 @@ export function ProductPageModal({
   isInWishList,
   addToCart,
   addToWishList,
+  path,
 }) {
   return (
     <div className="ecom-modal-wrapper">
@@ -49,14 +50,14 @@ export function ProductPageModal({
                       </Link>
                     ) : null}
                     {!isInCart(item._id) ? (
-                      <button onClick={() => addToCart(item._id)}>
+                      <button onClick={() => addToCart(item._id, path)}>
                         add to cart
                       </button>
                     ) : null}
                   </div>
                   <div className="flex-col-lg-4">
                     {!isInWishList(item._id) ? (
-                      <button onClick={() => addToWishList(item._id)}>
+                      <button onClick={() => addToWishList(item._id, path)}>
                         add to wishlist
                       </button>
                     ) : null}

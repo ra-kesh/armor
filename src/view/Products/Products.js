@@ -3,6 +3,7 @@ import { useProduct, useControl } from "../../hooks";
 import { Filter, Sort, ProductCard, Navbar } from "../../component";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import CloseIcon from "@material-ui/icons/Close";
+import { useLocation } from "react-router-dom";
 
 export const Products = () => {
   const { productList, getSortedProductList, getFilteredProductList } =
@@ -10,7 +11,11 @@ export const Products = () => {
 
   const { sortBy, filters } = useControl();
 
+  const location = useLocation();
+  const path = location.pathname + location.search;
+
   const sortedProductList = getSortedProductList(productList, sortBy);
+
   const filteredProductList = getFilteredProductList(
     sortedProductList,
     filters
@@ -88,7 +93,7 @@ export const Products = () => {
         <div className="flex-row product-grid">
           {filteredProductList.map((item) => (
             <div className="flex-col-sm-6 flex-col-lg-4" key={item._id}>
-              <ProductCard item={item} />
+              <ProductCard item={item} path={path} />
             </div>
           ))}
         </div>
