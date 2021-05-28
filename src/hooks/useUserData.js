@@ -23,18 +23,6 @@ export const useUserData = () => {
           console.log(error);
         }
       })();
-
-      // try {
-      //   (async function () {
-      //     const {
-      //       data: { data: user },
-      //     } = await axios.get(`${apiUrl}/userdata/${userInfo._id}`);
-      //     dispatch({ type: "GET WISHLIST ITEMS", payload: user.wishList });
-      //     dispatch({ type: "GET CART ITEMS", payload: user.cartList });
-      //   })();
-      // } catch (error) {
-      //   console.log(error);
-      // }
     }
   }, [dispatch, userInfo]);
 

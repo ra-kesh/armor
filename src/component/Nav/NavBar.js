@@ -1,5 +1,4 @@
-import { useUserData, useProduct } from "../../hooks";
-// import {useEffect,useState} from 'react'
+import { useUserData } from "../../hooks";
 import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -7,49 +6,11 @@ import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import SearchIcon from "@material-ui/icons/Search";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-
-// export default function Loader() {
-//   const {
-//     state: { loading },
-//   } = useData();
-//   return (
-//     <div className="loader">
-//       {/* {console.log(loading)} */}
-//       {loading && (
-//         <>
-//           <div className="loader__start"></div>
-//           <div className="loader__end"></div>
-//         </>
-//       )}
-//     </div>
-//   );
-// }
+import { Loader } from "./Loader";
 
 export const Navbar = () => {
-  const { cartList, wishList, dataloading } = useUserData();
-  const { loading } = useProduct();
-
-  console.log(loading);
-
-  const Loader = () => {
-    return (
-      <div className="loader">
-        {loading && (
-          <>
-            <div className="starting-loader"></div>
-            <div className="ending-loader"></div>
-          </>
-        )}
-        {dataloading && (
-          <>
-            <div className="starting-loader"></div>
-            <div className="ending-loader"></div>
-          </>
-        )}
-      </div>
-    );
-  };
-
+  const { cartList, wishList } = useUserData();
+  //
   return (
     <header role="banner">
       <div className="site-nav-top">
@@ -69,7 +30,7 @@ export const Navbar = () => {
             </div>
             <div className="flex-col-12 flex-col-md-4 order-1 order-md-2 text-center">
               <span className="logo-text border-right-zero border-left-zero">
-                ARMOURS
+                M . A . D
               </span>
             </div>
             <div className="flex-col-6 flex-col-md-4 order-3 order-md-3 text-right">
