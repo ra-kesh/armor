@@ -6,15 +6,36 @@ import CloseIcon from "@material-ui/icons/Close";
 import { useLocation } from "react-router-dom";
 
 export const Products = () => {
-  const { productList, getSortedProductList, getFilteredProductList } =
-    useProduct();
+  const {
+    productList,
+    getSortedProductList,
+    getFilteredProductList,
+    getCategorizedProductList,
+  } = useProduct();
 
-  const { sortBy, filters } = useControl();
+  const {
+    sortBy,
+    filters,
+    filterByCategory,
+    filterGloves,
+    filterHelmets,
+    filterJackets,
+    filterShoes,
+    showAll,
+  } = useControl();
 
   const location = useLocation();
   const path = location.pathname + location.search;
 
-  const sortedProductList = getSortedProductList(productList, sortBy);
+  const categorizedProductList = getCategorizedProductList(
+    productList,
+    filterByCategory
+  );
+
+  const sortedProductList = getSortedProductList(
+    categorizedProductList,
+    sortBy
+  );
 
   const filteredProductList = getFilteredProductList(
     sortedProductList,
@@ -28,11 +49,21 @@ export const Products = () => {
       <div className="container">
         <div className="flex-row center-vertically product-bar">
           <div className="flex-col-lg-10 text-left">
-            <span className="product-bar-item">All Products</span>
-            <span className="product-bar-item">Jackets</span>
-            <span className="product-bar-item">Helmets</span>
-            <span className="product-bar-item">Gloves</span>
-            <span className="product-bar-item">Shoes</span>
+            <span className="product-bar-item" onClick={showAll}>
+              All Products
+            </span>
+            <span className="product-bar-item" onClick={filterJackets}>
+              Jackets
+            </span>
+            <span className="product-bar-item" onClick={filterHelmets}>
+              Helmets
+            </span>
+            <span className="product-bar-item" onClick={filterGloves}>
+              Gloves
+            </span>
+            <span className="product-bar-item" onClick={filterShoes}>
+              Shoes
+            </span>
           </div>
 
           <div className="flex-col-lg-2">

@@ -25,7 +25,7 @@ export const Sort = () => {
           onChange={sortHighToLow}
           checked={sortBy === "HIGH_TO_LOW"}
         />
-        low to high
+        high to low
       </label>
       <div
         onClick={resetSort}

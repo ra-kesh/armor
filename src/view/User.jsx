@@ -2,19 +2,25 @@ import { Navbar } from "../component";
 import { useAuth } from "../hooks";
 
 export const User = () => {
-  const { logOut } = useAuth();
+  const { logOut, userInfo } = useAuth();
 
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div className="container m-top-two">
         <div className="flex-row">
+          <div className="flex-col-12 flex justify-end ">
+            <button onClick={() => logOut()}>logout</button>
+          </div>
           <div className="flex-col-lg-4">
-            <span>User Details</span>
+            <h4>User Details</h4>
+            <div className="container ">
+              <h5>name : {userInfo.name}</h5>
+              <h5>email : {userInfo.email}</h5>
+            </div>
           </div>
           <div className="flex-col-lg-8 flex space-between">
-            <span>User Activity</span>
-            <button onClick={() => logOut()}>logout</button>
+            <h4>User Activity</h4>
           </div>
         </div>
       </div>

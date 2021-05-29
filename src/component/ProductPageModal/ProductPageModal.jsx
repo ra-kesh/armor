@@ -43,30 +43,41 @@ export function ProductPageModal({
                 {!item.fastDelivery && <div>slow delivery</div>}
 
                 <div className="flex-row ecom-modal-btns">
-                  <div className="flex-col-lg-4">
-                    {isInCart(item._id) ? (
-                      <Link to="/cart">
-                        <button>go to cart</button>{" "}
-                      </Link>
-                    ) : null}
-                    {!isInCart(item._id) ? (
-                      <button onClick={() => addToCart(item._id, path)}>
-                        add to cart
-                      </button>
-                    ) : null}
-                  </div>
-                  <div className="flex-col-lg-4">
-                    {!isInWishList(item._id) ? (
-                      <button onClick={() => addToWishList(item._id, path)}>
-                        add to wishlist
-                      </button>
-                    ) : null}
-                    {isInWishList(item._id) ? (
-                      <Link to="/wishlist">
-                        <button>go to wishlist</button>{" "}
-                      </Link>
-                    ) : null}
-                  </div>
+                  {!isInWishList(item._id) && (
+                    <div className="flex-col-10">
+                      {isInCart(item._id) ? (
+                        <Link to="/cart">
+                          <button className="button-full">go to cart</button>{" "}
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={() => addToCart(item._id, path)}
+                          className="button-full"
+                        >
+                          add to cart
+                        </button>
+                      )}
+                    </div>
+                  )}
+
+                  {!isInCart(item._id) && (
+                    <div className="flex-col-10 m-top">
+                      {!isInWishList(item._id) ? (
+                        <button
+                          className="button-full"
+                          onClick={() => addToWishList(item._id, path)}
+                        >
+                          add to wishlist
+                        </button>
+                      ) : (
+                        <Link to="/wishlist">
+                          <button className="button-full">
+                            go to wishlist
+                          </button>
+                        </Link>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

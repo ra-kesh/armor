@@ -26,6 +26,7 @@ export const useActions = () => {
           },
         });
       }
+      return;
     }
     navigate("/login", {
       state: {
@@ -54,6 +55,7 @@ export const useActions = () => {
           },
         });
       }
+      return;
     }
     navigate("/login", {
       state: {

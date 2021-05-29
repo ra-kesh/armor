@@ -21,6 +21,23 @@ export const useProduct = () => {
     })();
   }, [dispatch]);
 
+  const getCategorizedProductList = (productList, filterByCategory) => {
+    switch (filterByCategory) {
+      case "JACKETS":
+        return [...productList].filter((item) => item.category === "jackets");
+      case "HELMETS":
+        return [...productList].filter((item) => item.category === "helmets");
+      case "GLOVES":
+        return [...productList].filter((item) => item.category === "gloves");
+      case "SHOES":
+        return [...productList].filter((item) => item.category === "shoes");
+      case "ALL":
+        return productList;
+
+      default:
+    }
+  };
+
   const getSortedProductList = (productList, sortBy) => {
     switch (sortBy) {
       case "LOW_TO_HIGH":
@@ -53,6 +70,7 @@ export const useProduct = () => {
     productList,
     getSortedProductList,
     getFilteredProductList,
+    getCategorizedProductList,
     dispatch,
     loading,
   };
