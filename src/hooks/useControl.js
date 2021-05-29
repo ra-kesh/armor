@@ -26,42 +26,42 @@ export const useControl = () => {
 
   const filterOutOfStock = () => {
     dispatch({
-      type: "TOGGLE_PRODUCTS",
+      type: "FILTER_OUT_OF_STOCK",
     });
   };
 
   const filterFastDelivery = () => {
     dispatch({
-      type: "TOGGLE_DELIVERY",
+      type: "FILTER_FAST_DELIVERY",
     });
   };
   const filterJackets = () => {
     dispatch({
-      type: "FILTER",
+      type: "FILTER_BY_CATEGORY",
       payload: "JACKETS",
     });
   };
   const filterHelmets = () => {
     dispatch({
-      type: "FILTER",
+      type: "FILTER_BY_CATEGORY",
       payload: "HELMETS",
     });
   };
   const filterGloves = () => {
     dispatch({
-      type: "FILTER",
+      type: "FILTER_BY_CATEGORY",
       payload: "GLOVES",
     });
   };
   const filterShoes = () => {
     dispatch({
-      type: "FILTER",
+      type: "FILTER_BY_CATEGORY",
       payload: "SHOES",
     });
   };
   const showAll = () => {
     dispatch({
-      type: "FILTER",
+      type: "FILTER_BY_CATEGORY",
       payload: "ALL",
     });
   };

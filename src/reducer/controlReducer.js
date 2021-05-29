@@ -5,27 +5,27 @@ export const controlReducer = (state, action) => {
         ...state,
         sortBy: action.payload,
       };
-    case "FILTER":
+    case "FILTER_BY_CATEGORY":
       return {
         ...state,
         filterByCategory: action.payload,
       };
 
-    case "TOGGLE_PRODUCTS":
+    case "FILTER_OUT_OF_STOCK":
       return {
         ...state,
-        filters: {
-          ...state.filters,
-          showAllProducts: !state.filters.showAllProducts,
+        otherFilters: {
+          ...state.otherFilters,
+          showAllProducts: !state.otherFilters.showAllProducts,
         },
       };
 
-    case "TOGGLE_DELIVERY":
+    case "FILTER_FAST_DELIVERY":
       return {
         ...state,
-        filters: {
-          ...state.filters,
-          showOnlyFastDelivery: !state.filters.showOnlyFastDelivery,
+        otherFilters: {
+          ...state.otherFilters,
+          showOnlyFastDelivery: !state.otherFilters.showOnlyFastDelivery,
         },
       };
 

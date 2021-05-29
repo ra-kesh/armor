@@ -2,7 +2,7 @@ import React from "react";
 import { useControl } from "../../hooks";
 
 export const Filter = () => {
-  const { filters, filterOutOfStock, filterFastDelivery } = useControl();
+  const { otherFilters, filterOutOfStock, filterFastDelivery } = useControl();
 
   return (
     <div className="filter">
@@ -13,7 +13,7 @@ export const Filter = () => {
           name="filter"
           id="out-of-stock"
           onChange={filterOutOfStock}
-          checked={filters.showAllProducts}
+          checked={otherFilters.showAllProducts}
         />
         include out of stock
       </label>
@@ -23,7 +23,7 @@ export const Filter = () => {
           name="filter"
           id="fast-delivery"
           onChange={filterFastDelivery}
-          checked={filters.showOnlyFastDelivery}
+          checked={otherFilters.showOnlyFastDelivery}
         />
         only fast delivery
       </label>

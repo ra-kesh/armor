@@ -7,7 +7,7 @@ export const ControlProvider = ({ children }) => {
   const [state, dispatch] = useReducer(controlReducer, {
     sortBy: "DEFAULT",
     filterByCategory: "ALL",
-    filters: {
+    otherFilters: {
       showAllProducts: true,
       showOnlyFastDelivery: false,
     },
