@@ -51,7 +51,7 @@ export const useAuth = () => {
     }
   };
 
-  const signup = async (name, email, password) => {
+  const signup = async (name, email, password, path) => {
     try {
       dispatch({
         type: "USER_REQUEST",
@@ -84,7 +84,11 @@ export const useAuth = () => {
             : error.message,
       });
     }
-    navigate("/");
+    if (path !== undefined) {
+      navigate(path, { replace: true });
+    } else {
+      navigate("/");
+    }
   };
 
   const logOut = () => {

@@ -2,12 +2,11 @@ import { Cart } from "./Cart/Cart";
 import { Products } from "./Products/Products";
 import { ProductDetail } from "./Products/ProductDetail";
 import { Wishlist } from "./WishList";
-import { Login } from "./Login";
-import { Register } from "./Register";
+import { Login } from "./Auth/Login";
 import { User } from "./User";
 import { Home } from "./Home";
 import { Blog } from "./Blog";
-import { Signup } from "./Signup";
+import { Signup } from "./Auth/Signup";
 
 export {
   Cart,
@@ -16,7 +15,6 @@ export {
   Login,
   ProductDetail,
   User,
-  Register,
   Home,
   Blog,
   Signup,

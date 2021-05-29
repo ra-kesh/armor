@@ -1,8 +1,17 @@
 import { Navbar } from "../component";
 import { useAuth } from "../hooks";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const User = () => {
   const { logOut, userInfo } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/login");
+    }
+  }, [userInfo, navigate]);
 
   return (
     <>
