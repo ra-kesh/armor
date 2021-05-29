@@ -10,6 +10,7 @@ export const User = () => {
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
+      return;
     }
   }, [userInfo, navigate]);
 

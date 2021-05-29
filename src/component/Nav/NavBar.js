@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import PersonIcon from "@material-ui/icons/Person";
 import SearchIcon from "@material-ui/icons/Search";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -16,6 +17,20 @@ export const Navbar = () => {
   const loginHandler = () => {
     if (userInfo) {
       navigate("/user");
+    } else {
+      navigate("/login");
+    }
+  };
+  const wishListHandler = () => {
+    if (userInfo) {
+      navigate("/wishlist");
+    } else {
+      navigate("/login");
+    }
+  };
+  const cartHandler = () => {
+    if (userInfo) {
+      navigate("/cart");
     } else {
       navigate("/login");
     }
@@ -46,21 +61,21 @@ export const Navbar = () => {
             <div className="flex-col-6 flex-col-md-4 order-3 order-md-3 text-right">
               <ul>
                 <li className="inline-block nav-icon" onClick={loginHandler}>
-                  <PermIdentityIcon />
+                  {userInfo ? <PersonIcon /> : <PermIdentityIcon />}
                 </li>
-                <li
-                  className="inline-block nav-icon"
-                  onClick={() => navigate("/wishlist")}
-                >
-                  {wishList.length > 0 && <FavoriteIcon />}
-                  {wishList.length <= 0 && <FavoriteBorderIcon />}
+                <li className="inline-block nav-icon" onClick={wishListHandler}>
+                  {wishList.length >= 1 ? (
+                    <FavoriteIcon />
+                  ) : (
+                    <FavoriteBorderIcon />
+                  )}
                 </li>
-                <li
-                  className="inline-block nav-icon"
-                  onClick={() => navigate("/cart")}
-                >
-                  {cartList.length > 0 && <ShoppingCartIcon />}
-                  {cartList.length <= 0 && <ShoppingCartOutlinedIcon />}
+                <li className="inline-block nav-icon" onClick={cartHandler}>
+                  {cartList.length >= 1 ? (
+                    <ShoppingCartIcon />
+                  ) : (
+                    <ShoppingCartOutlinedIcon />
+                  )}
                 </li>
               </ul>
             </div>

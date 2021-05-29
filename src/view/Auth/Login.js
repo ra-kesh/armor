@@ -11,6 +11,7 @@ export const Login = () => {
   const location = useLocation();
 
   const path = location.state?.from;
+  const message = location.state?.message;
 
   function submitHandeller(e) {
     e.preventDefault();
@@ -33,6 +34,7 @@ export const Login = () => {
                 <h3>Login...</h3>
                 {loading && <div>ruko zara sabar karo</div>}
                 {error && <div>{error}</div>}
+                {!loading && !error && message && <div>{message}</div>}
               </div>
             </div>
             <div className="flex-col-lg-6 ">
