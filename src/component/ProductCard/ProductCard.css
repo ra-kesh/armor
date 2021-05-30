@@ -4,12 +4,12 @@
 .ecom-card{
     padding:.8rem;
     margin-bottom: 2rem;
+    /* background-color: var(--less-light-border); */
 }
 
 .ecom-card-pic{
-    padding: 1rem;
     position: relative;
-    border: 1px solid var(--less-light-border);
+    border: 1px solid var(--less-light-border);  
 }
 
 .hover-image {
