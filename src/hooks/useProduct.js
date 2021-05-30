@@ -4,22 +4,22 @@ import axios from "axios";
 import { apiUrl } from "../constants";
 
 export const useProduct = () => {
-  const { state, dispatch } = useContext(ProductContext);
+  const { state, dispatch: productDispatch } = useContext(ProductContext);
 
   useEffect(() => {
     (async () => {
       try {
-        dispatch({ type: "SHOW LOADING" });
+        productDispatch({ type: "SHOW LOADING" });
         const {
           data: { data: products },
         } = await axios.get(`${apiUrl}/products`);
-        dispatch({ type: "GET PRODUCT LIST", payload: products });
-        dispatch({ type: "HIDE LOADING" });
+        productDispatch({ type: "GET PRODUCT LIST", payload: products });
+        productDispatch({ type: "HIDE LOADING" });
       } catch (err) {
         console.log({ error: err.message });
       }
     })();
-  }, [dispatch]);
+  }, [productDispatch]);
 
   const getCategorizedProductList = (productList, filterByCategory) => {
     switch (filterByCategory) {
@@ -71,7 +71,6 @@ export const useProduct = () => {
     getSortedProductList,
     getFilteredProductList,
     getCategorizedProductList,
-    dispatch,
     loading,
   };
 };
