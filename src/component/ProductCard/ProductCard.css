@@ -2,13 +2,12 @@
 /* ecom card */
 
 .ecom-card{
-    /* background-color: var(--gray); */
     padding:.8rem;
     margin-bottom: 2rem;
 }
 
 .ecom-card-pic{
-    /* background-color: var(--gray); */
+    padding: 1rem;
     position: relative;
     border: 1px solid var(--less-light-border);
 }
@@ -94,7 +93,7 @@
 
   .ecom-modal-content{
       position: relative;
-      padding: 4rem 1rem 2rem;
+      padding: 2rem 1rem ;
       background-color: var(--primary-white);
 
   }
@@ -111,6 +110,10 @@
 
   .ecom-modal-desc{
       margin-top: 5rem;
+  }
+
+  .modal-pic img{
+    width: 100%;
   }
 
 

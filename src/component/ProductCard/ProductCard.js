@@ -17,8 +17,6 @@ export const ProductCard = ({ item, path }) => {
 
   const [showModal, setShowModal] = useState(false);
 
-  console.log(path);
-
   function ProductPageCard() {
     return (
       <div className="ecom-card">

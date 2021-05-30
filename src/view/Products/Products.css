@@ -84,3 +84,7 @@
 .product-detail-bar{
     margin: 3rem 0;
 }
+
+.product-detail-image img{
+    width : 100%;
+}

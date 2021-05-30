@@ -27,8 +27,10 @@ export function ProductPageModal({
 
           <div className="flex-row">
             <div className="flex-col-lg-6">
-              <div className="modal-pic">
-                <img src={item.image} alt="jackets" />
+              <div className="container">
+                <div className="modal-pic">
+                  <img src={item.image} alt="jackets" />
+                </div>
               </div>
             </div>
 
@@ -52,7 +54,7 @@ export function ProductPageModal({
                       ) : (
                         <button
                           onClick={() => addToCart(item._id, path)}
-                          className="button-full"
+                          className="button-full button-outline"
                         >
                           add to cart
                         </button>

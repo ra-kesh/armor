@@ -40,7 +40,9 @@ export const ProductDetail = () => {
         <div className="flex-row">
           <div className="flex-col-lg-6">
             <div className="container">
-              <img src={currentProduct.image} alt="" />
+              <div className="product-detail-image">
+                <img src={currentProduct.image} alt="" />
+              </div>
             </div>
           </div>
           <div className="flex-col-lg-6">
