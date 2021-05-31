@@ -7,18 +7,25 @@ export const useProduct = () => {
   const { state, dispatch: productDispatch } = useContext(ProductContext);
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
+    const cancelToken = source.token;
     (async () => {
       try {
         productDispatch({ type: "SHOW LOADING" });
         const {
           data: { data: products },
-        } = await axios.get(`${apiUrl}/products`);
+        } = await axios.get(`${apiUrl}/products`, {
+          cancelToken,
+        });
         productDispatch({ type: "GET PRODUCT LIST", payload: products });
         productDispatch({ type: "HIDE LOADING" });
       } catch (err) {
         console.log({ error: err.message });
       }
     })();
+    return () => {
+      source.cancel();
+    };
   }, [productDispatch]);
 
   const getCategorizedProductList = (productList, filterByCategory) => {

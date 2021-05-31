@@ -20,8 +20,6 @@ export const Wishlist = () => {
     }
   }, [userInfo, wishList, cartList]);
 
-  console.log(wishListItems);
-
   function WishListbar() {
     return (
       <div className="container">

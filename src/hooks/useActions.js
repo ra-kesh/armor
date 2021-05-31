@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export const useActions = () => {
   const { userInfo } = useAuth();
-  const { dispatch, cartList, wishList } = useUserData();
+  const { userDispatch, cartList, wishList } = useUserData();
   const navigate = useNavigate();
 
   const addToCart = async (_id, path) => {
@@ -17,9 +17,8 @@ export const useActions = () => {
           _id,
         },
       });
-      console.log(success);
       if (success) {
-        dispatch({
+        userDispatch({
           type: "ADD TO CART",
           payload: {
             product: _id,
@@ -45,10 +44,9 @@ export const useActions = () => {
           _id,
         },
       });
-      console.log(success);
 
       if (success) {
-        dispatch({
+        userDispatch({
           type: "ADD TO WISHLIST",
           payload: {
             product: _id,
@@ -72,7 +70,7 @@ export const useActions = () => {
       } = await axios.delete(`${apiUrl}/cart/${userInfo._id}/${_id}`);
 
       if (success) {
-        dispatch({
+        userDispatch({
           type: "REMOVE FROM CART",
           payload: {
             product: _id,
@@ -88,7 +86,7 @@ export const useActions = () => {
       } = await axios.delete(`${apiUrl}/wishlist/${userInfo._id}/${_id}`);
 
       if (success) {
-        dispatch({
+        userDispatch({
           type: "REMOVE FROM WISHLIST",
           payload: {
             product: _id,
@@ -106,7 +104,7 @@ export const useActions = () => {
     });
 
     if (success) {
-      dispatch({
+      userDispatch({
         type: "INCREMENT CART",
         payload: {
           product: _id,
@@ -123,10 +121,8 @@ export const useActions = () => {
       quantity: quantity - 1,
     });
 
-    console.log(success);
-
     if (success) {
-      dispatch({
+      userDispatch({
         type: "DECREMENT CART",
         payload: {
           product: _id,
@@ -153,7 +149,7 @@ export const useActions = () => {
       });
 
       if (success) {
-        dispatch({
+        userDispatch({
           type: "ADD TO CART",
           payload: {
             product: _id,
@@ -163,7 +159,7 @@ export const useActions = () => {
       let res = await axios.delete(`${apiUrl}/wishlist/${userInfo._id}/${_id}`);
 
       if (res.data.success) {
-        dispatch({
+        userDispatch({
           type: "REMOVE FROM WISHLIST",
           payload: {
             product: _id,
@@ -183,7 +179,7 @@ export const useActions = () => {
       });
 
       if (success) {
-        dispatch({
+        userDispatch({
           type: "ADD TO WISHLIST",
           payload: {
             product: _id,
@@ -193,7 +189,7 @@ export const useActions = () => {
       let res = await axios.delete(`${apiUrl}/cart/${userInfo._id}/${_id}`);
 
       if (res.data.success) {
-        dispatch({
+        userDispatch({
           type: "REMOVE FROM CART",
           payload: {
             product: _id,
