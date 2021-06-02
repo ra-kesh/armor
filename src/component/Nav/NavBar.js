@@ -54,9 +54,7 @@ export const Navbar = () => {
               </form>
             </div>
             <div className="flex-col-12 flex-col-md-4 order-1 order-md-2 text-center">
-              <span className="logo-text border-right-zero border-left-zero">
-                M . A . D
-              </span>
+              <span className="logo-text ">M . A . D</span>
             </div>
             <div className="flex-col-6 flex-col-md-4 order-3 order-md-3 text-right">
               <ul>
