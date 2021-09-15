@@ -43,7 +43,6 @@ export const useAuth = () => {
             : error.message,
       });
     }
-    // console.log(path);
     if (path !== undefined) {
       navigate(path, { replace: true });
     } else {

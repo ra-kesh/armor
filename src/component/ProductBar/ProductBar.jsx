@@ -9,9 +9,9 @@ export const ProductBar = ({ showFilterModal, setShowFilterModal }) => {
   return (
     <div className="container">
       <div className="flex-row center-vertically product-bar">
-        <div className="flex-col-lg-10 text-left">
+        <div className="flex-col-lg-10 flex-col-md-8 flex-col-sm-8 text-left">
           <span className="product-bar-item" onClick={showAll}>
-            All Products
+            All
           </span>
           <span className="product-bar-item" onClick={filterJackets}>
             Jackets
@@ -27,7 +27,7 @@ export const ProductBar = ({ showFilterModal, setShowFilterModal }) => {
           </span>
         </div>
 
-        <div className="flex-col-lg-2">
+        <div className="flex-col-lg-2 flex-col-md-4 flex-col-sm-4">
           <div
             onClick={() =>
               setShowFilterModal((showFilterModal) => !showFilterModal)

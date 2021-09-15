@@ -7,6 +7,7 @@ export const Login = () => {
   const [password, setPassword] = useState("");
 
   const { error, login, loading } = useAuth();
+
   const navigate = useNavigate();
   const location = useLocation();
 

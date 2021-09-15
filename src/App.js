@@ -15,6 +15,7 @@ import { useAuth, useProduct, useUserData } from "./hooks";
 import { useEffect } from "react";
 import axios from "axios";
 import { apiUrl } from "./constants";
+import { PrivateRoute } from "./utils/PrivateRoute";
 
 function App() {
   const { userDispatch } = useUserData();
@@ -77,11 +78,11 @@ function App() {
       <Routes>
         <Route path="/products" element={<Products />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <PrivateRoute path="/cart" element={<Cart />} />
+        <PrivateRoute path="/wishlist" element={<Wishlist />} />
+        <PrivateRoute path="/user" element={<User />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/user" element={<User />} />
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<Blog />} />
       </Routes>

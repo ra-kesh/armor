@@ -6,6 +6,8 @@
 :root{
     --nav-gray-primary:#333;
     --nav-gray-secondary:#888;
+      --light-border:rgba(0, 0, 0, 0.1);
+      --less-light-border:#c5c5c5;
 }
 
 
