@@ -7,8 +7,10 @@ import { WishListPageCard } from "./WishListPageCard/WishListPageCard";
 import { ProductPageModal } from "./ProductPageModal/ProductPageModal";
 import { ProductBar } from "./ProductBar/ProductBar";
 import { FilterPanel } from "./FilterPanel/FilterPanel";
+import { Hero } from "./HeroSection";
 
 export {
+  Hero,
   Navbar,
   Sort,
   Filter,
