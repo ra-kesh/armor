@@ -457,7 +457,7 @@ button:active,
 [type="button"]:focus,
 [type="button"]:active {
   border: 1px solid transparent;
-  background: var(--secondary-blue);
+  /* background: var(--secondary-blue); */
   color: var(--primary-white);
   text-decoration: none;
 }

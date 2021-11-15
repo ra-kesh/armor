@@ -1,26 +1,15 @@
 import { useUserData, useAuth } from "../../hooks";
 import { Link, useNavigate } from "react-router-dom";
-import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import PersonIcon from "@material-ui/icons/Person";
-import SearchIcon from "@material-ui/icons/Search";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import { Loader } from "./Loader";
+import CartIcon from "../Icons/CartIcon";
+import WishListIcon from "../Icons/WishListIcon";
+import { SocialBar } from "./SocialBar";
 
 export const Navbar = () => {
   const { cartList, wishList } = useUserData();
   const { userInfo } = useAuth();
   const navigate = useNavigate();
 
-  const loginHandler = () => {
-    if (userInfo) {
-      navigate("/user");
-    } else {
-      navigate("/login");
-    }
-  };
   const wishListHandler = () => {
     if (userInfo) {
       navigate("/wishlist");
@@ -42,38 +31,18 @@ export const Navbar = () => {
         <div className="container">
           <div className="flex-row center-vertically ">
             <div className="flex-col-6 flex-col-md-4 order-2 order-md-1 text-left">
-              <form action="" className="center-vertically">
-                <span>
-                  <SearchIcon />
-                </span>
-                <input
-                  type="text"
-                  className=" border-zero"
-                  placeholder="Search"
-                />
-              </form>
+              <SocialBar />
             </div>
             <div className="flex-col-12 flex-col-md-4 order-1 order-md-2 text-center">
               <span className="logo-text ">M . A . D</span>
             </div>
             <div className="flex-col-6 flex-col-md-4 order-3 order-md-3 text-right">
               <ul>
-                <li className="inline-block nav-icon" onClick={loginHandler}>
-                  {userInfo ? <PersonIcon /> : <PermIdentityIcon />}
+                <li className="inline-block nav-icon" onClick={cartHandler}>
+                  <CartIcon count={cartList.length} />
                 </li>
                 <li className="inline-block nav-icon" onClick={wishListHandler}>
-                  {wishList.length >= 1 ? (
-                    <FavoriteIcon />
-                  ) : (
-                    <FavoriteBorderIcon />
-                  )}
-                </li>
-                <li className="inline-block nav-icon" onClick={cartHandler}>
-                  {cartList.length >= 1 ? (
-                    <ShoppingCartIcon />
-                  ) : (
-                    <ShoppingCartOutlinedIcon />
-                  )}
+                  <WishListIcon count={wishList.length} />
                 </li>
               </ul>
             </div>
@@ -90,10 +59,9 @@ export const Navbar = () => {
             <Link to="/products">
               <li>Products</li>
             </Link>
-            <Link to="/blogs">
-              <li>Blogs</li>
+            <Link to={userInfo ? "/user" : "/login"}>
+              <li>Account</li>
             </Link>
-            {/* <Link to='/Contact'><li>Contact</li></Link> */}
           </ul>
         </div>
       </nav>
