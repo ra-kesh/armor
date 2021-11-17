@@ -9,20 +9,17 @@ export const Hero = () => {
             <div className="flex-col-xl-5 flex-col-md-6 flex-col-lg-6">
               <div className="single_product">
                 <div className="single_product_image">
-                  <img class="img-fluid" src="hero/09.jpg" alt="" />
+                  <img class="img-fluid" src="hero/_09.png" alt="" />
                 </div>
                 <div className="single_product_details">
-                  <h4>mdmddvdvdvmldvmdl</h4>
+                  <img class="img-fluid" src="hero/_09.png" alt="" />
                 </div>
               </div>
             </div>
             <div className="flex-col-xl-4 flex-col-md-6 flex-col-lg-6">
               <div className="single_product">
                 <div className="single_product_image">
-                  <img class="img-fluid" src="hero/13.jpg" alt="" />
-                </div>
-                <div className="single_product_details_two">
-                  <h4>mdmddvdvdvmldvmdl</h4>
+                  <img class="img-fluid" src="hero/_14.png" alt="" />
                 </div>
               </div>
             </div>
@@ -34,18 +31,18 @@ export const Hero = () => {
                       <img class="img-responsive" src="hero/04.jpg" alt="" />
                     </div>
                     <div className="single_product_details_three">
-                      <h4>mdmddvdvdvmldvmdl</h4>
+                      <img class="img-fluid" src="hero/_04.png" alt="" />
                     </div>
                   </div>
                 </div>
                 <div className="flex-col-xl-12 flex-col-12 flex-col-md-6 flex-col-lg-6">
                   <div className="single_product">
                     <div className="single_product_image">
-                      <img class="img-responsive" src="hero/01.jpg" alt="" />
+                      <img class="img-responsive" src="hero/_01.png" alt="" />
                     </div>
-                    <div className="single_product_details_three">
-                      <h4>mdmddvdvdvmldvmdl</h4>
-                    </div>
+                    {/* <div className="single_product_details_four">
+                      <img class="img-fluid" src="hero/01.jpg" alt="" />
+                    </div> */}
                   </div>
                 </div>
               </div>

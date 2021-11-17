@@ -20,8 +20,9 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 80%;
-  padding: 40px;
+  width: 85%;
+  padding: 20px;
+  overflow: hidden;
 }
 
 .single_product_details_two {
@@ -39,7 +40,16 @@
   transition: all 300ms linear 0s;
   position: absolute;
   bottom: 0;
-  right: 10%;
+  right: 5%;
   width: 80%;
-  padding: 5px 10px;
+  padding: 5px 10px 0;
+}
+.single_product_details_four {
+  background: #fff;
+  transition: all 300ms linear 0s;
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  width: 80%;
+  padding: 0 0 0 10px;
 }
