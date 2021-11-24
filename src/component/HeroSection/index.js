@@ -40,9 +40,6 @@ export const Hero = () => {
                     <div className="single_product_image">
                       <img class="img-responsive" src="hero/_01.png" alt="" />
                     </div>
-                    {/* <div className="single_product_details_four">
-                      <img class="img-fluid" src="hero/01.jpg" alt="" />
-                    </div> */}
                   </div>
                 </div>
               </div>

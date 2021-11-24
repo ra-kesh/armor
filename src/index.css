@@ -8,14 +8,30 @@
   --nav-gray-secondary: #888;
   --light-border: rgba(0, 0, 0, 0.1);
   --less-light-border: #c5c5c5;
+
+  --color-gray-100: #f8f9fa;
+  --color-gray-200: #f1f3f5;
+  --color-gray-300: #eaecee;
+  --color-gray-400: #d0d4da;
+  --color-gray-500: #aeb5bc;
+  --color-gray-600: #878e95;
+  --color-gray-700: #4a5057;
+  --color-gray-800: #353a40;
+  --color-gray-900: #14171a;
+}
+
+@property --offset {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
 }
 
 @import url("./component/Nav/NavBar.css");
 @import url("./component/HeroSection/hero.css");
 @import url("./view/Products/Products.css");
 @import url("./component/ProductCard/ProductCard.css");
+@import url("./component/Form/Form.css");
 @import url("./view/Cart/Cart.css");
-@import url("./view/Auth/Auth.css");
 
 * {
   font-family: "Poppins", sans-serif;
