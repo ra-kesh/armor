@@ -30,6 +30,7 @@
 @import url("./component/HeroSection/hero.css");
 @import url("./view/Products/Products.css");
 @import url("./component/ProductCard/ProductCard.css");
+@import url("./component/ProductPageModal/ProductModal.css");
 @import url("./component/Form/Form.css");
 @import url("./view/Cart/Cart.css");
 

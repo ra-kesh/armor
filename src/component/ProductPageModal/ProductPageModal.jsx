@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function ProductPageModal({
   setShowModal,
@@ -9,6 +9,7 @@ export function ProductPageModal({
   addToWishList,
   path,
 }) {
+  const navigate = useNavigate();
   return (
     <div className="ecom-modal-wrapper">
       <div
@@ -19,7 +20,7 @@ export function ProductPageModal({
       <div className="container">
         <div className="ecom-modal-content">
           <button
-            className="ecom-modal-close-btn"
+            className="ecom-modal-close-btn prod-modal-btn"
             onClick={() => setShowModal(false)}
           >
             close
@@ -48,13 +49,16 @@ export function ProductPageModal({
                   {!isInWishList(item._id) && (
                     <div className="flex-col-10">
                       {isInCart(item._id) ? (
-                        <Link to="/cart">
-                          <button className="button-full">go to cart</button>{" "}
-                        </Link>
+                        <button
+                          className="button-full prod-modal-btn"
+                          onClick={() => navigate("/cart")}
+                        >
+                          go to cart
+                        </button>
                       ) : (
                         <button
                           onClick={() => addToCart(item._id, path)}
-                          className="button-full button-outline"
+                          className="button-full button-outline prod-modal-btn-outline"
                         >
                           add to cart
                         </button>
@@ -66,17 +70,18 @@ export function ProductPageModal({
                     <div className="flex-col-10 m-top">
                       {!isInWishList(item._id) ? (
                         <button
-                          className="button-full"
+                          className="button-full prod-modal-btn"
                           onClick={() => addToWishList(item._id, path)}
                         >
                           add to wishlist
                         </button>
                       ) : (
-                        <Link to="/wishlist">
-                          <button className="button-full">
-                            go to wishlist
-                          </button>
-                        </Link>
+                        <button
+                          className="button-full prod-modal-btn"
+                          onClick={() => navigate("/wishlist")}
+                        >
+                          go to wishlist
+                        </button>
                       )}
                     </div>
                   )}

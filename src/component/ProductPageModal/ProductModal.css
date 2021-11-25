@@ -1,0 +1,18 @@
+.prod-modal-btn {
+  background-color: var(--color-gray-800);
+}
+
+.prod-modal-btn:hover,
+.prod-modal-btn:focus {
+  background-color: var(--color-gray-900);
+}
+
+.prod-modal-btn-outline {
+  border: 1px solid var(--color-gray-800);
+  color: var(--color-gray-800);
+}
+
+.prod-modal-btn-outline:hover,
+.prod-modal-btn-outline:focus {
+  background-color: var(--color-gray-900);
+}
