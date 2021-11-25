@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams, useLocation, Link } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "../../component";
 import { apiUrl } from "../../constants";
 import { useActions } from "../../hooks";
@@ -11,6 +11,8 @@ export const ProductDetail = () => {
 
   const location = useLocation();
   const path = location.pathname + location.search;
+
+  const navigate = useNavigate();
 
   const {
     addToCart,
@@ -55,13 +57,16 @@ export const ProductDetail = () => {
                 {!isInWishList(currentProduct._id) && (
                   <div className="flex-col-10">
                     {isInCart(currentProduct._id) ? (
-                      <Link to="/cart">
-                        <button className="button-full">go to cart</button>{" "}
-                      </Link>
+                      <button
+                        className="button-full prod-btn"
+                        onClick={() => navigate("/cart")}
+                      >
+                        go to cart
+                      </button>
                     ) : (
                       <button
                         onClick={() => addToCart(currentProduct._id, path)}
-                        className="button-full button-outline"
+                        className="button-full button-outline prod-btn-outline"
                       >
                         add to cart
                       </button>
@@ -73,15 +78,18 @@ export const ProductDetail = () => {
                   <div className="flex-col-10 m-top">
                     {!isInWishList(currentProduct._id) ? (
                       <button
-                        className="button-full"
+                        className="button-full prod-btn"
                         onClick={() => addToWishList(currentProduct._id, path)}
                       >
                         add to wishlist
                       </button>
                     ) : (
-                      <Link to="/wishlist">
-                        <button className="button-full">go to wishlist</button>
-                      </Link>
+                      <button
+                        className="button-full prod-btn"
+                        onClick={() => navigate("/wishlist")}
+                      >
+                        go to wishlist
+                      </button>
                     )}
                   </div>
                 )}

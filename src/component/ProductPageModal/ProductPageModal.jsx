@@ -20,7 +20,7 @@ export function ProductPageModal({
       <div className="container">
         <div className="ecom-modal-content">
           <button
-            className="ecom-modal-close-btn prod-modal-btn"
+            className="ecom-modal-close-btn prod-btn"
             onClick={() => setShowModal(false)}
           >
             close
@@ -50,7 +50,7 @@ export function ProductPageModal({
                     <div className="flex-col-10">
                       {isInCart(item._id) ? (
                         <button
-                          className="button-full prod-modal-btn"
+                          className="button-full prod-btn"
                           onClick={() => navigate("/cart")}
                         >
                           go to cart
@@ -58,7 +58,7 @@ export function ProductPageModal({
                       ) : (
                         <button
                           onClick={() => addToCart(item._id, path)}
-                          className="button-full button-outline prod-modal-btn-outline"
+                          className="button-full button-outline prod-btn-outline"
                         >
                           add to cart
                         </button>
@@ -70,14 +70,14 @@ export function ProductPageModal({
                     <div className="flex-col-10 m-top">
                       {!isInWishList(item._id) ? (
                         <button
-                          className="button-full prod-modal-btn"
+                          className="button-full prod-btn"
                           onClick={() => addToWishList(item._id, path)}
                         >
                           add to wishlist
                         </button>
                       ) : (
                         <button
-                          className="button-full prod-modal-btn"
+                          className="button-full prod-btn"
                           onClick={() => navigate("/wishlist")}
                         >
                           go to wishlist
