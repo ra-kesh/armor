@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useActions } from "../../hooks";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -17,6 +17,8 @@ export const ProductCard = ({ item, path }) => {
 
   const [showModal, setShowModal] = useState(false);
 
+  const navigate = useNavigate();
+
   function ProductPageCard() {
     return (
       <div className="ecom-card">
@@ -30,29 +32,38 @@ export const ProductCard = ({ item, path }) => {
           </button>
         </div>
         <div className="ecom-card-desc flex-row">
-          <div className="flex-col-10 flex-dir-col">
+          <div className="flex-col-11 flex-dir-col">
             <span>₹{item.price}</span>
-            <Link to={`/products/${item._id}`}>
-              <span>{item.name}</span>
-            </Link>
+            {/* <Link to={`/products/${item._id}`}> */}
+            <span
+              className="ecom-card-name"
+              onClick={() => navigate(`/products/${item._id}`)}
+            >
+              {item.name}
+            </span>
+            {/* </Link> */}
           </div>
-          <div className="flex-col-2 text-right">
+          <div className="flex-col-1 text-right">
             {isInWishList(item._id) && !isInCart(item._id) && (
-              <div onClick={() => removeFromWishList(item._id)}>
+              <div
+                onClick={() => removeFromWishList(item._id)}
+                className="ecom-card-icon"
+              >
                 <FavoriteIcon />
               </div>
             )}
             {!isInWishList(item._id) && !isInCart(item._id) && (
-              <div onClick={() => addToWishList(item._id, path)}>
+              <div
+                onClick={() => addToWishList(item._id, path)}
+                className="ecom-card-icon"
+              >
                 <FavoriteBorderIcon />
               </div>
             )}
             {isInCart(item._id) && (
-              <Link to="/cart">
-                <div>
-                  <ShoppingCartIcon />
-                </div>
-              </Link>
+              <div onClick={() => navigate("/cart")} className="ecom-card-icon">
+                <ShoppingCartIcon />
+              </div>
             )}
           </div>
         </div>

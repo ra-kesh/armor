@@ -45,21 +45,33 @@
   border-radius: 3rem;
   width: 9rem;
   padding: 1rem;
-  /* @media (min-width: 768px) {
-    width: 3rem;
-  } */
+  background-color: var(--color-gray-800);
+}
+
+.ecom-card-btn:hover,
+.ecom-card-btn:focus {
+  background-color: var(--color-gray-900);
 }
 
 .ecom-card-pic:hover .ecom-card-btn {
   bottom: 20px;
-  /* visibility: visible; */
 }
 
 .ecom-card-desc {
   padding-top: 1rem;
-  color: #666;
+  color: var(--color-gray-800);
 }
 
+.ecom-card-name:hover,
+.ecom-card-name:focus {
+  color: var(--color-gray-900);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ecom-card-icon {
+  cursor: pointer;
+}
 /* ecom product modal */
 
 .ecom-modal-wrapper {
