@@ -9,17 +9,17 @@ export const Hero = () => {
             <div className="flex-col-xl-5 flex-col-md-6 flex-col-lg-6">
               <div className="single_product">
                 <div className="single_product_image">
-                  <img class="img-fluid" src="hero/_09.png" alt="" />
+                  <img className="img-fluid" src="hero/_09.png" alt="" />
                 </div>
                 <div className="single_product_details">
-                  <img class="img-fluid" src="hero/_09.png" alt="" />
+                  <img className="img-fluid" src="hero/_09.png" alt="" />
                 </div>
               </div>
             </div>
             <div className="flex-col-xl-4 flex-col-md-6 flex-col-lg-6">
               <div className="single_product">
                 <div className="single_product_image">
-                  <img class="img-fluid" src="hero/_14.png" alt="" />
+                  <img className="img-fluid" src="hero/_14.png" alt="" />
                 </div>
               </div>
             </div>
@@ -28,17 +28,25 @@ export const Hero = () => {
                 <div className="flex-col-xl-12 flex-col-12 flex-col-md-6 flex-col-lg-6">
                   <div className="single_product">
                     <div className="single_product_image">
-                      <img class="img-responsive" src="hero/04.jpg" alt="" />
+                      <img
+                        className="img-responsive"
+                        src="hero/04.jpg"
+                        alt=""
+                      />
                     </div>
                     <div className="single_product_details_three">
-                      <img class="img-fluid" src="hero/_04.png" alt="" />
+                      <img className="img-fluid" src="hero/_04.png" alt="" />
                     </div>
                   </div>
                 </div>
                 <div className="flex-col-xl-12 flex-col-12 flex-col-md-6 flex-col-lg-6">
                   <div className="single_product">
                     <div className="single_product_image">
-                      <img class="img-responsive" src="hero/_01.png" alt="" />
+                      <img
+                        className="img-responsive"
+                        src="hero/_01.png"
+                        alt=""
+                      />
                     </div>
                   </div>
                 </div>

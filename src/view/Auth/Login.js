@@ -28,8 +28,8 @@ export const Login = () => {
           flexDirection: "column",
         }}
       >
-        {error ? <h4>{error}</h4> : null}
-        {loading ? <h4>loading</h4> : null}
+        {error && <h4>{error}</h4>}
+        {loading && <h4>loading</h4>}
         {!loading && !error && message && <h4>{message}</h4>}
 
         <div>
