@@ -20,7 +20,11 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
               <div className="cart-qty">
                 <span
                   className="counter-btn pointer"
-                  onClick={() => decrement(item.product._id, item.quantity)}
+                  onClick={() => {
+                    item.quantity === 1
+                      ? removeFromCart(item.product._id)
+                      : decrement(item.product._id, item.quantity);
+                  }}
                 >
                   -
                 </span>
