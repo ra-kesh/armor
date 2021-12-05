@@ -32,7 +32,7 @@ export function ProductPageModal({
           <div className="flex-row">
             <div className="flex-col-lg-6">
               <div className="container">
-                <div className="modal-pic">
+                <div>
                   <ReactImageMagnify
                     enlargedImagePosition="over"
                     {...{

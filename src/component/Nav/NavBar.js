@@ -5,7 +5,7 @@ import CartIcon from "../Icons/CartIcon";
 import WishListIcon from "../Icons/WishListIcon";
 import { SocialBar } from "./SocialBar";
 
-export const Navbar = () => {
+export const Navbar = ({ isLoading = false }) => {
   const { cartList, wishList } = useUserData();
   const { userInfo } = useAuth();
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ export const Navbar = () => {
           </ul>
         </div>
       </nav>
-      <Loader />
+      <Loader isLoading={isLoading} />
     </header>
   );
 };

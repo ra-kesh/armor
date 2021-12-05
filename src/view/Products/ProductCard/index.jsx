@@ -5,6 +5,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useState } from "react";
 import { ProductPageModal } from "../ProductPageModal";
+// import style from "./ProductCard.module.css";
 
 export const ProductCard = ({ item, path }) => {
   const {

@@ -1,6 +1,6 @@
 import { useProduct, useUserData } from "../../hooks";
 
-export const Loader = () => {
+export const Loader = ({ isLoading }) => {
   const { dataloading } = useUserData();
   const { loading } = useProduct();
   return (
@@ -12,6 +12,12 @@ export const Loader = () => {
         </>
       )}
       {dataloading && (
+        <>
+          <div className="starting-loader"></div>
+          <div className="ending-loader"></div>
+        </>
+      )}
+      {isLoading && (
         <>
           <div className="starting-loader"></div>
           <div className="ending-loader"></div>
