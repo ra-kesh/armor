@@ -1,13 +1,19 @@
 import { useActions } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 export const CartPageCard = ({ item, moveToWishlist }) => {
   const { increment, decrement, removeFromCart, moveToWishList } = useActions();
+
+  const navigate = useNavigate();
 
   return (
     <div className="container cart-card">
       <div className="flex-row ">
         <div className="flex-col-lg-2">
-          <div className="cart-pic pointer">
+          <div
+            className="cart-pic pointer"
+            onClick={() => navigate(`/products/${item.product._id}`)}
+          >
             <img src={item.product.image} alt="" />
           </div>
         </div>
@@ -31,7 +37,10 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
                 <span className="counter">{item.quantity}</span>
                 <span
                   className="counter-btn pointer"
-                  onClick={() => increment(item.product._id, item.quantity)}
+                  onClick={() => {
+                    if (item.quantity >= item.product.quantities) return;
+                    increment(item.product._id, item.quantity);
+                  }}
                 >
                   +
                 </span>
