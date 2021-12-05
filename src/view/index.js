@@ -5,17 +5,6 @@ import { Wishlist } from "./WishList/WishListPage";
 import { Login } from "./Auth/Login";
 import { User } from "./User";
 import { Home } from "./Home";
-import { Blog } from "./Blog";
 import { Signup } from "./Auth/Signup";
 
-export {
-  Cart,
-  Products,
-  Wishlist,
-  Login,
-  ProductDetail,
-  User,
-  Home,
-  Blog,
-  Signup,
-};
+export { Cart, Products, Wishlist, Login, ProductDetail, User, Home, Signup };

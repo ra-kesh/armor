@@ -8,7 +8,6 @@ import {
   ProductDetail,
   User,
   Home,
-  Blog,
   Signup,
 } from "./view";
 import { useAuth, useProduct, useUserData } from "./hooks";
@@ -84,7 +83,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Home />} />
-        <Route path="/blogs" element={<Blog />} />
       </Routes>
     </div>
   );

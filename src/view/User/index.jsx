@@ -1,5 +1,5 @@
-import { Navbar } from "../component";
-import { useAuth } from "../hooks";
+import { Navbar } from "../../component";
+import { useAuth } from "../../hooks";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
