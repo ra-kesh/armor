@@ -111,7 +111,7 @@ export const ProductDetail = () => {
               </div>
             </div>
           </div>
-          <div className="container product-additional">
+          {/* <div className="container product-additional">
             <div className="flex-dir-col center-vertically">
               <div className="product-detail-bar">
                 <span className="product-bar-item">Descriptions</span>
@@ -122,7 +122,7 @@ export const ProductDetail = () => {
               </div>
               <div className="container"></div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

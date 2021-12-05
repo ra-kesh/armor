@@ -1,6 +1,6 @@
 import { Navbar } from "./Nav/NavBar";
-import { Filter } from "./Filter/Filter";
-import { Sort } from "./Filter/Sort";
+import { Filter } from "./Filter";
+import { Sort } from "./Sort";
 import { FilterPanel } from "./FilterPanel/FilterPanel";
 import { Hero } from "./HeroSection";
 

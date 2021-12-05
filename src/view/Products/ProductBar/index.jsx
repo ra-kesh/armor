@@ -12,7 +12,7 @@ export const ProductBar = ({ showFilterModal, setShowFilterModal }) => {
     <div className="container">
       <div className={style.product_bar}>
         <div className="flex-col-xl-10 flex-col-lg-10 flex-col-md-8 flex-col-sm-8 text-left">
-          <span className="product-bar-item" onClick={showAll}>
+          <span className={style.product_bar_item} onClick={showAll}>
             All
           </span>
           <span className={style.product_bar_item} onClick={filterJackets}>
@@ -34,7 +34,9 @@ export const ProductBar = ({ showFilterModal, setShowFilterModal }) => {
             onClick={() =>
               setShowFilterModal((showFilterModal) => !showFilterModal)
             }
-            className={showFilterModal ? "filter-btn-active" : "filter-btn"}
+            className={
+              showFilterModal ? style.filter_btn_active : style.filter_btn
+            }
           >
             {showFilterModal ? (
               <CloseIcon fontSize="small" style={{ marginRight: ".5rem" }} />

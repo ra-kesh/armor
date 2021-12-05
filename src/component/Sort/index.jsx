@@ -1,12 +1,13 @@
 import { useControl } from "../../hooks";
 import CloseIcon from "@material-ui/icons/Close";
+import style from "./Sort.module.css";
 
 export const Sort = () => {
   const { sortBy, sortHighToLow, sortLowToHigh, resetSort } = useControl();
 
   return (
     <div className="sort flex-dir-col">
-      <span className="filter-heading">Sort By</span>
+      <span className={style.sort_heading}>Sort By</span>
       <label htmlFor="low-to-high">
         <input
           type="radio"
