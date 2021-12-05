@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@blacklab/react-image-magnify": "^3.4.1",
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "@material-ui/core": "^4.11.3",
@@ -15,7 +16,6 @@
     "axios": "^0.21.1",
     "faker": "^5.5.2",
     "history": "^5.0.0",
-    "pure-react-carousel": "^1.27.6",
     "react": "^17.0.2",
     "react-content-loader": "^6.0.3",
     "react-dom": "^17.0.2",
