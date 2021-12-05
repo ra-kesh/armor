@@ -1,7 +1,7 @@
-import { Cart } from "./Cart/Cart";
-import { Products } from "./Products/Products";
-import { ProductDetail } from "./Products/ProductDetail";
-import { Wishlist } from "./WishList";
+import { Cart } from "./Cart/CartPage";
+import { Products } from "./Products/ProductsPage";
+import { ProductDetail } from "./Products/ProductDetailPage";
+import { Wishlist } from "./WishList/WishListPage";
 import { Login } from "./Auth/Login";
 import { User } from "./User";
 import { Home } from "./Home";

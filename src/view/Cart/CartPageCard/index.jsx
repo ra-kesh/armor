@@ -1,4 +1,4 @@
-import { useActions } from "../../hooks";
+import { useActions } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 
 export const CartPageCard = ({ item, moveToWishlist }) => {

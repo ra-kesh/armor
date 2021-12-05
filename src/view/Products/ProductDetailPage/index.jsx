@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { Navbar } from "../../component";
-import { apiUrl } from "../../constants";
-import { useActions } from "../../hooks";
+import { Navbar } from "../../../component";
+import { apiUrl } from "../../../constants";
+import { useActions } from "../../../hooks";
 import ReactImageMagnify from "react-image-magnify";
 
 export const ProductDetail = () => {

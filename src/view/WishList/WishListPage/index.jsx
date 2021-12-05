@@ -1,8 +1,9 @@
-import { useUserData, useAuth } from "../hooks";
-import { Navbar, WishListPageCard } from "../component";
-import { apiUrl } from "../constants";
+import { useUserData, useAuth } from "../../../hooks";
+import { Navbar } from "../../../component";
+import { apiUrl } from "../../../constants";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { WishListPageCard } from "../WishListPageCard";
 
 export const Wishlist = () => {
   const { wishList, cartList } = useUserData();

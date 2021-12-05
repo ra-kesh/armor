@@ -1,4 +1,4 @@
-import { useActions } from "../../hooks";
+import { useActions } from "../../../hooks";
 import CloseIcon from "@material-ui/icons/Close";
 import { useNavigate } from "react-router-dom";
 

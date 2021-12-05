@@ -1,7 +1,8 @@
-import { useAuth, useUserData } from "../../hooks";
+import { useAuth, useUserData } from "../../../hooks";
 import { useEffect, useState } from "react";
-import { CartPageCard, Navbar } from "../../component";
-import { apiUrl } from "../../constants";
+import { Navbar } from "../../../component";
+import { apiUrl } from "../../../constants";
+import { CartPageCard } from "../CartPageCard";
 import axios from "axios";
 
 export const Cart = () => {

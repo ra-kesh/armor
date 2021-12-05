@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { useProduct, useControl } from "../../hooks";
-import { FilterPanel, ProductCard, Navbar, ProductBar } from "../../component";
+import { useProduct, useControl } from "../../../hooks";
+import { FilterPanel, Navbar } from "../../../component";
+import { ProductBar } from "../ProductBar";
+import { ProductCard } from "../ProductCard";
 import { useLocation } from "react-router-dom";
 
 export const Products = () => {

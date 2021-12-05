@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useActions } from "../../hooks";
+import { useActions } from "../../../hooks";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useState } from "react";
-import { ProductPageModal } from "../ProductPageModal/ProductPageModal";
+import { ProductPageModal } from "../ProductPageModal";
 
 export const ProductCard = ({ item, path }) => {
   const {
