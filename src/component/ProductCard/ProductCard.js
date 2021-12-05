@@ -23,7 +23,7 @@ export const ProductCard = ({ item, path }) => {
     return (
       <div className="ecom-card">
         <div className="ecom-card-pic hover-image">
-          <img src={item.image} alt="jackets" />
+          <img src={item.image} alt={item.category} />
           <button
             className="ecom-card-btn trans-04"
             onClick={() => setShowModal(true)}
@@ -34,14 +34,12 @@ export const ProductCard = ({ item, path }) => {
         <div className="ecom-card-desc flex-row">
           <div className="flex-col-11 flex-dir-col">
             <span>₹{item.price}</span>
-            {/* <Link to={`/products/${item._id}`}> */}
             <span
               className="ecom-card-name"
               onClick={() => navigate(`/products/${item._id}`)}
             >
               {item.name}
             </span>
-            {/* </Link> */}
           </div>
           <div className="flex-col-1 text-right">
             {isInWishList(item._id) && !isInCart(item._id) && (
@@ -52,6 +50,7 @@ export const ProductCard = ({ item, path }) => {
                 <FavoriteIcon />
               </div>
             )}
+
             {!isInWishList(item._id) && !isInCart(item._id) && (
               <div
                 onClick={() => addToWishList(item._id, path)}
@@ -60,6 +59,7 @@ export const ProductCard = ({ item, path }) => {
                 <FavoriteBorderIcon />
               </div>
             )}
+
             {isInCart(item._id) && (
               <div onClick={() => navigate("/cart")} className="ecom-card-icon">
                 <ShoppingCartIcon />

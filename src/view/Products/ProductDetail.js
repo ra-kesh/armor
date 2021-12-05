@@ -4,6 +4,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "../../component";
 import { apiUrl } from "../../constants";
 import { useActions } from "../../hooks";
+import ReactImageMagnify from "react-image-magnify";
 
 export const ProductDetail = () => {
   const [currentProduct, setCurentProduct] = useState({});
@@ -43,20 +44,34 @@ export const ProductDetail = () => {
           <div className="flex-col-lg-6">
             <div className="container">
               <div className="product-detail-image">
-                <img src={currentProduct.image} alt="" />
+                <ReactImageMagnify
+                  enlargedImagePosition="over"
+                  {...{
+                    smallImage: {
+                      alt: "brand",
+                      isFluidWidth: true,
+                      src: currentProduct?.image,
+                    },
+                    largeImage: {
+                      src: currentProduct?.image,
+                      width: 1200,
+                      height: 1000,
+                    },
+                  }}
+                />
               </div>
             </div>
           </div>
           <div className="flex-col-lg-6">
             <div className="container product-desc">
-              <h3>{currentProduct.name}</h3>
-              <h5>{currentProduct.description}</h5>
-              <h5>Rs.{currentProduct.price}/-</h5>
-              <h5>{currentProduct.category}</h5>
+              <h3>{currentProduct?.name}</h3>
+              <h5>{currentProduct?.description}</h5>
+              <h5>Rs.{currentProduct?.price}/-</h5>
+              <h5>{currentProduct?.category}</h5>
               <div className="product-btns flex-row">
-                {!isInWishList(currentProduct._id) && (
+                {!isInWishList(currentProduct?._id) && (
                   <div className="flex-col-10">
-                    {isInCart(currentProduct._id) ? (
+                    {isInCart(currentProduct?._id) ? (
                       <button
                         className="button-full prod-btn"
                         onClick={() => navigate("/cart")}
@@ -65,7 +80,7 @@ export const ProductDetail = () => {
                       </button>
                     ) : (
                       <button
-                        onClick={() => addToCart(currentProduct._id, path)}
+                        onClick={() => addToCart(currentProduct?._id, path)}
                         className="button-full button-outline prod-btn-outline"
                       >
                         add to cart
@@ -76,10 +91,10 @@ export const ProductDetail = () => {
 
                 {!isInCart(currentProduct._id) && (
                   <div className="flex-col-10 m-top">
-                    {!isInWishList(currentProduct._id) ? (
+                    {!isInWishList(currentProduct?._id) ? (
                       <button
                         className="button-full prod-btn"
-                        onClick={() => addToWishList(currentProduct._id, path)}
+                        onClick={() => addToWishList(currentProduct?._id, path)}
                       >
                         add to wishlist
                       </button>
@@ -93,20 +108,6 @@ export const ProductDetail = () => {
                     )}
                   </div>
                 )}
-                {/* <div
-                  className="flex-col-12 m-bottom"
-                  onClick={() => addToCart(currentProduct._id, path)}
-                >
-                  <button className="button-full button-outline">
-                    Add to Cart
-                  </button>
-                </div>
-                <div
-                  className="flex-col-12 m-bottom"
-                  onClick={() => addToWishList(currentProduct._id, path)}
-                >
-                  <button className="button-full">Add to Wishlist</button>
-                </div> */}
               </div>
             </div>
           </div>

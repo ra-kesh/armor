@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import ReactImageMagnify from "react-image-magnify";
+import style from "./ProdModal.module.css";
+import Rating from "@mui/material/Rating";
 
 export function ProductPageModal({
   setShowModal,
@@ -30,62 +33,91 @@ export function ProductPageModal({
             <div className="flex-col-lg-6">
               <div className="container">
                 <div className="modal-pic">
-                  <img src={item.image} alt="jackets" />
+                  <ReactImageMagnify
+                    enlargedImagePosition="over"
+                    {...{
+                      smallImage: {
+                        alt: "brand",
+                        isFluidWidth: true,
+                        src: item?.image,
+                      },
+                      largeImage: {
+                        src: item?.image,
+                        width: 1200,
+                        height: 1000,
+                      },
+                    }}
+                  />
                 </div>
               </div>
             </div>
 
             <div className="flex-col-lg-6">
-              <div className="ecom-modal-desc">
-                <h3>{item.name}</h3>
-                <h4>{item.description}</h4>
-                <h5>{item.price}</h5>
-                {item.inStock && <div>in stock</div>}
-                {!item.inStock && <div>out of stock</div>}
-                {item.fastDelivery && <div>fast delivery</div>}
-                {!item.fastDelivery && <div>slow delivery</div>}
+              <span className={style.prod_modal_subHeader}>
+                From {item.brand}
+              </span>
+              <div className={style.prod_modal_header}>{item.name}</div>
+              <Rating value={item.rating} readOnly />
+              <div className={style.prod_modal_price}>
+                <span className={style.discounted_price_span}>
+                  {" "}
+                  ₹{item.price}.00
+                </span>
+                <span className={style.actual_price_span}>
+                  {item.price + (item.price * item.discount) / 100}.00
+                </span>
+              </div>
+              <p className={style.prod_modal_desc}>{item.description}</p>
 
-                <div className="flex-row ecom-modal-btns">
-                  {!isInWishList(item._id) && (
-                    <div className="flex-col-10">
-                      {isInCart(item._id) ? (
-                        <button
-                          className="button-full prod-btn"
-                          onClick={() => navigate("/cart")}
-                        >
-                          go to cart
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => addToCart(item._id, path)}
-                          className="button-full button-outline prod-btn-outline"
-                        >
-                          add to cart
-                        </button>
-                      )}
-                    </div>
-                  )}
+              <div className={style.prod_modal_status}>
+                {item.inStock && item.fastDelivery
+                  ? "can be shipped today"
+                  : item.inStock
+                  ? "in stock"
+                  : "currently out of stock"}
+              </div>
 
-                  {!isInCart(item._id) && (
-                    <div className="flex-col-10 m-top">
-                      {!isInWishList(item._id) ? (
-                        <button
-                          className="button-full prod-btn"
-                          onClick={() => addToWishList(item._id, path)}
-                        >
-                          add to wishlist
-                        </button>
-                      ) : (
-                        <button
-                          className="button-full prod-btn"
-                          onClick={() => navigate("/wishlist")}
-                        >
-                          go to wishlist
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
+              <div className="flex-row ecom-modal-btns">
+                {!isInWishList(item._id) && (
+                  <div className="flex-col-6">
+                    {isInCart(item._id) ? (
+                      <button
+                        className={style.prod_modal_button}
+                        onClick={() => navigate("/cart")}
+                      >
+                        go to cart
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => addToCart(item._id, path)}
+                        className={style.prod_modal_button}
+                        disabled={!item.inStock}
+                      >
+                        add to cart
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                {!isInCart(item._id) && (
+                  <div className="flex-col-6">
+                    {!isInWishList(item._id) ? (
+                      <button
+                        className={style.prod_modal_button}
+                        onClick={() => addToWishList(item._id, path)}
+                      >
+                        add to wishlist
+                      </button>
+                    ) : (
+                      <button
+                        className={style.prod_modal_button}
+                        onClick={() => navigate("/wishlist")}
+                      >
+                        go to wishlist
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
