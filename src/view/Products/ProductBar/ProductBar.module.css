@@ -1,0 +1,18 @@
+.product_bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0 2rem;
+}
+
+.product_bar_item {
+  margin-right: 1rem;
+  cursor: pointer;
+  color: var(--nav-gray-secondary);
+}
+
+.product_bar_item:active,
+.product_bar_item:hover {
+  color: var(--nav-gray-primary);
+  border-bottom: 1px solid var(--nav-gray-primary);
+}

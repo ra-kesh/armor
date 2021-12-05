@@ -1,6 +1,7 @@
 import { useControl } from "../../../hooks";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import CloseIcon from "@material-ui/icons/Close";
+import style from "./ProductBar.module.css";
 // import SearchIcon from "@mui/icons-material/Search";
 
 export const ProductBar = ({ showFilterModal, setShowFilterModal }) => {
@@ -9,21 +10,21 @@ export const ProductBar = ({ showFilterModal, setShowFilterModal }) => {
 
   return (
     <div className="container">
-      <div className="flex-row center-vertically product-bar">
+      <div className={style.product_bar}>
         <div className="flex-col-xl-10 flex-col-lg-10 flex-col-md-8 flex-col-sm-8 text-left">
           <span className="product-bar-item" onClick={showAll}>
             All
           </span>
-          <span className="product-bar-item" onClick={filterJackets}>
+          <span className={style.product_bar_item} onClick={filterJackets}>
             Jackets
           </span>
-          <span className="product-bar-item" onClick={filterHelmets}>
+          <span className={style.product_bar_item} onClick={filterHelmets}>
             Helmets
           </span>
-          <span className="product-bar-item" onClick={filterGloves}>
+          <span className={style.product_bar_item} onClick={filterGloves}>
             Gloves
           </span>
-          <span className="product-bar-item" onClick={filterShoes}>
+          <span className={style.product_bar_item} onClick={filterShoes}>
             Shoes
           </span>
         </div>
