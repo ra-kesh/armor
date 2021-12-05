@@ -4,7 +4,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "../../../component";
 import { apiUrl } from "../../../constants";
 import { useActions } from "../../../hooks";
-import ReactImageMagnify from "@blacklab/react-image-magnify";
+import ReactImageMagnify from "react-image-magnify";
 import style from "./ProductDetail.module.css";
 import Rating from "@mui/material/Rating";
 

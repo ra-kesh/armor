@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@blacklab/react-image-magnify": "^3.4.1",
+    "react-image-magnify": "^2.7.4",
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "@material-ui/core": "^4.11.3",

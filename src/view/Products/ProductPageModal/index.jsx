@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import ReactImageMagnify from "@blacklab/react-image-magnify";
+import ReactImageMagnify from "react-image-magnify";
 import style from "./ProdModal.module.css";
 import Rating from "@mui/material/Rating";
 
