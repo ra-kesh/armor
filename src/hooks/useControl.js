@@ -66,6 +66,12 @@ export const useControl = () => {
       payload: "ALL",
     });
   };
+  const filterByPrice = (e) => {
+    dispatch({
+      type: "PRICE_RANGE_SORT",
+      payload: e.target.value,
+    });
+  };
   const showRatingsAboveFour = () => {
     dispatch({
       type: "FILTER_RATINGS_ABOVE_FOUR",
@@ -98,6 +104,7 @@ export const useControl = () => {
     filterHelmets,
     filterJackets,
     filterShoes,
+    filterByPrice,
     showRatingsAboveFour,
     showRatingsAboveThree,
     showRatingsAboveTwo,

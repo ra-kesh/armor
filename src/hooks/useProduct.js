@@ -21,6 +21,10 @@ export const useProduct = () => {
     }
   };
 
+  const getProductsFilteredByPrice = (productList, filterbyPrice) => {
+    return [...productList].filter((item) => item.price <= filterbyPrice);
+  };
+
   const getSortedProductList = (productList, sortBy) => {
     switch (sortBy) {
       case "LOW_TO_HIGH":
@@ -45,6 +49,7 @@ export const useProduct = () => {
       showOnlyRatingsAboveThree,
       showOnlyRatingsAboveTwo,
       showOnlyRatingsAboveOne,
+      priceRangeControl,
     }
   ) => {
     return [...productList]
@@ -52,6 +57,7 @@ export const useProduct = () => {
       .filter(({ fastDelivery }) =>
         showOnlyFastDelivery ? fastDelivery : true
       )
+      .filter((item) => item.price <= Number(priceRangeControl))
       .filter(({ rating }) => (showOnlyRatingsAboveFour ? rating >= 4 : true))
       .filter(({ rating }) => (showOnlyRatingsAboveThree ? rating >= 3 : true))
       .filter(({ rating }) => (showOnlyRatingsAboveTwo ? rating >= 2 : true))
@@ -65,6 +71,7 @@ export const useProduct = () => {
     getSortedProductList,
     getFilteredProductList,
     getCategorizedProductList,
+    getProductsFilteredByPrice,
     loading,
     productDispatch,
   };

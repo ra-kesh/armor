@@ -11,11 +11,20 @@ export const controlReducer = (state, action) => {
         filterByCategory: action.payload,
       };
 
-    // case "FILTER_BY_RATING":
-    //   return {
-    //     ...state,
-    //     filterByRating: action.payload,
-    //   };
+    case "PRICE_RANGE_SORT":
+      return {
+        ...state,
+        otherFilters: {
+          ...state.otherFilters,
+          priceRangeControl: action.payload,
+        },
+      };
+
+    case "FILTER_BY_PRICE":
+      return {
+        ...state,
+        filterByPrice: action.payload,
+      };
 
     case "FILTER_OUT_OF_STOCK":
       return {

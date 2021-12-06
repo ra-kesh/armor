@@ -7,7 +7,6 @@ export const ControlProvider = ({ children }) => {
   const [state, dispatch] = useReducer(controlReducer, {
     sortBy: "DEFAULT",
     filterByCategory: "ALL",
-    filterByPrice: null,
     otherFilters: {
       showAllProducts: true,
       showOnlyFastDelivery: false,
@@ -15,6 +14,7 @@ export const ControlProvider = ({ children }) => {
       showOnlyRatingsAboveThree: false,
       showOnlyRatingsAboveTwo: false,
       showOnlyRatingsAboveOne: false,
+      priceRangeControl: 5000,
     },
   });
 

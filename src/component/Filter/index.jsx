@@ -2,13 +2,14 @@ import React from "react";
 import { useControl } from "../../hooks";
 import style from "./Filter.module.css";
 import Rating from "@mui/material/Rating";
-import PriceSlider from "../Slider";
+// import PriceSlider from "../Slider";
 
 export const Filter = () => {
   const {
     otherFilters,
     filterOutOfStock,
     filterFastDelivery,
+    filterByPrice,
     showRatingsAboveFour,
     showRatingsAboveThree,
     showRatingsAboveTwo,
@@ -83,8 +84,19 @@ export const Filter = () => {
             />
             only fast delivery
           </label>
-          <hr />
-          <PriceSlider />
+          <label>
+            price range
+            <input
+              onChange={(e) => filterByPrice(e)}
+              value={otherFilters.priceRangeControl}
+              type="range"
+              min="5000"
+              max="10000"
+              step="100"
+            />
+          </label>
+          {/* <hr />
+          <PriceSlider /> */}
         </div>
       </div>
     </div>
