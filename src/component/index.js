@@ -3,5 +3,15 @@ import { Filter } from "./Filter";
 import { Sort } from "./Sort";
 import { FilterPanel } from "./FilterPanel/FilterPanel";
 import { Hero } from "./HeroSection";
+import JacketFeatures from "./Features/JacketFeatures";
+import HelmetFeatures from "./Features/HelmetFeature";
 
-export { Hero, Navbar, Sort, Filter, FilterPanel };
+export {
+  Hero,
+  Navbar,
+  Sort,
+  Filter,
+  FilterPanel,
+  JacketFeatures,
+  HelmetFeatures,
+};

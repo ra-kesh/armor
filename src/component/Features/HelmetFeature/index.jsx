@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "../Feature.module.css";
 
-const JacketFeatures = () => {
+const HelmetFeatures = () => {
   const [show, setShow] = useState("video");
   return (
     <div className="container">
@@ -18,11 +18,24 @@ const JacketFeatures = () => {
             >
               <div className={style.protection_feature_box}>
                 <div className={style.protection_feature_icon}>
-                  <img src="/feature/construction_icon.png" alt="icon" />
+                  <img src="/feature/shell_construction_icon.png" alt="icon" />
                 </div>
                 <span className={style.protection_feature_label}>
-                  construction
+                  shell construction
                 </span>
+              </div>
+            </div>
+            <div
+              className="flex-col-4"
+              onClick={() => {
+                setShow("design");
+              }}
+            >
+              <div className={style.protection_feature_box}>
+                <div className={style.protection_feature_icon}>
+                  <img src="/feature/design_icon.png" alt="icon" />
+                </div>
+                <span className={style.protection_feature_label}>design</span>
               </div>
             </div>
             <div
@@ -36,54 +49,35 @@ const JacketFeatures = () => {
                   <img src="/feature/impact_protection_icon.png" alt="icon" />
                 </div>
                 <span className={style.protection_feature_label}>
-                  impact resistance
+                  impact protection
                 </span>
+              </div>
+            </div>
+
+            <div
+              className="flex-col-4"
+              onClick={() => {
+                setShow("comfort");
+              }}
+            >
+              <div className={style.protection_feature_box}>
+                <div className={style.protection_feature_icon}>
+                  <img src="/feature/comfort_icon_1.png" alt="icon" />
+                </div>
+                <span className={style.protection_feature_label}>comfort</span>
               </div>
             </div>
             <div
               className="flex-col-4"
               onClick={() => {
-                setShow("fit");
+                setShow("visor");
               }}
             >
               <div className={style.protection_feature_box}>
                 <div className={style.protection_feature_icon}>
-                  <img src="/feature/fit_icon.png" alt="icon" />
+                  <img src="/feature/visor_construction_icon.png" alt="icon" />
                 </div>
-                <span className={style.protection_feature_label}>fit</span>
-              </div>
-            </div>
-            <div
-              className="flex-col-4"
-              onClick={() => {
-                setShow("protection");
-              }}
-            >
-              <div className={style.protection_feature_box}>
-                <div className={style.protection_feature_icon}>
-                  <img
-                    src="/feature/protection_abrasion_resistant_icon.png"
-                    alt="icon"
-                  />
-                </div>
-                <span className={style.protection_feature_label}>
-                  protection
-                </span>
-              </div>
-            </div>
-            <div
-              className="flex-col-4"
-              onClick={() => {
-                setShow("water resistance");
-              }}
-            >
-              <div className={style.protection_feature_box}>
-                <div className={style.protection_feature_icon}>
-                  <img src="/feature/water_resistance_icon.png" alt="icon" />
-                </div>
-                <span className={style.protection_feature_label}>
-                  water resistance
-                </span>
+                <span className={style.protection_feature_label}>visor</span>
               </div>
             </div>
             <div
@@ -109,7 +103,7 @@ const JacketFeatures = () => {
         >
           {show === "video" && (
             <video
-              src="/jacket/jacketFeature.webm"
+              src="/helmet/helmet.mp4"
               width="100%"
               height="auto"
               autoPlay
@@ -120,7 +114,7 @@ const JacketFeatures = () => {
           )}
           {show === "construction" && (
             <img
-              src="/jacket/construction.png"
+              src="/helmet/shell-construction.png"
               width="100%"
               height="auto"
               alt="construction"
@@ -128,34 +122,39 @@ const JacketFeatures = () => {
           )}
           {show === "impact resistance" && (
             <img
-              src="/jacket/impact_protection.png"
+              src="/helmet/impact-protection.png"
               width="100%"
               height="auto"
               alt="impact"
             />
           )}
-          {show === "fit" && (
-            <img src="/jacket/fit.png" width="100%" height="auto" alt="fit" />
-          )}
-          {show === "protection" && (
+          {show === "design" && (
             <img
-              src="/jacket/protection.png"
+              src="/helmet/design.png"
               width="100%"
               height="auto"
-              alt="protection"
+              alt="design"
             />
           )}
-          {show === "water resistance" && (
+          {show === "comfort" && (
             <img
-              src="/jacket/water-resistance.png"
+              src="/helmet/comfort.png"
               width="100%"
               height="auto"
-              alt="water resistance"
+              alt="comfort"
+            />
+          )}
+          {show === "visor" && (
+            <img
+              src="/helmet/construction.png"
+              width="100%"
+              height="auto"
+              alt="visor"
             />
           )}
           {show === "ventilation" && (
             <img
-              src="/jacket/ventilation.png"
+              src="/helmet/ventilation.png"
               width="100%"
               height="auto"
               alt="ventilation"
@@ -167,4 +166,4 @@ const JacketFeatures = () => {
   );
 };
 
-export default JacketFeatures;
+export default HelmetFeatures;

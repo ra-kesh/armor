@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { Navbar } from "../../../component";
+import { Navbar, JacketFeatures, HelmetFeatures } from "../../../component";
 import { apiUrl } from "../../../constants";
 import { useActions } from "../../../hooks";
 import ReactImageMagnify from "react-image-magnify";
 import style from "./ProductDetail.module.css";
 import Rating from "@mui/material/Rating";
-import JacketFeatures from "../../../component/Features/JacketFeatures";
+// import JacketFeatures from "../../../component/Features/JacketFeatures";
 
 const ProductDetailImage = ({ currentProduct }) => {
   return (
@@ -150,6 +150,7 @@ export const ProductDetail = () => {
           </div>
           <div className="container">
             {currentProduct?.category === "jackets" && <JacketFeatures />}
+            {currentProduct?.category === "helmets" && <HelmetFeatures />}
           </div>
         </>
       )}
