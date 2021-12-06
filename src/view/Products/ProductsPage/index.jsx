@@ -41,6 +41,7 @@ export const Products = () => {
       <ProductBar
         showFilterModal={showFilterModal}
         setShowFilterModal={setShowFilterModal}
+        filterByCategory={filterByCategory}
       />
       {showFilterModal && (
         <div className="container">

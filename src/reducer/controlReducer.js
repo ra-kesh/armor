@@ -11,6 +11,12 @@ export const controlReducer = (state, action) => {
         filterByCategory: action.payload,
       };
 
+    // case "FILTER_BY_RATING":
+    //   return {
+    //     ...state,
+    //     filterByRating: action.payload,
+    //   };
+
     case "FILTER_OUT_OF_STOCK":
       return {
         ...state,
@@ -26,6 +32,41 @@ export const controlReducer = (state, action) => {
         otherFilters: {
           ...state.otherFilters,
           showOnlyFastDelivery: !state.otherFilters.showOnlyFastDelivery,
+        },
+      };
+
+    case "FILTER_RATINGS_ABOVE_FOUR":
+      return {
+        ...state,
+        otherFilters: {
+          ...state.otherFilters,
+          showOnlyRatingsAboveFour:
+            !state.otherFilters.showOnlyRatingsAboveFour,
+        },
+      };
+    case "FILTER_RATINGS_ABOVE_THREE":
+      return {
+        ...state,
+        otherFilters: {
+          ...state.otherFilters,
+          showOnlyRatingsAboveThree:
+            !state.otherFilters.showOnlyRatingsAboveThree,
+        },
+      };
+    case "FILTER_RATINGS_ABOVE_TWO":
+      return {
+        ...state,
+        otherFilters: {
+          ...state.otherFilters,
+          showOnlyRatingsAboveTwo: !state.otherFilters.showOnlyRatingsAboveTwo,
+        },
+      };
+    case "FILTER_RATINGS_ABOVE_ONE":
+      return {
+        ...state,
+        otherFilters: {
+          ...state.otherFilters,
+          showOnlyRatingsAboveOne: !state.otherFilters.showOnlyRatingsAboveOne,
         },
       };
 

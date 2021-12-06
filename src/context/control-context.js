@@ -7,9 +7,14 @@ export const ControlProvider = ({ children }) => {
   const [state, dispatch] = useReducer(controlReducer, {
     sortBy: "DEFAULT",
     filterByCategory: "ALL",
+    filterByPrice: null,
     otherFilters: {
       showAllProducts: true,
       showOnlyFastDelivery: false,
+      showOnlyRatingsAboveFour: false,
+      showOnlyRatingsAboveThree: false,
+      showOnlyRatingsAboveTwo: false,
+      showOnlyRatingsAboveOne: false,
     },
   });
 

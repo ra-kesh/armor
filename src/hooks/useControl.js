@@ -35,6 +35,7 @@ export const useControl = () => {
       type: "FILTER_FAST_DELIVERY",
     });
   };
+
   const filterJackets = () => {
     dispatch({
       type: "FILTER_BY_CATEGORY",
@@ -65,6 +66,26 @@ export const useControl = () => {
       payload: "ALL",
     });
   };
+  const showRatingsAboveFour = () => {
+    dispatch({
+      type: "FILTER_RATINGS_ABOVE_FOUR",
+    });
+  };
+  const showRatingsAboveThree = () => {
+    dispatch({
+      type: "FILTER_RATINGS_ABOVE_THREE",
+    });
+  };
+  const showRatingsAboveTwo = () => {
+    dispatch({
+      type: "FILTER_RATINGS_ABOVE_TWO",
+    });
+  };
+  const showRatingsAboveOne = () => {
+    dispatch({
+      type: "FILTER_RATINGS_ABOVE_ONE",
+    });
+  };
 
   return {
     ...state,
@@ -77,6 +98,10 @@ export const useControl = () => {
     filterHelmets,
     filterJackets,
     filterShoes,
+    showRatingsAboveFour,
+    showRatingsAboveThree,
+    showRatingsAboveTwo,
+    showRatingsAboveOne,
     showAll,
   };
 };

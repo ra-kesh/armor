@@ -38,13 +38,24 @@ export const useProduct = () => {
 
   const getFilteredProductList = (
     productList,
-    { showAllProducts, showOnlyFastDelivery }
+    {
+      showAllProducts,
+      showOnlyFastDelivery,
+      showOnlyRatingsAboveFour,
+      showOnlyRatingsAboveThree,
+      showOnlyRatingsAboveTwo,
+      showOnlyRatingsAboveOne,
+    }
   ) => {
-    return productList
+    return [...productList]
       .filter(({ inStock }) => (showAllProducts ? true : inStock))
       .filter(({ fastDelivery }) =>
         showOnlyFastDelivery ? fastDelivery : true
-      );
+      )
+      .filter(({ rating }) => (showOnlyRatingsAboveFour ? rating >= 4 : true))
+      .filter(({ rating }) => (showOnlyRatingsAboveThree ? rating >= 3 : true))
+      .filter(({ rating }) => (showOnlyRatingsAboveTwo ? rating >= 2 : true))
+      .filter(({ rating }) => (showOnlyRatingsAboveOne ? rating >= 1 : true));
   };
 
   const { productList, loading } = state;

@@ -5,12 +5,12 @@ import style from "./FilterPanel.module.css";
 export const FilterPanel = () => {
   return (
     <div className={style.filter_panel}>
-      <div className="flex-col-lg-3">
+      <div className="flex-col-lg-6">
         <div className="container">
           <Filter />
         </div>
       </div>
-      <div className="flex-col-lg-3">
+      <div className="flex-col-lg-6">
         <div className="container">
           <Sort />
         </div>
