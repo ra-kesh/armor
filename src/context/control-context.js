@@ -14,7 +14,7 @@ export const ControlProvider = ({ children }) => {
       showOnlyRatingsAboveThree: false,
       showOnlyRatingsAboveTwo: false,
       showOnlyRatingsAboveOne: false,
-      priceRangeControl: 5000,
+      priceRangeControl: 10000,
     },
   });
 

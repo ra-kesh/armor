@@ -7,7 +7,7 @@ export const Sort = () => {
 
   return (
     <div className="sort flex-dir-col">
-      <span className={style.sort_heading}>Sort By</span>
+      <span className={style.sort_heading}>Sort By Price</span>
       <label htmlFor="low-to-high">
         <input
           type="radio"
