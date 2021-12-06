@@ -2,7 +2,7 @@ import React from "react";
 import { useControl } from "../../hooks";
 import style from "./Filter.module.css";
 import Rating from "@mui/material/Rating";
-// import PriceSlider from "../Slider";
+import PriceSlider from "../Slider";
 
 export const Filter = () => {
   const {
@@ -19,7 +19,14 @@ export const Filter = () => {
   return (
     <div className="filter">
       <div className="flex-row space-between">
-        <div className="col-lg-6">
+        <div className="col-lg-3">
+          <span className={style.filter_heading}>Filter by Price</span>
+          <PriceSlider
+            priceRangeValue={otherFilters.priceRangeControl}
+            filterByPrice={filterByPrice}
+          />
+        </div>
+        <div className="col-lg-5">
           <span className={style.filter_heading}>Filter by Ratings</span>
           <label htmlFor="Ratings Above 4" className="center-vertically">
             <input
@@ -29,7 +36,7 @@ export const Filter = () => {
               onChange={showRatingsAboveFour}
               checked={otherFilters.showOnlyRatingsAboveFour}
             />
-            <Rating value={4} readOnly />
+            <Rating value={4} readOnly style={{ marginLeft: ".5rem" }} />
           </label>
           <label htmlFor="Ratings Above 3" className="center-vertically">
             <input
@@ -39,7 +46,7 @@ export const Filter = () => {
               onChange={showRatingsAboveThree}
               checked={otherFilters.showOnlyRatingsAboveThree}
             />
-            <Rating value={3} readOnly />
+            <Rating value={3} readOnly style={{ marginLeft: ".5rem" }} />
           </label>
           <label htmlFor="Ratings Above 2" className="center-vertically">
             <input
@@ -49,7 +56,7 @@ export const Filter = () => {
               onChange={showRatingsAboveTwo}
               checked={otherFilters.showOnlyRatingsAboveTwo}
             />
-            <Rating value={2} readOnly />
+            <Rating value={2} readOnly style={{ marginLeft: ".5rem" }} />
           </label>
           <label htmlFor="Ratings Above 1" className="center-vertically">
             <input
@@ -59,10 +66,11 @@ export const Filter = () => {
               onChange={showRatingsAboveOne}
               checked={otherFilters.showOnlyRatingsAboveOne}
             />
-            <Rating value={1} readOnly />
+            <Rating value={1} readOnly style={{ marginLeft: ".5rem" }} />
           </label>
         </div>
-        <div className="col-lg-6">
+
+        <div className="col-lg-4">
           <span className={style.filter_heading}>Other Filters</span>
           <label htmlFor="out-of-stock">
             <input
@@ -84,19 +92,6 @@ export const Filter = () => {
             />
             only fast delivery
           </label>
-          <label>
-            price range
-            <input
-              onChange={(e) => filterByPrice(e)}
-              value={otherFilters.priceRangeControl}
-              type="range"
-              min="5000"
-              max="10000"
-              step="100"
-            />
-          </label>
-          {/* <hr />
-          <PriceSlider /> */}
         </div>
       </div>
     </div>

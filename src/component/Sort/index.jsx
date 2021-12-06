@@ -16,7 +16,7 @@ export const Sort = () => {
           onChange={sortLowToHigh}
           checked={sortBy === "LOW_TO_HIGH"}
         />
-        low to high
+        Price low to high
       </label>
       <label htmlFor="high-to-low">
         <input
@@ -26,7 +26,7 @@ export const Sort = () => {
           onChange={sortHighToLow}
           checked={sortBy === "HIGH_TO_LOW"}
         />
-        high to low
+        Price high to low
       </label>
       <div
         onClick={resetSort}
