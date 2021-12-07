@@ -18,7 +18,7 @@ export default function PriceSlider({ priceRangeValue, filterByPrice }) {
 
   return (
     <>
-      <div className="container" style={{ width: "15rem" }}>
+      <div className="container " style={{ width: "15rem", marginTop: "1rem" }}>
         <Slider
           value={value}
           min={5000}
@@ -31,8 +31,9 @@ export default function PriceSlider({ priceRangeValue, filterByPrice }) {
           aria-labelledby="non-linear-slider"
         />
       </div>
-      <div className="center-vertically">
-        Price Range: {valueLabelFormat(value)}
+      <div className="p-l-one">
+        <label>Price Range:</label>
+        {valueLabelFormat(5000)} to {valueLabelFormat(value)}
       </div>
     </>
   );

@@ -1847,6 +1847,30 @@ dd {
 
 /* padding */
 
+.p-one {
+  padding: 1rem;
+}
+
+.p-two {
+  padding: 2rem;
+}
+
+.p-l-one {
+  padding-left: 1rem;
+}
+
+p-r-one {
+  padding-right: 1rem;
+}
+
+p-t-one {
+  padding-top: 1rem;
+}
+
+p-b-one {
+  padding-bottom: 1rem;
+}
+
 @media (min-width: 992px) {
   .p-lg-one {
     padding: 1rem;
