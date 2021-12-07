@@ -6,7 +6,6 @@ import axios from "axios";
 import { apiUrl } from "../../constants";
 import { Avatar } from "@mui/material";
 import style from "./User.module.css";
-import { formatDistanceToNow } from "date-fns";
 import { timeAgo } from "../../utils/Date";
 
 export const User = () => {
@@ -96,15 +95,13 @@ export const User = () => {
               <span style={{ fontSize: "larger", fontWeight: "600" }}>
                 Account Information
               </span>
-              <label htmlFor="name">
-                <div>
-                  Account type :{" "}
-                  <span>{userProfile.isAdmin ? "Admin" : "User"}</span>
-                </div>
-                <div>
-                  Account created : <span>{timeAgo(userProfile.joined)}</span>
-                </div>
-              </label>
+              <div>
+                Account type :{" "}
+                <span>{userProfile.isAdmin ? "Admin" : "Rider"}</span>
+              </div>
+              <div>
+                Account created : <span>{timeAgo(userProfile.joined)}</span>
+              </div>
             </div>
           </div>
         </div>
