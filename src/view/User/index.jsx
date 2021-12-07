@@ -14,30 +14,31 @@ export const User = () => {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const fetchUserProfile = async () => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-    try {
-      setLoading(true);
-      const { data } = await axios.get(`${apiUrl}/users/profile`, config);
-      setUserProfile(data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchUserProfile = async () => {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      try {
+        setLoading(true);
+        const { data } = await axios.get(`${apiUrl}/users/profile`, config);
+        setUserProfile(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     if (!userInfo) {
       navigate("/login");
       return;
     }
+
     fetchUserProfile();
-  }, []);
+  }, [userInfo, navigate]);
 
   return (
     <>
