@@ -4,9 +4,10 @@ import { apiUrl } from "../../../constants";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { WishListPageCard } from "../WishListPageCard";
+import { EmptyWishlitPage } from "../EmptyPageWishlist";
 
 export const Wishlist = () => {
-  const { wishList, cartList } = useUserData();
+  const { wishList } = useUserData();
   const [wishListItems, setwishListItems] = useState([]);
   const { userInfo } = useAuth();
 
@@ -19,30 +20,24 @@ export const Wishlist = () => {
         setwishListItems(wishList?.wishListItems || []);
       })();
     }
-  }, [userInfo, wishList, cartList]);
+  }, [userInfo, wishList]);
 
-  function WishListbar() {
-    return (
-      <div className="container">
-        <div className="text-left">
-          <h4>You have {wishList.length} items in your wishlist..</h4>
-        </div>
-      </div>
-    );
-  }
   return (
     <>
       <Navbar />
-      <WishListbar />
-      <div className="container">
-        <div className="flex-row wishlist-grid">
-          {wishListItems.map((item) => (
-            <div className=" flex-col-sm-6 flex-col-lg-4" key={item._id}>
-              <WishListPageCard item={item} />
-            </div>
-          ))}
+      {wishList.length >= 1 ? (
+        <div className="container">
+          <div className="flex-row wishlist-grid">
+            {wishListItems.map((item) => (
+              <div className=" flex-col-sm-6 flex-col-lg-4" key={item._id}>
+                <WishListPageCard item={item} />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <EmptyWishlitPage />
+      )}
     </>
   );
 };
