@@ -1,71 +1,55 @@
-import { useUserData, useAuth } from "../../hooks";
-import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "./Loader";
-import CartIcon from "../Icons/CartIcon";
-import WishListIcon from "../Icons/WishListIcon";
-import { SocialBar } from "./SocialBar";
+import MediaQuery from "react-responsive";
+import DesktopBar from "./DesktopBar";
+import { MobileBar } from "./MobileBar";
+import SocialBar from "./SocialBar";
+import IconBar from "./IconBar";
+import { useState } from "react";
+import DropDownMenu from "./DropDownMenu";
 
 export const Navbar = ({ isLoading = false }) => {
-  const { cartList, wishList } = useUserData();
-  const { userInfo } = useAuth();
-  const navigate = useNavigate();
-
-  const wishListHandler = () => {
-    if (userInfo) {
-      navigate("/wishlist");
-    } else {
-      navigate("/login");
-    }
-  };
-  const cartHandler = () => {
-    if (userInfo) {
-      navigate("/cart");
-    } else {
-      navigate("/login");
-    }
-  };
-
+  const [show, setShow] = useState(false);
   return (
     <header role="banner">
       <div className="site-nav-top">
         <div className="container">
-          <div className="flex-row center-vertically ">
-            <div className="flex-col-6 flex-col-md-4 order-2 order-md-1 text-left">
+          <div
+            className="flex-row center-vertically space-between"
+            style={{ height: "5rem" }}
+          >
+            <MediaQuery minWidth={1224}>
               <SocialBar />
-            </div>
-            <div className="flex-col-12 flex-col-md-4 order-1 order-md-2 text-center">
+            </MediaQuery>
+            <div className="flex-col-xl-4 text-center">
               <span className="logo-text ">M . A . D</span>
             </div>
-            <div className="flex-col-6 flex-col-md-4 order-3 order-md-3 text-right">
-              <ul>
-                <li className="inline-block nav-icon" onClick={cartHandler}>
-                  <CartIcon count={cartList.length} />
-                </li>
-                <li className="inline-block nav-icon" onClick={wishListHandler}>
-                  <WishListIcon count={wishList.length} />
-                </li>
-              </ul>
-            </div>
+            <MediaQuery minWidth={1224}>
+              <IconBar />
+            </MediaQuery>
           </div>
         </div>
       </div>
 
-      <nav className="navbar text-center" role="navigation">
+      <nav
+        className="navbar text-center"
+        role="navigation"
+        style={{ position: "relative" }}
+      >
         <div className="container">
-          <ul className="block">
-            <Link to="/">
-              <li>Home</li>
-            </Link>
-            <Link to="/products">
-              <li>Products</li>
-            </Link>
-            <Link to={userInfo ? "/user" : "/login"}>
-              <li>Account</li>
-            </Link>
-          </ul>
+          <MediaQuery minWidth={1224}>
+            <DesktopBar />
+          </MediaQuery>
+          <MediaQuery maxWidth={1224}>
+            <MobileBar setShow={setShow} show={show} />
+          </MediaQuery>
         </div>
       </nav>
       <Loader isLoading={isLoading} />
+      {show && (
+        <MediaQuery maxWidth={1224}>
+          <DropDownMenu />
+        </MediaQuery>
+      )}
     </header>
   );
 };

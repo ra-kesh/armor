@@ -1,18 +1,26 @@
+import React from "react";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 
-export const SocialBar = () => {
+const SocialBar = () => {
   return (
-    <div className="flex-col-6 flex-col-md-4 order-3 order-md-3 text-right">
-      <ul>
-        <li className="inline-block nav-icon">
+    <div className="flex-col-xl-4 text-left">
+      <ul className="flex-row">
+        <li
+          className=" nav-icon"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
           <TwitterIcon />
         </li>
-
-        <li className="inline-block nav-icon">
+        <li
+          className=" nav-icon"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
           <YouTubeIcon />
         </li>
       </ul>
     </div>
   );
 };
+
+export default SocialBar;

@@ -1,11 +1,3 @@
-/* .secondary-navbar {
-    justify-content: center;
-    align-items: center;
-}
-
-.navbar{
-    flex: 1 1;
-} */
 .site-nav-top {
   padding: 3rem 0;
   border-bottom: 1px solid var(--light-border);
@@ -25,13 +17,9 @@
   color: var(--nav-gray-primary);
 }
 
-.nav-icon {
-  margin-left: 1rem;
+.nav-icon:first-child {
+  margin-right: 0.5rem;
 }
-
-/* .site-top-icons{
-    display: flex;
-} */
 
 .loader {
   position: absolute;
