@@ -1,39 +1,114 @@
 import { Navbar } from "../../component";
 import { useAuth } from "../../hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { apiUrl } from "../../constants";
+import { Avatar } from "@mui/material";
+import style from "./User.module.css";
+import { formatDistanceToNow } from "date-fns";
+import { timeAgo } from "../../utils/Date";
 
 export const User = () => {
   const { logOut, userInfo } = useAuth();
+  const [userProfile, setUserProfile] = useState([]);
+  const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const fetchUserProfile = async () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`${apiUrl}/users/profile`, config);
+      setUserProfile(data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
       return;
     }
-  }, [userInfo, navigate]);
+    fetchUserProfile();
+  }, []);
 
   return (
     <>
-      <Navbar />
-      <div className="container m-top-two">
-        <div className="flex-row">
-          <div className="flex-col-12 flex justify-end ">
-            <button onClick={() => logOut()}>logout</button>
-          </div>
-          <div className="flex-col-lg-4">
-            <h4>User Details</h4>
-            <div className="container ">
-              <h5>name : {userInfo.name}</h5>
-              <h5>email : {userInfo.email}</h5>
+      <Navbar isLoading={isLoading} />
+      {!isLoading && (
+        <div className="container m-top-two">
+          <div className=" flex-col">
+            <div className={style.avatar}>
+              <div className="center-vertically">
+                <Avatar sx={{ width: 80, height: 80 }} />
+                <div className="p-one">
+                  <div>hello ,</div>
+                  <div>{userProfile.name}</div>
+                </div>
+              </div>
+
+              <button className={style.logout} onClick={logOut}>
+                logout
+              </button>
+            </div>
+
+            <div className={style.profile}>
+              <span style={{ fontSize: "larger", fontWeight: "600" }}>
+                Rider Information
+              </span>
+              <label htmlFor="name">
+                <div>Name</div>
+                <input
+                  type="text"
+                  name="name"
+                  value={userProfile.name}
+                  readOnly
+                />
+              </label>
+              <label htmlFor="email">
+                {" "}
+                <div>Email</div>
+                <input
+                  type="email"
+                  name="email"
+                  value={userProfile.email}
+                  readOnly
+                />
+              </label>
+              <label htmlFor="password">
+                <div>Password</div>
+                <input type="password" name="password" value={""} readOnly />
+              </label>
+              <label htmlFor="mobile">
+                <div>Mobile</div>
+                <input type="text" name="mobile" value={""} readOnly />
+              </label>
+            </div>
+            <div className={style.profile}>
+              <span style={{ fontSize: "larger", fontWeight: "600" }}>
+                Account Information
+              </span>
+              <label htmlFor="name">
+                <div>
+                  Account type :{" "}
+                  <span>{userProfile.isAdmin ? "Admin" : "User"}</span>
+                </div>
+                <div>
+                  Account created : <span>{timeAgo(userProfile.joined)}</span>
+                </div>
+              </label>
             </div>
           </div>
-          <div className="flex-col-lg-8 flex space-between">
-            <h4>User Activity</h4>
-          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
