@@ -3,6 +3,12 @@
   justify-content: center;
   align-items: center;
   padding: 2rem 0 2rem;
+  height: 6rem;
+}
+
+.product_bar_item_container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .product_bar_item {
