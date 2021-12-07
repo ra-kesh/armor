@@ -15,6 +15,10 @@ export const User = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!userInfo) {
+      navigate("/login");
+      return;
+    }
     const fetchUserProfile = async () => {
       const config = {
         headers: {
@@ -32,12 +36,8 @@ export const User = () => {
       }
     };
 
-    if (!userInfo) {
-      navigate("/login");
-      return;
-    }
-
-    fetchUserProfile();
+    const unsubscribe = fetchUserProfile();
+    return unsubscribe;
   }, [userInfo, navigate]);
 
   return (
