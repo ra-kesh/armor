@@ -9,7 +9,7 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
   return (
     <div className="container cart-card">
       <div className="flex-row ">
-        <div className="flex-col-lg-2">
+        <div className="flex-col-xl-2 flex-col-lg-3 flex-col-md-3 flex-col-5">
           <div
             className="cart-pic pointer"
             onClick={() => navigate(`/products/${item.product._id}`)}
@@ -17,9 +17,9 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
             <img src={item.product.image} alt="" />
           </div>
         </div>
-        <div className="flex-col-lg-10">
+        <div className="flex-col-xl-10 flex-col-lg-9  flex-col-md-9 flex-col-7">
           <div className="flex-row p-lg-two">
-            <div className="flex-col-lg-10">
+            <div className="flex-col-xl-10 flex-col-lg-10 flex-col-md-6">
               <div className="cart-desc">
                 <span>{item.product.name}</span>
               </div>
@@ -46,7 +46,7 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
                 </span>
               </div>
             </div>
-            <div className="flex-col-lg-2">
+            <div className="flex-col-xl-2 flex-col-lg-2 flex-col-md-6 center-vertically m-top">
               <div className="cart-price text-right">
                 <span>₹{item.product.price}/-</span>
               </div>
@@ -56,7 +56,7 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
       </div>
       <div className="flex-row cart-btns">
         <div
-          className="flex-col-lg-2 center-vertically"
+          className="flex-col-lg-2 flex-col-6 center-vertically"
           style={{ borderRight: "1px solid var(--less-light-border)" }}
         >
           <span
@@ -66,7 +66,7 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
             remove
           </span>
         </div>
-        <div className="flex-col-lg-10 center-vertically">
+        <div className="flex-col-lg-10 flex-col-6 center-vertically">
           <span
             className="pointer"
             onClick={() => moveToWishList(item.product._id)}

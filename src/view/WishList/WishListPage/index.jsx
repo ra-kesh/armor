@@ -7,7 +7,7 @@ import { WishListPageCard } from "../WishListPageCard";
 import { EmptyWishlitPage } from "../EmptyPageWishlist";
 
 export const Wishlist = () => {
-  const { wishList, loading } = useUserData();
+  const { wishList } = useUserData();
   const [wishListItems, setwishListItems] = useState([]);
   const { userInfo } = useAuth();
 
@@ -25,24 +25,22 @@ export const Wishlist = () => {
   return (
     <>
       <Navbar />
-      {!loading && (
-        <>
-          {" "}
-          {wishList.length >= 1 ? (
-            <div className="container">
-              <div className="flex-row wishlist-grid">
-                {wishListItems.map((item) => (
-                  <div className=" flex-col-sm-6 flex-col-lg-4" key={item._id}>
-                    <WishListPageCard item={item} />
-                  </div>
-                ))}
-              </div>
+      <>
+        {" "}
+        {wishList.length >= 1 ? (
+          <div className="container">
+            <div className="flex-row wishlist-grid">
+              {wishListItems.map((item) => (
+                <div className=" flex-col-sm-6 flex-col-lg-4" key={item._id}>
+                  <WishListPageCard item={item} />
+                </div>
+              ))}
             </div>
-          ) : (
-            <EmptyWishlitPage />
-          )}
-        </>
-      )}
+          </div>
+        ) : (
+          <EmptyWishlitPage />
+        )}
+      </>
     </>
   );
 };
