@@ -4,6 +4,7 @@ import { Navbar } from "../../../component";
 import { apiUrl } from "../../../constants";
 import { CartPageCard } from "../CartPageCard";
 import axios from "axios";
+import { EmptyCartpage } from "../EmptyPageCart";
 
 export const Cart = () => {
   const [cartTotal, setCartTotal] = useState(0);
@@ -33,14 +34,6 @@ export const Cart = () => {
     }
   }, [cartItems]);
 
-  function CartBar() {
-    return (
-      <div className="container text-left">
-        <h4>you have {cartItems.length} items in your cart</h4>
-      </div>
-    );
-  }
-
   function CartPayment() {
     return (
       <div className="container cart-payment-wrapper">
@@ -61,8 +54,7 @@ export const Cart = () => {
     <>
       <Navbar />
       <>
-        <CartBar />
-        {cartItems.length >= 1 && (
+        {cartItems.length >= 1 ? (
           <div className="container cart-wrapper">
             <div className="flex-row">
               <div className="flex-col-lg-8 cart-card-wrapper">
@@ -76,9 +68,10 @@ export const Cart = () => {
               </div>
             </div>
           </div>
+        ) : (
+          <EmptyCartpage />
         )}
       </>
-      )
     </>
   );
 };
