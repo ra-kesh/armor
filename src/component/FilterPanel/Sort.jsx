@@ -1,13 +1,13 @@
 import { useControl } from "../../hooks";
 import CloseIcon from "@material-ui/icons/Close";
-import style from "./Sort.module.css";
+import style from "./FilterPanel.module.css";
 
 export const Sort = () => {
   const { sortBy, sortHighToLow, sortLowToHigh, resetSort } = useControl();
 
   return (
-    <div className="sort flex-dir-col">
-      <span className={style.sort_heading}>Sort By Price</span>
+    <>
+      <span className={style.filter_heading}>Sort By Price</span>
       <label htmlFor="low-to-high">
         <input
           type="radio"
@@ -30,11 +30,11 @@ export const Sort = () => {
       </label>
       <div
         onClick={resetSort}
-        className="pointer underline center-vertically justify-end"
+        className="pointer underline center-vertically m-top justify-end"
       >
         <CloseIcon fontSize="small" />
-        <span>clear</span>
+        <span>reset</span>
       </div>
-    </div>
+    </>
   );
 };
