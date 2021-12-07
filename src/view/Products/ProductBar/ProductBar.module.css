@@ -49,7 +49,7 @@
 .filter_btn_active {
   background-color: #f2f2f2;
   padding: 0.5rem 1rem;
-  /* border:1px solid var(--less-light-border); */
+  /* border: 1px solid var(--less-light-border); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +63,13 @@
   border-width: 0.8rem;
   border-color: #f2f2f2 transparent transparent;
   display: block;
-  transform: translateY(130%);
+  transform: translateY(120%);
   margin-left: 1.5rem;
   position: absolute;
+}
+
+@media only screen and (max-width: 1225px) {
+  .filter_btn_active:after {
+    margin-left: 0.5rem;
+  }
 }
