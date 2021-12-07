@@ -23,6 +23,17 @@
   height: 13rem;
 }
 
+@media only screen and (max-width: 1225px) {
+  .product_desc {
+    font-size: 0.8rem;
+  }
+}
+@media only screen and (max-width: 765px) {
+  .product_desc {
+    font-size: 0.6rem;
+  }
+}
+
 .product_price {
   font-size: 20px;
   font-weight: 500;
@@ -50,6 +61,12 @@
   margin-left: 0.4rem;
   font-size: 14px;
   line-height: 34px;
+}
+
+@media only screen and (max-width: 765px) {
+  .product_price:after {
+    font-size: 6px;
+  }
 }
 
 .product_button {
