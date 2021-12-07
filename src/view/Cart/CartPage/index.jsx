@@ -10,7 +10,7 @@ export const Cart = () => {
   const [cartTotal, setCartTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const { userInfo } = useAuth();
-  const { cartList } = useUserData();
+  const { cartList, loading } = useUserData();
 
   useEffect(() => {
     if (userInfo) {
@@ -53,25 +53,27 @@ export const Cart = () => {
   return (
     <>
       <Navbar />
-      <>
-        {cartItems.length >= 1 ? (
-          <div className="container cart-wrapper">
-            <div className="flex-row">
-              <div className="flex-col-lg-8 cart-card-wrapper">
-                {cartItems.map((item) => (
-                  <CartPageCard item={item} key={item._id} />
-                ))}
-              </div>
+      {!loading && (
+        <>
+          {cartItems.length >= 1 ? (
+            <div className="container cart-wrapper">
+              <div className="flex-row">
+                <div className="flex-col-lg-8 cart-card-wrapper">
+                  {cartItems.map((item) => (
+                    <CartPageCard item={item} key={item._id} />
+                  ))}
+                </div>
 
-              <div className="flex-col-lg-4 ">
-                {cartItems.length > 0 && <CartPayment />}
+                <div className="flex-col-lg-4 ">
+                  {cartItems.length > 0 && <CartPayment />}
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <EmptyCartpage />
-        )}
-      </>
+          ) : (
+            <EmptyCartpage />
+          )}
+        </>
+      )}
     </>
   );
 };
