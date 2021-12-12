@@ -103,11 +103,17 @@ This is an mock ecommerce app for motorcycle enthusiasts that deals with riding 
 
 <div>
    <img src='https://cdn.discordapp.com/attachments/809508401758732288/919603901848772618/chrome_117fCvqTF5.png'>
+ <p align="right">(<a href="#top">back to top</a>)</p>
     <img src='https://cdn.discordapp.com/attachments/809508401758732288/919603903711039578/TnP6Vh0Jfn.png'>
+ <p align="right">(<a href="#top">back to top</a>)</p>
     <img src='https://cdn.discordapp.com/attachments/809508401758732288/919603903434194944/HmegnrLrgd.png'>
+ <p align="right">(<a href="#top">back to top</a>)</p>
    <img src='https://cdn.discordapp.com/attachments/809508401758732288/919603903035760680/xTbtuYoXEU.png'>
+ <p align="right">(<a href="#top">back to top</a>)</p>
    <img src='https://cdn.discordapp.com/attachments/809508401758732288/919603902595362886/DC8m2xOPfj.png'>
+ <p align="right">(<a href="#top">back to top</a>)</p>
    <img src='https://cdn.discordapp.com/attachments/809508401758732288/919603902301732864/XhNS9U00gn.png'>
+ <p align="right">(<a href="#top">back to top</a>)</p>
  
   
 
