@@ -5,7 +5,7 @@ import { ProductBar } from "../ProductBar";
 import { ProductCard } from "../ProductCard";
 import { useLocation } from "react-router-dom";
 
-export const Products = () => {
+const Products = () => {
   const {
     productList,
     getSortedProductList,
@@ -63,3 +63,5 @@ export const Products = () => {
     </>
   );
 };
+
+export default Products;
