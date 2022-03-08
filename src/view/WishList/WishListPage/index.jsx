@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { WishListPageCard } from "../WishListPageCard";
 import { EmptyWishlitPage } from "../EmptyPageWishlist";
 
-export const Wishlist = () => {
+const Wishlist = () => {
   const { wishList } = useUserData();
   const [wishListItems, setwishListItems] = useState([]);
   const { userInfo } = useAuth();
@@ -44,3 +44,5 @@ export const Wishlist = () => {
     </>
   );
 };
+
+export default Wishlist;
