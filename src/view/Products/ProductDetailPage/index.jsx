@@ -121,7 +121,7 @@ const ProductDetailDescription = ({ currentProduct }) => {
   );
 };
 
-export const ProductDetail = () => {
+const ProductDetail = () => {
   const [currentProduct, setCurentProduct] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const { productId } = useParams();
@@ -162,3 +162,5 @@ export const ProductDetail = () => {
     </>
   );
 };
+
+export default ProductDetail;
