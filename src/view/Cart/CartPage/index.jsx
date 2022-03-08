@@ -6,7 +6,7 @@ import { CartPageCard } from "../CartPageCard";
 import axios from "axios";
 import { EmptyCartpage } from "../EmptyPageCart";
 
-export const Cart = () => {
+const Cart = () => {
   const [cartTotal, setCartTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const { userInfo } = useAuth();
@@ -75,3 +75,5 @@ export const Cart = () => {
     </>
   );
 };
+
+export default Cart;
