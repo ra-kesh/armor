@@ -1,0 +1,21 @@
+.filter_panel {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f2f2f2;
+  padding: 2rem;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.filter_heading {
+  font-size: larger;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,61 @@
+.site-nav-top {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--light-border);
+}
+
+.logo-text {
+  border: 2px solid var(--nav-gray-primary);
+  padding: 0.6rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.2em;
+}
+.navbar {
+  border-bottom: 1px solid var(--light-border);
+}
+
+.navbar li {
+  color: var(--nav-gray-primary);
+}
+
+.nav-icon:first-child {
+  margin-right: 0.5rem;
+}
+
+.loader {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.starting-loader {
+  position: absolute;
+  background-color: whitesmoke;
+  width: 100%;
+  height: 100%;
+  animation: animateLoader 3s linear infinite;
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 3;
+}
+
+.ending-loader {
+  position: absolute;
+  background-color: var(--nav-gray-primary);
+  width: 200%;
+  height: 100%;
+  animation: animateLoader 3s linear infinite;
+  transform: scaleX(0);
+  transform: translateX(-50%);
+  transform-origin: left;
+}
+
+@keyframes animateLoader {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}

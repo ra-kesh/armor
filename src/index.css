@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Josefin+Sans:ital,wght@1,700&family=Merriweather+Sans:ital,wght@1,800&family=Michroma&family=Orbitron:wght@800&family=Stardos+Stencil&family=Stick+No+Bills:wght@800&family=Wallpoet&display=swap");
+
+@import url("./main.css");
+
+:root {
+  --nav-gray-primary: #333;
+  --nav-gray-secondary: #888;
+  --light-border: rgba(0, 0, 0, 0.1);
+  --less-light-border: #c5c5c5;
+
+  --color-gray-100: #f8f9fa;
+  --color-gray-200: #f1f3f5;
+  --color-gray-300: #eaecee;
+  --color-gray-400: #d0d4da;
+  --color-gray-500: #aeb5bc;
+  --color-gray-600: #878e95;
+  --color-gray-700: #4a5057;
+  --color-gray-800: #353a40;
+  --color-gray-900: #14171a;
+}
+
+@property --offset {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@import url("./component/Nav/NavBar.css");
+@import url("./component/HeroSection/hero.css");
+@import url("./view/Products/Products.css");
+@import url("./component/Form/Form.css");
+@import url("./view/Cart/Cart.css");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+/* font-family: 'Black Ops One', cursive;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Merriweather Sans', sans-serif;
+font-family: 'Michroma', sans-serif;
+font-family: 'Orbitron', sans-serif;
+font-family: 'Stardos Stencil', cursive;
+font-family: 'Stick No Bills', sans-serif;
+font-family: 'Wallpoet', cursive; */
