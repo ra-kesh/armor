@@ -2,6 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Josefin+Sans:ital,wght@1,700&family=Merriweather+Sans:ital,wght@1,800&family=Michroma&family=Orbitron:wght@800&family=Stardos+Stencil&family=Stick+No+Bills:wght@800&family=Wallpoet&display=swap");
 
 @import url("./main.css");
+@import url("./component/Nav/NavBar.css");
+@import url("./component/HeroSection/hero.css");
+@import url("./view/Products/Products.css");
+@import url("./component/Form/Form.css");
+@import url("./view/Cart/Cart.css");
 
 :root {
   --nav-gray-primary: #333;
@@ -25,12 +30,6 @@
   inherits: false;
   initial-value: 0;
 }
-
-@import url("./component/Nav/NavBar.css");
-@import url("./component/HeroSection/hero.css");
-@import url("./view/Products/Products.css");
-@import url("./component/Form/Form.css");
-@import url("./view/Cart/Cart.css");
 
 * {
   font-family: "Poppins", sans-serif;
