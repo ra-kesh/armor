@@ -2,30 +2,23 @@ import { Loader } from "./Loader";
 import MediaQuery from "react-responsive";
 import DesktopBar from "./DesktopBar";
 import { MobileBar } from "./MobileBar";
-import SocialBar from "./SocialBar";
-import IconBar from "./IconBar";
 import { useState } from "react";
 import DropDownMenu from "./DropDownMenu";
 
 export const Navbar = ({ isLoading = false }) => {
   const [show, setShow] = useState(false);
+
   return (
     <header role="banner">
       <div className="site-nav-top">
         <div className="container">
           <div
-            className="flex-row center-vertically space-between"
+            className="flex-row center-vertically "
             style={{ height: "5rem" }}
           >
-            <MediaQuery minWidth={1224}>
-              <SocialBar />
-            </MediaQuery>
             <div className="flex-col-xl-4 text-center">
               <span className="logo-text ">M . A . D</span>
             </div>
-            <MediaQuery minWidth={1224}>
-              <IconBar />
-            </MediaQuery>
           </div>
         </div>
       </div>
