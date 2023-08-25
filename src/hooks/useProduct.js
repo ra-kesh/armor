@@ -7,13 +7,13 @@ export const useProduct = () => {
   const getCategorizedProductList = (productList, filterByCategory) => {
     switch (filterByCategory) {
       case "JACKETS":
-        return [...productList].filter((item) => item.category === "jackets");
+        return [...productList]?.filter((item) => item.category === "jackets");
       case "HELMETS":
-        return [...productList].filter((item) => item.category === "helmets");
+        return [...productList]?.filter((item) => item.category === "helmets");
       case "GLOVES":
-        return [...productList].filter((item) => item.category === "gloves");
+        return [...productList]?.filter((item) => item.category === "gloves");
       case "SHOES":
-        return [...productList].filter((item) => item.category === "shoes");
+        return [...productList]?.filter((item) => item.category === "shoes");
       case "ALL":
         return productList;
 
@@ -22,7 +22,7 @@ export const useProduct = () => {
   };
 
   const getProductsFilteredByPrice = (productList, filterbyPrice) => {
-    return [...productList].filter((item) => item.price <= filterbyPrice);
+    return [...productList]?.filter((item) => item.price <= filterbyPrice);
   };
 
   const getSortedProductList = (productList, sortBy) => {
@@ -53,8 +53,8 @@ export const useProduct = () => {
     }
   ) => {
     return [...productList]
-      .filter(({ inStock }) => (showAllProducts ? true : inStock))
-      .filter(({ fastDelivery }) =>
+      ?.filter(({ inStock }) => (showAllProducts ? true : inStock))
+      ?.filter(({ fastDelivery }) =>
         showOnlyFastDelivery ? fastDelivery : true
       )
       .filter((item) => item.price <= Number(priceRangeControl))
