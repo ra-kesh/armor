@@ -4,32 +4,18 @@ import { FilterPanel, Navbar } from "../../../component";
 import { ProductBar } from "../ProductBar";
 import { ProductCard } from "../ProductCard";
 import { useLocation } from "react-router-dom";
+import { ProductPagination } from "../ProductPagination";
 
 const Products = () => {
-  const {
-    currentPage,
-    totalPages,
-    productList,
-    getSortedProductList,
-    getFilteredProductList,
-    getCategorizedProductList,
-    productDispatch,
-  } = useProduct();
+  const { productList, getSortedProductList, getFilteredProductList } =
+    useProduct();
 
-  const { sortBy, otherFilters, filterByCategory } = useControl();
+  const { sortBy, otherFilters } = useControl();
 
   const location = useLocation();
   const path = location.pathname + location.search;
 
-  const categorizedProductList = getCategorizedProductList(
-    productList,
-    filterByCategory
-  );
-
-  const sortedProductList = getSortedProductList(
-    categorizedProductList,
-    sortBy
-  );
+  const sortedProductList = getSortedProductList(productList, sortBy);
 
   const filteredProductList = getFilteredProductList(
     sortedProductList,
@@ -38,23 +24,12 @@ const Products = () => {
 
   const [showFilterModal, setShowFilterModal] = useState(false);
 
-  const selectPageHandler = (selectedPage) => {
-    if (
-      selectedPage >= 1 &&
-      selectedPage <= totalPages &&
-      selectedPage !== currentPage
-    ) {
-      productDispatch({ type: "CHANGE PRODUCT PAGE", payload: selectedPage });
-    }
-  };
-
   return (
     <>
       <Navbar />
       <ProductBar
         showFilterModal={showFilterModal}
         setShowFilterModal={setShowFilterModal}
-        filterByCategory={filterByCategory}
       />
       {showFilterModal && (
         <div className="container">
@@ -69,23 +44,7 @@ const Products = () => {
             </div>
           ))}
         </div>
-        <div className="container flex-row center-vertically">
-          <button onClick={() => selectPageHandler(currentPage - 1)}>
-            previous
-          </button>
-
-          {[...Array(totalPages)].map((item, index) => {
-            return (
-              <button key={index} onClick={() => selectPageHandler(index + 1)}>
-                {index + 1}
-              </button>
-            );
-          })}
-
-          <button onClick={() => selectPageHandler(currentPage + 1)}>
-            next
-          </button>
-        </div>
+        <ProductPagination />
       </div>
     </>
   );
