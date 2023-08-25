@@ -4,23 +4,6 @@ import { ProductContext } from "../context";
 export const useProduct = () => {
   const { state, dispatch: productDispatch } = useContext(ProductContext);
 
-  const getCategorizedProductList = (productList, filterByCategory) => {
-    switch (filterByCategory) {
-      case "JACKETS":
-        return [...productList]?.filter((item) => item.category === "jackets");
-      case "HELMETS":
-        return [...productList]?.filter((item) => item.category === "helmets");
-      case "GLOVES":
-        return [...productList]?.filter((item) => item.category === "gloves");
-      case "SHOES":
-        return [...productList]?.filter((item) => item.category === "shoes");
-      case "ALL":
-        return productList;
-
-      default:
-    }
-  };
-
   const getProductsFilteredByPrice = (productList, filterbyPrice) => {
     return [...productList]?.filter((item) => item.price <= filterbyPrice);
   };
@@ -64,7 +47,8 @@ export const useProduct = () => {
       .filter(({ rating }) => (showOnlyRatingsAboveOne ? rating >= 1 : true));
   };
 
-  const { productList, loading, totalPages, currentPage } = state;
+  const { productList, loading, totalPages, currentPage, productCategory } =
+    state;
 
   return {
     currentPage,
@@ -72,9 +56,9 @@ export const useProduct = () => {
     productList,
     getSortedProductList,
     getFilteredProductList,
-    getCategorizedProductList,
     getProductsFilteredByPrice,
     loading,
     productDispatch,
+    productCategory,
   };
 };

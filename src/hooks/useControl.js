@@ -36,37 +36,6 @@ export const useControl = () => {
     });
   };
 
-  const filterJackets = () => {
-    dispatch({
-      type: "FILTER_BY_CATEGORY",
-      payload: "JACKETS",
-    });
-  };
-  const filterHelmets = () => {
-    dispatch({
-      type: "FILTER_BY_CATEGORY",
-      payload: "HELMETS",
-    });
-  };
-  const filterGloves = () => {
-    dispatch({
-      type: "FILTER_BY_CATEGORY",
-      payload: "GLOVES",
-    });
-  };
-  const filterShoes = () => {
-    dispatch({
-      type: "FILTER_BY_CATEGORY",
-      payload: "SHOES",
-    });
-  };
-  const showAll = () => {
-    dispatch({
-      type: "FILTER_BY_CATEGORY",
-      payload: "ALL",
-    });
-  };
-
   const filterByPrice = (e) => {
     dispatch({
       type: "PRICE_RANGE_SORT",
@@ -102,15 +71,10 @@ export const useControl = () => {
     resetSort,
     filterFastDelivery,
     filterOutOfStock,
-    filterGloves,
-    filterHelmets,
-    filterJackets,
-    filterShoes,
     filterByPrice,
     showRatingsAboveFour,
     showRatingsAboveThree,
     showRatingsAboveTwo,
     showRatingsAboveOne,
-    showAll,
   };
 };
