@@ -4,6 +4,8 @@ export const productReducer = (state, action) => {
       return { ...state, productList: action.payload };
     case "CHANGE PRODUCT PAGE":
       return { ...state, currentPage: action.payload };
+    case "CHANGE PRODUCT CATEGORY":
+      return { ...state, productCategory: action.payload };
     case "SHOW LOADING":
       return { ...state, loading: true };
     case "HIDE LOADING":
@@ -19,4 +21,5 @@ export const initialState = {
   totalPages: null,
   productList: [],
   loading: false,
+  productCategory: "all",
 };
