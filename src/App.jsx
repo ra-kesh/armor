@@ -4,8 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import { PrivateRoute } from "./utils/PrivateRoute";
 import ErrorBoundary from "./utils/ErrorBoundary";
 
-import { Login, Home, Signup } from "./view";
+import { Login, Signup } from "./view";
 import User from "./view/User";
+import FallBack from "./component/Fallback/FallBack";
 
 const Products = lazy(() => import("./view/Products/ProductsPage"));
 const ProductDetail = lazy(() => import("./view/Products/ProductDetailPage"));
@@ -16,7 +17,7 @@ function App() {
   return (
     <div className="App">
       <ErrorBoundary>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<FallBack />}>
           <Routes>
             <Route path="/" element={<Products />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
@@ -25,7 +26,6 @@ function App() {
             <PrivateRoute path="/user" element={<User />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            {/* <Route path="/" element={<Home />} /> */}
           </Routes>
         </Suspense>
       </ErrorBoundary>

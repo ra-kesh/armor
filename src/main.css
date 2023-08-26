@@ -165,6 +165,14 @@ button:focus {
   height: 6rem;
 }
 
+.min-h-100 {
+  min-height: 100vh;
+}
+
+.h-screen {
+  height: 100%;
+}
+
 /* new........................ */
 .heading-hero {
   font-size: 6rem;
