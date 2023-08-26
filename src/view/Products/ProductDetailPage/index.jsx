@@ -7,11 +7,12 @@ import ReactImageMagnify from "react-image-magnify";
 import style from "./ProductDetail.module.css";
 import Rating from "@mui/material/Rating";
 import {
-  Navbar,
   JacketFeatures,
   HelmetFeatures,
   GloveFeatures,
 } from "../../../component";
+
+import withLayout from "../../../utils/withLayout";
 
 const ProductDetailImage = ({ currentProduct }) => {
   return (
@@ -143,7 +144,6 @@ const ProductDetail = () => {
 
   return (
     <>
-      <Navbar isLoading={isLoading} />
       {!isLoading && (
         <>
           <div className="container product-detail">
@@ -163,4 +163,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default withLayout(ProductDetail);

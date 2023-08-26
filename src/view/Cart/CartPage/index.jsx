@@ -5,6 +5,7 @@ import { apiUrl } from "../../../constants";
 import { CartPageCard } from "../CartPageCard";
 import axios from "axios";
 import { EmptyCartpage } from "../EmptyPageCart";
+import withLayout from "../../../utils/withLayout";
 
 const Cart = () => {
   const [cartTotal, setCartTotal] = useState(0);
@@ -52,28 +53,25 @@ const Cart = () => {
 
   return (
     <>
-      <Navbar />
-      <>
-        {cartItems.length >= 1 ? (
-          <div className="container cart-wrapper">
-            <div className="flex-row">
-              <div className="flex-col-lg-8 cart-card-wrapper">
-                {cartItems.map((item) => (
-                  <CartPageCard item={item} key={item._id} />
-                ))}
-              </div>
+      {cartItems.length >= 1 ? (
+        <div className="container cart-wrapper">
+          <div className="flex-row">
+            <div className="flex-col-lg-8 cart-card-wrapper">
+              {cartItems.map((item) => (
+                <CartPageCard item={item} key={item._id} />
+              ))}
+            </div>
 
-              <div className="flex-col-lg-4 ">
-                {cartItems.length > 0 && <CartPayment />}
-              </div>
+            <div className="flex-col-lg-4 ">
+              {cartItems.length > 0 && <CartPayment />}
             </div>
           </div>
-        ) : (
-          <EmptyCartpage />
-        )}
-      </>
+        </div>
+      ) : (
+        <EmptyCartpage />
+      )}
     </>
   );
 };
 
-export default Cart;
+export default withLayout(Cart);

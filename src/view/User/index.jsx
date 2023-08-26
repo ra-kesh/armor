@@ -1,4 +1,3 @@
-import { Navbar } from "../../component";
 import { useAuth } from "../../hooks";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +6,9 @@ import { apiUrl } from "../../constants";
 import { Avatar } from "@mui/material";
 import style from "./User.module.css";
 import { timeAgo } from "../../utils/Date";
+import withLayout from "../../utils/withLayout";
 
-export const User = () => {
+const User = () => {
   const { logOut, userInfo } = useAuth();
   const [userProfile, setUserProfile] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -42,7 +42,6 @@ export const User = () => {
 
   return (
     <>
-      <Navbar isLoading={isLoading} />
       {!isLoading && (
         <div className="container m-top-two">
           <div className=" flex-col">
@@ -110,3 +109,5 @@ export const User = () => {
     </>
   );
 };
+
+export default withLayout(User);

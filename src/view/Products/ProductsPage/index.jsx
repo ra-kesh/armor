@@ -5,6 +5,7 @@ import { ProductBar } from "../ProductBar";
 import { ProductCard } from "../ProductCard";
 import { useLocation } from "react-router-dom";
 import { ProductPagination } from "../ProductPagination";
+import withLayout from "../../../utils/withLayout";
 
 const Products = () => {
   const { productList, getSortedProductList, getFilteredProductList } =
@@ -26,7 +27,6 @@ const Products = () => {
 
   return (
     <>
-      <Navbar />
       <ProductBar
         showFilterModal={showFilterModal}
         setShowFilterModal={setShowFilterModal}
@@ -50,4 +50,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default withLayout(Products);
