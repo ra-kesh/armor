@@ -36,8 +36,8 @@ const Products = () => {
           <FilterPanel />
         </div>
       )}
-      <div className="container">
-        <div className="flex-row product-grid">
+      <div className="container m-bottom-8">
+        <div className="flex-row border-bottom-light">
           {filteredProductList?.map((item) => (
             <div className="flex-col-sm-6 flex-col-lg-4" key={item._id}>
               <ProductCard item={item} path={path} />
