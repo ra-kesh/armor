@@ -159,28 +159,11 @@ button:focus {
   margin-bottom: 2rem;
 }
 
-/* .container, .container-sm, .container-md , .container-lg{
-    max-width: 1200px;
-    padding: 0 1rem;
-    margin-left: auto;
-    margin-right: auto;
-    }
-    
-    .container-sm {
-    max-width: 600px;
-    min-width: 200px;
-    }
-    
-    .container-md{
-    max-width: 900px;
-    min-width: 500px;
-    }
-    
-    .container-lg {
-    max-width: 1200px;
-    min-width:700px
-    }
-     */
+/* height */
+
+.h-6 {
+  height: 6rem;
+}
 
 /* new........................ */
 .heading-hero {
