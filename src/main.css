@@ -217,6 +217,14 @@ button:focus {
   justify-content: center;
 }
 
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
 .show {
   display: block !important;
 }
@@ -408,8 +416,6 @@ button,
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
-  /* margin-bottom: 0.5rem;
-    margin-right: 0.5rem; */
   vertical-align: middle;
   text-align: center;
   cursor: pointer;
@@ -432,7 +438,6 @@ button,
 
 .button:hover,
 a.button:hover,
-/* button:hover, */
 [type="submit"]:hover,
 [type="reset"]:hover,
 [type="button"]:hover {
@@ -457,7 +462,6 @@ button:active,
 [type="button"]:focus,
 [type="button"]:active {
   border: 1px solid transparent;
-  /* background: var(--secondary-blue); */
   color: var(--primary-white);
   text-decoration: none;
 }
@@ -604,6 +608,12 @@ button:active,
 .button-outline-dark:focus {
   background: var(--primary-black);
   color: var(--primary-white);
+}
+
+.button-outline-dark:disabled {
+  border: none;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 /* mote wale buttons */

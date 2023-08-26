@@ -1,7 +1,7 @@
 import { useProduct } from "../../hooks";
 
 export const ProductPagination = () => {
-  const { page, totalPages, productDispatch } = useProduct();
+  const { page, totalPages, productDispatch, isPreviousData } = useProduct();
 
   const selectPageHandler = (selectedPage) => {
     if (
@@ -14,18 +14,34 @@ export const ProductPagination = () => {
   };
 
   return (
-    <div className="container flex-row center-vertically">
-      <button onClick={() => selectPageHandler(page - 1)}>previous</button>
+    <div className="container flex-row center-vertically gap-1">
+      <button
+        className="button-outline-dark"
+        onClick={() => selectPageHandler(page - 1)}
+        disabled={isPreviousData || page === 1}
+      >
+        Previous
+      </button>
 
       {[...Array(totalPages)].map((_, index) => {
         return (
-          <button key={index} onClick={() => selectPageHandler(index + 1)}>
+          <button
+            className="button-outline-dark"
+            key={index}
+            onClick={() => selectPageHandler(index + 1)}
+          >
             {index + 1}
           </button>
         );
       })}
 
-      <button onClick={() => selectPageHandler(page + 1)}>next</button>
+      <button
+        className="button-outline-dark"
+        onClick={() => selectPageHandler(page + 1)}
+        disabled={isPreviousData || page === totalPages}
+      >
+        Next
+      </button>
     </div>
   );
 };

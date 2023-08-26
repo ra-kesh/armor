@@ -47,7 +47,14 @@ export const useProduct = () => {
       .filter(({ rating }) => (showOnlyRatingsAboveOne ? rating >= 1 : true));
   };
 
-  const { productList, loading, totalPages, page, productCategory } = state;
+  const {
+    productList,
+    loading,
+    totalPages,
+    page,
+    productCategory,
+    isPreviousData,
+  } = state;
 
   return {
     page,
@@ -59,5 +66,6 @@ export const useProduct = () => {
     loading,
     productDispatch,
     productCategory,
+    isPreviousData,
   };
 };

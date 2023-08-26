@@ -13,6 +13,7 @@ export const ProductProvider = ({ children }) => {
     data: response,
     isLoading: isProductsLoading,
     isSuccess: isProductsFetched,
+    isPreviousData,
   } = useProductsQuery(page, perPage, productCategory);
 
   const contextValue = {
@@ -22,6 +23,7 @@ export const ProductProvider = ({ children }) => {
       loading: isProductsLoading,
       page: !isProductsLoading && response.page,
       totalPages: !isProductsLoading && response.total_pages,
+      isPreviousData,
     },
     dispatch,
   };
