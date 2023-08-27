@@ -25,12 +25,12 @@ const Footer = () => {
           <p>Where Bikers Belong .</p>
         </div>
         <div className="h-4 flex-row space-between">
-          {FooterData.map((dataItem) => {
+          {FooterData.map((dataItem, index) => {
             return (
-              <div className="center-vertically gap-1">
-                {Object.entries(dataItem).map(([key, value]) => {
+              <div className="center-vertically gap-1" key={index}>
+                {Object.entries(dataItem).map(([key, value], index) => {
                   return (
-                    <a href={value}>
+                    <a href={value} key={index}>
                       <span className="text-sm text-mute">{key}</span>
                     </a>
                   );
