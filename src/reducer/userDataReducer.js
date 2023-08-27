@@ -40,7 +40,7 @@ export const userDataReducer = (state, action) => {
       return {
         ...state,
         wishList: state.wishList.filter(
-          ({ product }) => product !== action.payload.product
+          ({ product }) => product._id !== action.payload.product
         ),
       };
 
