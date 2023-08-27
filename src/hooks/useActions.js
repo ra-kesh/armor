@@ -132,7 +132,7 @@ export const useActions = () => {
   };
 
   const isInCart = (id) => {
-    return cartList.some(({ product }) => product === id);
+    return cartList.some(({ product }) => product._id === id);
   };
   const isInWishList = (id) => {
     return wishList.some(({ product }) => product === id);

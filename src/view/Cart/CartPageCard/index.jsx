@@ -1,7 +1,7 @@
 import { useActions } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 
-export const CartPageCard = ({ item, moveToWishlist }) => {
+export const CartPageCard = ({ item }) => {
   const { increment, decrement, removeFromCart, moveToWishList } = useActions();
 
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
           <div className="flex-row p-lg-two">
             <div className="flex-col-xl-10 flex-col-lg-10 flex-col-md-6">
               <div className="cart-desc">
-                <span>{item.product.name}</span>
+                <span>{item.name}</span>
               </div>
               <div className="cart-qty">
                 <span
@@ -48,7 +48,7 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
             </div>
             <div className="flex-col-xl-2 flex-col-lg-2 flex-col-md-6 center-vertically m-top">
               <div className="cart-price text-right">
-                <span>₹{item.product.price}/-</span>
+                <span>₹{item.price}/-</span>
               </div>
             </div>
           </div>

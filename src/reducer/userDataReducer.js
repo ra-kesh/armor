@@ -33,7 +33,7 @@ export const userDataReducer = (state, action) => {
       return {
         ...state,
         cartList: state.cartList.filter(
-          ({ product }) => product !== action.payload.product
+          ({ product }) => product._id !== action.payload.product
         ),
       };
     case "REMOVE FROM WISHLIST":
@@ -48,7 +48,7 @@ export const userDataReducer = (state, action) => {
       return {
         ...state,
         cartList: state.cartList.map((item) => {
-          if (item.product === action.payload.product) {
+          if (item.product._id === action.payload.product) {
             return { ...item, quantity: item.quantity + 1 };
           }
           return item;
@@ -58,7 +58,7 @@ export const userDataReducer = (state, action) => {
       return {
         ...state,
         cartList: state.cartList.map((item) => {
-          if (item.product === action.payload.product) {
+          if (item.product._id === action.payload.product) {
             return { ...item, quantity: item.quantity - 1 };
           }
           return item;
