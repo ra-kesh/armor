@@ -5,15 +5,14 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useState } from "react";
 import { ProductPageModal } from "../ProductPageModal";
-// import style from "./ProductCard.module.css";
 
 export const ProductCard = ({ item, path }) => {
   const {
     addToCart,
-    addToWishList,
     isInCart,
     isInWishList,
     removeFromWishList,
+    addToWishListMutation,
   } = useActions();
 
   const [showModal, setShowModal] = useState(false);
@@ -54,7 +53,7 @@ export const ProductCard = ({ item, path }) => {
 
             {!isInWishList(item._id) && !isInCart(item._id) && (
               <div
-                onClick={() => addToWishList(item._id, path)}
+                onClick={() => addToWishListMutation.mutate(item, path)}
                 className="ecom-card-icon"
               >
                 <FavoriteBorderIcon />
