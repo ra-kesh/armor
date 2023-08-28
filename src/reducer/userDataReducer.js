@@ -36,13 +36,6 @@ export const userDataReducer = (state, action) => {
           ({ product }) => product._id !== action.payload.product
         ),
       };
-    case "REMOVE FROM WISHLIST":
-      return {
-        ...state,
-        wishList: state.wishList.filter(
-          ({ product }) => product._id !== action.payload.product
-        ),
-      };
 
     case "INCREMENT CART":
       return {

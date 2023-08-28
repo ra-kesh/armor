@@ -15,8 +15,6 @@ const useUserDataQuery = (userInfo) => {
     queryKey: ["userdata", userInfo],
     queryFn: () => fetchUserData(userInfo),
     retry: 3,
-    cacheTime: 24 * 60 * 1000,
-    keepPreviousData: true,
   });
 };
 

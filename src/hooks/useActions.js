@@ -2,11 +2,14 @@ import { useAuth, useUserData } from "../hooks";
 import axios from "axios";
 import { apiUrl } from "../constants";
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useActions = () => {
   const { userInfo } = useAuth();
   const { userDispatch, cartList, wishList } = useUserData();
   const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
 
   const addToCart = async (_id, path) => {
     if (userInfo) {
@@ -72,22 +75,6 @@ export const useActions = () => {
       if (success) {
         userDispatch({
           type: "REMOVE FROM CART",
-          payload: {
-            product: _id,
-          },
-        });
-      }
-    }
-  };
-  const removeFromWishList = async (_id) => {
-    if (userInfo) {
-      const {
-        data: { success },
-      } = await axios.delete(`${apiUrl}/wishlist/${userInfo._id}/${_id}`);
-
-      if (success) {
-        userDispatch({
-          type: "REMOVE FROM WISHLIST",
           payload: {
             product: _id,
           },
@@ -168,6 +155,7 @@ export const useActions = () => {
       }
     }
   };
+
   const moveToWishList = async (_id) => {
     if (isInCart(_id)) {
       let {
@@ -199,16 +187,56 @@ export const useActions = () => {
     }
   };
 
+  const removeFromWishList = async (_id) => {
+    const response = await axios.delete(
+      `${apiUrl}/wishlist/${userInfo._id}/${_id}`
+    );
+
+    return response.data;
+  };
+
+  const removeFromWishListMutation = useMutation({
+    mutationFn: removeFromWishList,
+    onMutate: async (_id) => {
+      await queryClient.cancelQueries({ queryKey: ["userdata", userInfo] });
+
+      const previousData = queryClient.getQueryData(["userdata", userInfo]);
+
+      queryClient.setQueryData(["userdata", userInfo], (oldData) => {
+        if (oldData) {
+          return {
+            ...oldData,
+            wishList: oldData.wishList.filter(
+              (item) => item.product._id !== _id
+            ),
+          };
+        }
+      });
+
+      return { previousData };
+    },
+    onError: (error, context) => {
+      // context is not working as it is supposed to be , need to be fixed later
+      if (context && context.previousData !== undefined) {
+        queryClient.setQueryData(["userdata", userInfo], context.previousData);
+      }
+      console.error(error);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["userdata", userInfo] });
+    },
+  });
+
   return {
     addToCart,
     addToWishList,
     removeFromCart,
-    removeFromWishList,
     increment,
     decrement,
     isInCart,
     isInWishList,
     moveToCart,
     moveToWishList,
+    removeFromWishListMutation,
   };
 };

@@ -3,7 +3,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { useNavigate } from "react-router-dom";
 
 export const WishListPageCard = ({ item }) => {
-  const { moveToCart, removeFromWishList } = useActions();
+  const { moveToCart, removeFromWishListMutation } = useActions();
 
   const navigate = useNavigate();
 
@@ -33,7 +33,9 @@ export const WishListPageCard = ({ item }) => {
           </span>
         </div>
         <div className="flex-col-2 text-right pointer">
-          <div onClick={() => removeFromWishList(item.product._id)}>
+          <div
+            onClick={() => removeFromWishListMutation.mutate(item.product._id)}
+          >
             <CloseIcon />
           </div>
         </div>
