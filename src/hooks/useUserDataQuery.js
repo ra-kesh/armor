@@ -15,6 +15,7 @@ const useUserDataQuery = (userInfo) => {
     queryKey: ["userdata", userInfo],
     queryFn: () => fetchUserData(userInfo),
     retry: 3,
+    enabled: !!userInfo,
   });
 };
 
