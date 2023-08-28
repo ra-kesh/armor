@@ -187,7 +187,7 @@ export const useActions = () => {
       return { previousData };
     },
     onError: (error, context) => {
-      // context is not working as it is supposed to be , need to be fixed later
+      // context is not working as it is supposed to be for some reason
       if (context?.previousData) {
         queryClient.setQueryData(["userdata", userInfo], context.previousData);
       }
@@ -198,7 +198,7 @@ export const useActions = () => {
     },
   });
 
-  const addToWishList = async (item, path) => {
+  const addToWishList = async (item) => {
     const response = await axios.post(`${apiUrl}/wishlist/${userInfo._id}`, {
       _id: item._id,
     });
@@ -208,16 +208,7 @@ export const useActions = () => {
 
   const addToWishListMutation = useMutation({
     mutationFn: addToWishList,
-    onMutate: async (item, path) => {
-      // if (!userInfo) {
-      //   navigate("/login", {
-      //     state: {
-      //       from: path,
-      //       message: "Before adding to wishlist you need to login first ",
-      //     },
-      //   });
-      //   return;
-      // }
+    onMutate: async (item) => {
       await queryClient.cancelQueries({ queryKey: ["userdata", userInfo] });
 
       const previousData = queryClient.getQueryData(["userdata", userInfo]);
@@ -229,11 +220,7 @@ export const useActions = () => {
             ...previousData.wishList,
             {
               product: {
-                _id: item._id,
-                image: item.image,
-                inStock: item.inStock,
-                name: item.name,
-                price: item.price,
+                ...item,
               },
             },
           ],
@@ -254,6 +241,19 @@ export const useActions = () => {
     },
   });
 
+  const handleAddtoWishlistMuation = (product, path) => {
+    if (!userInfo) {
+      navigate("/login", {
+        state: {
+          from: path,
+          message: "Before adding to wishlist you need to login first ",
+        },
+      });
+      return;
+    }
+    addToWishListMutation.mutate(product);
+  };
+
   return {
     addToCart,
     removeFromCart,
@@ -264,6 +264,6 @@ export const useActions = () => {
     moveToCart,
     moveToWishList,
     removeFromWishListMutation,
-    addToWishListMutation,
+    handleAddtoWishlistMuation,
   };
 };

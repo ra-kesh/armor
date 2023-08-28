@@ -11,8 +11,8 @@ export const ProductCard = ({ item, path }) => {
     addToCart,
     isInCart,
     isInWishList,
-    removeFromWishList,
-    addToWishListMutation,
+    removeFromWishListMutation,
+    handleAddtoWishlistMuation,
   } = useActions();
 
   const [showModal, setShowModal] = useState(false);
@@ -44,7 +44,7 @@ export const ProductCard = ({ item, path }) => {
           <div className="flex-col-1 text-right">
             {isInWishList(item._id) && !isInCart(item._id) && (
               <div
-                onClick={() => removeFromWishList(item._id)}
+                onClick={() => removeFromWishListMutation.mutate(item._id)}
                 className="ecom-card-icon"
               >
                 <FavoriteIcon />
@@ -53,7 +53,7 @@ export const ProductCard = ({ item, path }) => {
 
             {!isInWishList(item._id) && !isInCart(item._id) && (
               <div
-                onClick={() => addToWishListMutation.mutate(item, path)}
+                onClick={() => handleAddtoWishlistMuation(item, path)}
                 className="ecom-card-icon"
               >
                 <FavoriteBorderIcon />
