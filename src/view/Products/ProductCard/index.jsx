@@ -2,89 +2,61 @@ import { useNavigate } from "react-router-dom";
 import { useActions } from "../../../hooks";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { useState } from "react";
-import { ProductPageModal } from "../ProductPageModal";
 
 export const ProductCard = ({ item, path }) => {
   const {
-    addToCart,
     isInCart,
     isInWishList,
-    removeFromWishListMutation,
     handleAddtoWishlistMuation,
+    handleRemoveFromWishlistMuation,
+    handleAddtoCartMuation,
   } = useActions();
-
-  const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
 
-  function ProductPageCard() {
-    return (
-      <div className="ecom-card">
-        <div className="ecom-card-pic hover-image">
-          <img src={item.image} alt={item.category} />
-          <button
-            className="ecom-card-btn trans-04"
-            onClick={() => setShowModal(true)}
-          >
-            Quick View
-          </button>
-        </div>
-        <div className="ecom-card-desc flex-row">
-          <div className="flex-col-11 flex-dir-col">
-            <span>₹{item.price}</span>
-            <span
-              className="ecom-card-name"
-              onClick={() => navigate(`/products/${item._id}`)}
-            >
-              {item.name}
-            </span>
-          </div>
-          <div className="flex-col-1 text-right">
-            {isInWishList(item._id) && !isInCart(item._id) && (
-              <div
-                onClick={() => removeFromWishListMutation.mutate(item._id)}
-                className="ecom-card-icon"
-              >
-                <FavoriteIcon />
-              </div>
-            )}
+  const WishListButton = isInWishList(item._id) ? (
+    <FavoriteIcon
+      onClick={(event) => handleRemoveFromWishlistMuation(event, item._id)}
+    />
+  ) : (
+    <FavoriteBorderIcon
+      onClick={(event) => handleAddtoWishlistMuation(event, item, path)}
+    />
+  );
 
-            {!isInWishList(item._id) && !isInCart(item._id) && (
-              <div
-                onClick={() => handleAddtoWishlistMuation(item, path)}
-                className="ecom-card-icon"
-              >
-                <FavoriteBorderIcon />
-              </div>
-            )}
-
-            {isInCart(item._id) && (
-              <div onClick={() => navigate("/cart")} className="ecom-card-icon">
-                <ShoppingCartIcon />
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const CartButton = isInCart(item._id) ? (
+    <ShoppingCartIcon
+      onClick={(event) => {
+        event.stopPropagation();
+        navigate("/cart");
+      }}
+    />
+  ) : (
+    <ShoppingCartOutlinedIcon
+      onClick={(event) => handleAddtoCartMuation(event, item, path)}
+    />
+  );
 
   return (
-    <>
-      <ProductPageCard />
-      {showModal && (
-        <ProductPageModal
-          setShowModal={setShowModal}
-          item={item}
-          isInCart={isInCart}
-          isInWishList={isInWishList}
-          addToCart={addToCart}
-          addToWishList={addToWishList}
-          path={path}
-        />
-      )}
-    </>
+    <div
+      className="ecom-card"
+      onClick={() => navigate(`/products/${item._id}`)}
+    >
+      <div className="ecom-card-pic hover-image">
+        <img src={item.image} alt={item.category} loading="lazy" />
+        <div className="ecom-card-icon">{WishListButton}</div>
+      </div>
+      <div className="ecom-card-desc flex-row">
+        <div className="flex-col-11 flex-dir-col">
+          <p className="ecom-card-name">{item.name}</p>
+          <p>
+            ₹{item.price} <span>(₹{item.price + item.price / 5})</span>
+          </p>
+        </div>
+        <div className="flex-col-1 center-vertically">{CartButton}</div>
+      </div>
+    </div>
   );
 };

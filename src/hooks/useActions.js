@@ -96,7 +96,8 @@ export const useActions = () => {
     },
   });
 
-  const handleAddtoWishlistMuation = (product, path) => {
+  const handleAddtoWishlistMuation = (event, product, path) => {
+    event.stopPropagation();
     if (!userInfo) {
       navigate("/login", {
         state: {
@@ -107,6 +108,10 @@ export const useActions = () => {
       return;
     }
     addToWishListMutation.mutate(product);
+  };
+  const handleRemoveFromWishlistMuation = (event, productId) => {
+    event.stopPropagation();
+    removeFromWishListMutation.mutate(productId);
   };
 
   const isInCart = (id) => {
@@ -163,7 +168,8 @@ export const useActions = () => {
     },
   });
 
-  const handleAddtoCartMuation = (product, path) => {
+  const handleAddtoCartMuation = (event, product, path) => {
+    event.stopPropagation();
     if (!userInfo) {
       navigate("/login", {
         state: {
@@ -362,6 +368,7 @@ export const useActions = () => {
     isInCart,
     isInWishList,
     removeFromWishListMutation,
+    handleRemoveFromWishlistMuation,
     handleAddtoWishlistMuation,
     handleAddtoCartMuation,
     removeFromCartMutation,
