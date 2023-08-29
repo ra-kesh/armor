@@ -3,7 +3,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import { useNavigate } from "react-router-dom";
 
 export const WishListPageCard = ({ item }) => {
-  const { moveToCart, removeFromWishListMutation } = useActions();
+  const { moveFromWishListToCartMutation, removeFromWishListMutation } =
+    useActions();
 
   const navigate = useNavigate();
 
@@ -14,7 +15,7 @@ export const WishListPageCard = ({ item }) => {
         {item.product.inStock ? (
           <button
             className="ecom-card-btn trans-04"
-            onClick={() => moveToCart(item.product._id)}
+            onClick={() => moveFromWishListToCartMutation.mutate(item.product)}
           >
             Move to cart
           </button>

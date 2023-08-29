@@ -6,72 +6,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useActions = () => {
   const { userInfo } = useAuth();
-  const { userDispatch, cartList, wishList } = useUserData();
+  const { cartList, wishList } = useUserData();
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
-
-  const moveToCart = async (_id) => {
-    if (isInWishList(_id)) {
-      let {
-        data: { success },
-      } = await axios.post(`${apiUrl}/cart/${userInfo._id}`, {
-        product: {
-          _id,
-        },
-      });
-
-      if (success) {
-        userDispatch({
-          type: "ADD TO CART",
-          payload: {
-            product: _id,
-          },
-        });
-      }
-      let res = await axios.delete(`${apiUrl}/wishlist/${userInfo._id}/${_id}`);
-
-      if (res.data.success) {
-        userDispatch({
-          type: "REMOVE FROM WISHLIST",
-          payload: {
-            product: _id,
-          },
-        });
-      }
-    }
-  };
-
-  const moveToWishList = async (_id) => {
-    if (isInCart(_id)) {
-      let {
-        data: { success },
-      } = await axios.post(`${apiUrl}/wishlist/${userInfo._id}`, {
-        product: {
-          _id,
-        },
-      });
-
-      if (success) {
-        userDispatch({
-          type: "ADD TO WISHLIST",
-          payload: {
-            product: _id,
-          },
-        });
-      }
-      let res = await axios.delete(`${apiUrl}/cart/${userInfo._id}/${_id}`);
-
-      if (res.data.success) {
-        userDispatch({
-          type: "REMOVE FROM CART",
-          payload: {
-            product: _id,
-          },
-        });
-      }
-    }
-  };
 
   const isInWishList = (id) => {
     return wishList.some(({ product }) => product._id === id);
@@ -313,15 +251,122 @@ export const useActions = () => {
     },
   });
 
+  const moveFromWishListToCart = async (product) => {
+    const [removeFromWishListResponse, addToCartResponse] = await Promise.all([
+      removeFromWishList(product._id),
+      addToCart(product),
+    ]);
+
+    return {
+      removeFromWishListResponse: removeFromWishListResponse.data,
+      addToCartResponse: addToCartResponse.data,
+    };
+  };
+
+  const moveFromWishListToCartMutation = useMutation({
+    mutationFn: moveFromWishListToCart,
+    onMutate: async (item) => {
+      await queryClient.cancelQueries({ queryKey: ["userdata", userInfo] });
+
+      const previousData = queryClient.getQueryData(["userdata", userInfo]);
+
+      if (previousData) {
+        queryClient.setQueryData(["userdata", userInfo], {
+          ...previousData,
+          wishList: previousData.wishList.filter(
+            (wishListItem) => wishListItem.product._id !== item._id
+          ),
+          cartList: [
+            ...previousData.cartList,
+            {
+              _id: item._id,
+              name: item.name,
+              price: item.price,
+              quantity: 1,
+              product: {
+                image: item.image,
+              },
+            },
+          ],
+        });
+      }
+
+      return { previousData };
+    },
+    onError: (error, context) => {
+      // context is not working as it is supposed to be , need to be fixed later
+      if (context?.previousData) {
+        queryClient.setQueryData(["userdata", userInfo], context.previousData);
+      }
+      console.error(error);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["userdata", userInfo] });
+    },
+  });
+
+  const moveFromCartToWishList = async (product) => {
+    const [removeFromCartResponse, addToWishListResponse] = await Promise.all([
+      removeFromCart(product.product._id),
+      addToWishList(product.product),
+    ]);
+
+    return {
+      removeFromCartResponse: removeFromCartResponse.data,
+      addToWishListResponse: addToWishListResponse.data,
+    };
+  };
+
+  const moveFromWCartToWishListMutation = useMutation({
+    mutationFn: moveFromCartToWishList,
+    onMutate: async (product) => {
+      await queryClient.cancelQueries({ queryKey: ["userdata", userInfo] });
+
+      const previousData = queryClient.getQueryData(["userdata", userInfo]);
+
+      if (previousData) {
+        queryClient.setQueryData(["userdata", userInfo], {
+          ...previousData,
+          cartList: previousData.cartList.filter(
+            (item) => item.product._id !== product.product._id
+          ),
+          wishList: [
+            ...previousData.wishList,
+            {
+              product: {
+                _id: product.product._id,
+                name: product.name,
+                price: product.price,
+                image: product.product.image,
+              },
+            },
+          ],
+        });
+      }
+
+      return { previousData };
+    },
+    onError: (error, context) => {
+      // context is not working as it is supposed to be , need to be fixed later
+      if (context?.previousData) {
+        queryClient.setQueryData(["userdata", userInfo], context.previousData);
+      }
+      console.error(error);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["userdata", userInfo] });
+    },
+  });
+
   return {
     isInCart,
     isInWishList,
-    moveToCart,
-    moveToWishList,
     removeFromWishListMutation,
     handleAddtoWishlistMuation,
     handleAddtoCartMuation,
     removeFromCartMutation,
     updateCartQuantityMutation,
+    moveFromWishListToCartMutation,
+    moveFromWCartToWishListMutation,
   };
 };

@@ -2,8 +2,11 @@ import { useActions } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 
 export const CartPageCard = ({ item }) => {
-  const { moveToWishList, removeFromCartMutation, updateCartQuantityMutation } =
-    useActions();
+  const {
+    moveFromWCartToWishListMutation,
+    removeFromCartMutation,
+    updateCartQuantityMutation,
+  } = useActions();
 
   const navigate = useNavigate();
 
@@ -73,7 +76,7 @@ export const CartPageCard = ({ item }) => {
         <div className="flex-col-lg-10 flex-col-6 center-vertically">
           <span
             className="pointer"
-            onClick={() => moveToWishList(item.product._id)}
+            onClick={() => moveFromWCartToWishListMutation.mutate(item)}
           >
             Move to wishlist
           </span>
