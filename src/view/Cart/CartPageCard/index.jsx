@@ -2,13 +2,8 @@ import { useActions } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 
 export const CartPageCard = ({ item }) => {
-  const {
-    increment,
-    decrement,
-    removeFromCart,
-    moveToWishList,
-    removeFromCartMutation,
-  } = useActions();
+  const { moveToWishList, removeFromCartMutation, updateCartQuantityMutation } =
+    useActions();
 
   const navigate = useNavigate();
 
@@ -32,21 +27,24 @@ export const CartPageCard = ({ item }) => {
               <div className="cart-qty">
                 <span
                   className="counter-btn pointer"
-                  onClick={() => {
-                    item.quantity === 1
-                      ? removeFromCart(item.product._id)
-                      : decrement(item.product._id, item.quantity);
-                  }}
+                  onClick={() =>
+                    updateCartQuantityMutation.mutate({
+                      _id: item.product._id,
+                      quantity: item.quantity - 1,
+                    })
+                  }
                 >
                   -
                 </span>
                 <span className="counter">{item.quantity}</span>
                 <span
                   className="counter-btn pointer"
-                  onClick={() => {
-                    if (item.quantity >= item.product.quantities) return;
-                    increment(item.product._id, item.quantity);
-                  }}
+                  onClick={() =>
+                    updateCartQuantityMutation.mutate({
+                      _id: item.product._id,
+                      quantity: item.quantity + 1,
+                    })
+                  }
                 >
                   +
                 </span>
