@@ -52,7 +52,10 @@ export const ProductCard = ({ item, path }) => {
         <div className="flex-col-11 flex-dir-col">
           <p className="ecom-card-name">{item.name}</p>
           <p>
-            ₹{item.price} <span>(₹{item.price + item.price / 5})</span>
+            ₹{item.price}{" "}
+            <span style={{ textDecoration: "line-through" }}>
+              (₹{item.price + item.price / 5})
+            </span>
           </p>
         </div>
         <div className="flex-col-1 center-vertically">{CartButton}</div>
