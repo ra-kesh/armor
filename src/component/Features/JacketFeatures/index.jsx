@@ -114,8 +114,8 @@ const JacketFeatures = () => {
               height="auto"
               autoPlay
               loop
-              muted="true"
-              playsinline
+              muted={true}
+              playsInline
             />
           )}
           {show === "construction" && (
