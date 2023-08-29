@@ -4,7 +4,12 @@ import style from "./ProductDetail.module.css";
 import Rating from "@mui/material/Rating";
 
 export const ProductDetailDescription = ({ currentProduct }) => {
-  const { addToCart, addToWishList, isInCart, isInWishList } = useActions();
+  const {
+    handleAddtoCartMuation,
+    handleAddtoWishlistMuation,
+    isInCart,
+    isInWishList,
+  } = useActions();
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname + location.search;
@@ -50,7 +55,7 @@ export const ProductDetailDescription = ({ currentProduct }) => {
                 </button>
               ) : (
                 <button
-                  onClick={() => addToCart(currentProduct._id, path)}
+                  onClick={() => handleAddtoCartMuation(currentProduct, path)}
                   className={style.product_button}
                   disabled={!currentProduct.inStock}
                 >
@@ -65,7 +70,9 @@ export const ProductDetailDescription = ({ currentProduct }) => {
               {!isInWishList(currentProduct._id) ? (
                 <button
                   className={style.product_button}
-                  onClick={() => addToWishList(currentProduct._id, path)}
+                  onClick={() =>
+                    handleAddtoWishlistMuation(currentProduct, path)
+                  }
                 >
                   add to wishlist
                 </button>

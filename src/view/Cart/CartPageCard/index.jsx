@@ -2,7 +2,13 @@ import { useActions } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 
 export const CartPageCard = ({ item }) => {
-  const { increment, decrement, removeFromCart, moveToWishList } = useActions();
+  const {
+    increment,
+    decrement,
+    removeFromCart,
+    moveToWishList,
+    removeFromCartMutation,
+  } = useActions();
 
   const navigate = useNavigate();
 
@@ -61,7 +67,7 @@ export const CartPageCard = ({ item }) => {
         >
           <span
             className="pointer"
-            onClick={() => removeFromCart(item.product._id)}
+            onClick={() => removeFromCartMutation.mutate(item.product._id)}
           >
             remove
           </span>
