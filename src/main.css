@@ -196,7 +196,7 @@ button:focus {
 }
 
 .min-h-100 {
-  min-height: 80vh;
+  min-height: 100vh;
 }
 
 .h-screen {

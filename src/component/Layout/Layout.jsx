@@ -5,7 +5,6 @@ import { useProduct, useUserData } from "../../hooks";
 import { useRouteChangeEffect } from "../../hooks/useRouteChangeEffect";
 
 const Layout = ({ children }) => {
-  const { dataloading } = useUserData();
   const { loading } = useProduct();
   const [routeChanged, setRouteChanged] = useState(false);
 
@@ -13,7 +12,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Navbar isLoading={dataloading || loading || routeChanged} />
+      <Navbar isLoading={loading || routeChanged} />
       <div className="m-y-two">{children}</div>
       <Footer />
     </>

@@ -65,9 +65,9 @@
   margin-left: 1rem;
   cursor: pointer;
   color: inherit;
-  text-underline-offset: var(--offset, 0.2em);
+  /* text-underline-offset: var(--offset, 0.2em);
   text-decoration: underline 0.2em;
-  transition: --offset 600ms, text-decoration-color 600ms;
+  transition: --offset 600ms, text-decoration-color 600ms; */
 }
 
 .auth-signup:hover,
