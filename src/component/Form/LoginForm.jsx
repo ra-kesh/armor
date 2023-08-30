@@ -5,8 +5,6 @@ export const LoginForm = ({ login, path }) => {
   const [password, setPassword] = useState("someone");
   const [error, setError] = useState("");
 
-  console.log(path);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email === "") {
