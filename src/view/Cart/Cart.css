@@ -1,13 +1,10 @@
-.cart-wrapper{
-    margin-top: 3rem;
-}
-.cart-payment-wrapper{
-    border: 1px solid var(--less-light-border);
-    margin-left: 1rem;
+.cart-payment-wrapper {
+  border: 1px solid var(--less-light-border);
+  margin-left: 1rem;
 }
 
-.price-div{
-    /* border-top: 1px solid var(--less-light-border); */
-    border-bottom: 1px solid var(--less-light-border);
-    padding: 0 0 1rem;
+.price-div {
+  /* border-top: 1px solid var(--less-light-border); */
+  border-bottom: 1px solid var(--less-light-border);
+  padding: 0 0 1rem;
 }

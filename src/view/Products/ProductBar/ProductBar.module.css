@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0 2rem;
-  height: 6rem;
+  margin-bottom: 2rem;
+  padding: 0 0.8rem 0;
 }
 
 .product_bar_item_container {

@@ -1,8 +1,12 @@
 import { useActions } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 
-export const CartPageCard = ({ item, moveToWishlist }) => {
-  const { increment, decrement, removeFromCart, moveToWishList } = useActions();
+export const CartPageCard = ({ item }) => {
+  const {
+    moveFromWCartToWishListMutation,
+    removeFromCartMutation,
+    updateCartQuantityMutation,
+  } = useActions();
 
   const navigate = useNavigate();
 
@@ -21,26 +25,29 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
           <div className="flex-row p-lg-two">
             <div className="flex-col-xl-10 flex-col-lg-10 flex-col-md-6">
               <div className="cart-desc">
-                <span>{item.product.name}</span>
+                <span>{item.name}</span>
               </div>
               <div className="cart-qty">
                 <span
                   className="counter-btn pointer"
-                  onClick={() => {
-                    item.quantity === 1
-                      ? removeFromCart(item.product._id)
-                      : decrement(item.product._id, item.quantity);
-                  }}
+                  onClick={() =>
+                    updateCartQuantityMutation.mutate({
+                      _id: item.product._id,
+                      quantity: item.quantity - 1,
+                    })
+                  }
                 >
                   -
                 </span>
                 <span className="counter">{item.quantity}</span>
                 <span
                   className="counter-btn pointer"
-                  onClick={() => {
-                    if (item.quantity >= item.product.quantities) return;
-                    increment(item.product._id, item.quantity);
-                  }}
+                  onClick={() =>
+                    updateCartQuantityMutation.mutate({
+                      _id: item.product._id,
+                      quantity: item.quantity + 1,
+                    })
+                  }
                 >
                   +
                 </span>
@@ -48,7 +55,7 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
             </div>
             <div className="flex-col-xl-2 flex-col-lg-2 flex-col-md-6 center-vertically m-top">
               <div className="cart-price text-right">
-                <span>₹{item.product.price}/-</span>
+                <span>₹{item.price}/-</span>
               </div>
             </div>
           </div>
@@ -61,7 +68,7 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
         >
           <span
             className="pointer"
-            onClick={() => removeFromCart(item.product._id)}
+            onClick={() => removeFromCartMutation.mutate(item.product._id)}
           >
             remove
           </span>
@@ -69,7 +76,7 @@ export const CartPageCard = ({ item, moveToWishlist }) => {
         <div className="flex-col-lg-10 flex-col-6 center-vertically">
           <span
             className="pointer"
-            onClick={() => moveToWishList(item.product._id)}
+            onClick={() => moveFromWCartToWishListMutation.mutate(item)}
           >
             Move to wishlist
           </span>

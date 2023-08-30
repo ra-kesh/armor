@@ -1,16 +1,11 @@
-import { useControl } from "../../../hooks";
+import { useProduct } from "../../../hooks";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import CloseIcon from "@material-ui/icons/Close";
 import style from "./ProductBar.module.css";
 import MediaQuery from "react-responsive";
 
-export const ProductBar = ({
-  showFilterModal,
-  setShowFilterModal,
-  filterByCategory,
-}) => {
-  const { filterGloves, filterHelmets, filterJackets, filterShoes, showAll } =
-    useControl();
+export const ProductBar = ({ showFilterModal, setShowFilterModal }) => {
+  const { productCategory, productDispatch } = useProduct();
 
   return (
     <div className="container">
@@ -19,51 +14,76 @@ export const ProductBar = ({
           <div className={style.product_bar_item_container}>
             <span
               className={
-                filterByCategory === "ALL"
+                productCategory === "all"
                   ? style.product_bar_item_active
                   : style.product_bar_item
               }
-              onClick={showAll}
+              onClick={() =>
+                productDispatch({
+                  type: "CHANGE PRODUCT CATEGORY",
+                  payload: "all",
+                })
+              }
             >
               All
             </span>
             <span
               className={
-                filterByCategory === "JACKETS"
+                productCategory === "jackets"
                   ? style.product_bar_item_active
                   : style.product_bar_item
               }
-              onClick={filterJackets}
+              onClick={() =>
+                productDispatch({
+                  type: "CHANGE PRODUCT CATEGORY",
+                  payload: "jackets",
+                })
+              }
             >
               Jackets
             </span>
             <span
               className={
-                filterByCategory === "HELMETS"
+                productCategory === "helmets"
                   ? style.product_bar_item_active
                   : style.product_bar_item
               }
-              onClick={filterHelmets}
+              onClick={() =>
+                productDispatch({
+                  type: "CHANGE PRODUCT CATEGORY",
+                  payload: "helmets",
+                })
+              }
             >
               Helmets
             </span>
             <span
               className={
-                filterByCategory === "GLOVES"
+                productCategory === "gloves"
                   ? style.product_bar_item_active
                   : style.product_bar_item
               }
-              onClick={filterGloves}
+              onClick={() =>
+                productDispatch({
+                  type: "CHANGE PRODUCT CATEGORY",
+                  payload: "gloves",
+                })
+              }
             >
               Gloves
             </span>
             <span
               className={
-                filterByCategory === "SHOES"
+                productCategory === "shoes"
                   ? style.product_bar_item_active
                   : style.product_bar_item
               }
-              onClick={filterShoes}
+              onClick={() =>
+                productDispatch({
+                  type: "CHANGE PRODUCT CATEGORY",
+                  payload: "shoes",
+                })
+              }
             >
               Shoes
             </span>

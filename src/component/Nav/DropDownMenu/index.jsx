@@ -8,10 +8,10 @@ const DropDownMenu = () => {
     <div className={style.drop_down_container}>
       <div className={style.drop_down}>
         <div className={style.drop_down_item} onClick={() => navigate("/")}>
-          Shop
+          Products
         </div>
         <div className={style.drop_down_item} onClick={() => navigate("/user")}>
-          Account
+          User
         </div>
       </div>
     </div>

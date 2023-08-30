@@ -4,29 +4,19 @@ import { FilterPanel, Navbar } from "../../../component";
 import { ProductBar } from "../ProductBar";
 import { ProductCard } from "../ProductCard";
 import { useLocation } from "react-router-dom";
+import { ProductPagination } from "../ProductPagination";
+import withLayout from "../../../utils/withLayout";
 
 const Products = () => {
-  const {
-    productList,
-    getSortedProductList,
-    getFilteredProductList,
-    getCategorizedProductList,
-  } = useProduct();
+  const { productList, getSortedProductList, getFilteredProductList } =
+    useProduct();
 
-  const { sortBy, otherFilters, filterByCategory } = useControl();
+  const { sortBy, otherFilters } = useControl();
 
   const location = useLocation();
   const path = location.pathname + location.search;
 
-  const categorizedProductList = getCategorizedProductList(
-    productList,
-    filterByCategory
-  );
-
-  const sortedProductList = getSortedProductList(
-    categorizedProductList,
-    sortBy
-  );
+  const sortedProductList = getSortedProductList(productList, sortBy);
 
   const filteredProductList = getFilteredProductList(
     sortedProductList,
@@ -37,11 +27,9 @@ const Products = () => {
 
   return (
     <>
-      <Navbar />
       <ProductBar
         showFilterModal={showFilterModal}
         setShowFilterModal={setShowFilterModal}
-        filterByCategory={filterByCategory}
       />
       {showFilterModal && (
         <div className="container">
@@ -49,16 +37,17 @@ const Products = () => {
         </div>
       )}
       <div className="container">
-        <div className="flex-row product-grid">
-          {filteredProductList.map((item) => (
+        <div className="flex-row border-bottom-light">
+          {filteredProductList?.map((item) => (
             <div className="flex-col-sm-6 flex-col-lg-4" key={item._id}>
               <ProductCard item={item} path={path} />
             </div>
           ))}
         </div>
       </div>
+      <ProductPagination />
     </>
   );
 };
 
-export default Products;
+export default withLayout(Products);

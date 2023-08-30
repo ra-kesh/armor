@@ -1,8 +1,7 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer } from "react";
 import { userDataReducer, initialState } from "../reducer/userDataReducer";
-import axios from "axios";
 import { useAuth } from "../hooks";
-import { apiUrl } from "../constants";
+import useUserDataQuery from "../hooks/useUserDataQuery";
 
 export const UserDataContext = createContext();
 
@@ -11,37 +10,24 @@ export const UserDataProvider = ({ children }) => {
 
   const { userInfo } = useAuth();
 
-  useEffect(() => {
-    const source = axios.CancelToken.source();
-    const cancelToken = source.token;
-    if (userInfo) {
-      (async () => {
-        try {
-          dispatch({ type: "SHOW LOADING" });
-          const {
-            data: { data: user },
-          } = await axios.get(`${apiUrl}/userdata/${userInfo._id}`, {
-            cancelToken,
-          });
-          dispatch({
-            type: "GET WISHLIST ITEMS",
-            payload: user.wishList,
-          });
-          dispatch({ type: "GET CART ITEMS", payload: user.cartList });
-          dispatch({ type: "HIDE LOADING" });
-        } catch (error) {
-          console.log(error);
-        }
-      })();
-    }
+  const {
+    data: response,
+    isLoading: isUserDataLoading,
+    isSuccess: isUserDataFetched,
+  } = useUserDataQuery(userInfo);
 
-    return () => {
-      source.cancel();
-    };
-  }, [dispatch, userInfo]);
+  const contextValue = {
+    state: {
+      ...state,
+      cartList: isUserDataFetched ? response.cartList : [],
+      wishList: isUserDataFetched ? response.wishList : [],
+      loading: isUserDataLoading,
+    },
+    dispatch,
+  };
 
   return (
-    <UserDataContext.Provider value={{ state, dispatch }}>
+    <UserDataContext.Provider value={contextValue}>
       {children}
     </UserDataContext.Provider>
   );
