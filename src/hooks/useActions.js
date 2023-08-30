@@ -281,23 +281,33 @@ export const useActions = () => {
       const previousData = queryClient.getQueryData(["userdata", userInfo]);
 
       if (previousData) {
+        const ifItemAlreadyInCart = previousData.cartList.some(
+          (cartItem) => cartItem.product._id == item._id
+        );
+
+        const updatedCartList = ifItemAlreadyInCart
+          ? previousData.cartList
+          : [
+              ...previousData.cartList,
+              {
+                name: item.name,
+                price: item.price,
+                quantity: 1,
+                product: {
+                  _id: item._id,
+                  image: item.image,
+                },
+              },
+            ];
+
+        const updatedWishList = previousData.wishList.filter(
+          (wishListItem) => wishListItem.product._id !== item._id
+        );
+
         queryClient.setQueryData(["userdata", userInfo], {
           ...previousData,
-          wishList: previousData.wishList.filter(
-            (wishListItem) => wishListItem.product._id !== item._id
-          ),
-          cartList: [
-            ...previousData.cartList,
-            {
-              _id: item._id,
-              name: item.name,
-              price: item.price,
-              quantity: 1,
-              product: {
-                image: item.image,
-              },
-            },
-          ],
+          wishList: updatedWishList,
+          cartList: updatedCartList,
         });
       }
 
@@ -335,22 +345,32 @@ export const useActions = () => {
       const previousData = queryClient.getQueryData(["userdata", userInfo]);
 
       if (previousData) {
+        const ifItemAlreadyInWishlist = previousData.wishList.some(
+          (wishListItem) => wishListItem.product._id === product.product._id
+        );
+
+        const updatedWishList = ifItemAlreadyInWishlist
+          ? previousData.wishList
+          : [
+              ...previousData.wishList,
+              {
+                product: {
+                  _id: product.product._id,
+                  name: product.name,
+                  price: product.price,
+                  image: product.product.image,
+                },
+              },
+            ];
+
+        const updatedCartList = previousData.cartList.filter(
+          (item) => item.product._id !== product.product._id
+        );
+
         queryClient.setQueryData(["userdata", userInfo], {
           ...previousData,
-          cartList: previousData.cartList.filter(
-            (item) => item.product._id !== product.product._id
-          ),
-          wishList: [
-            ...previousData.wishList,
-            {
-              product: {
-                _id: product.product._id,
-                name: product.name,
-                price: product.price,
-                image: product.product.image,
-              },
-            },
-          ],
+          cartList: updatedCartList,
+          wishList: updatedWishList,
         });
       }
 
