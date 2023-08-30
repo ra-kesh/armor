@@ -32,17 +32,17 @@ export const Navbar = ({ isLoading = false }) => {
         style={{ position: "relative" }}
       >
         <div className="container">
-          <MediaQuery minWidth={1224}>
+          <MediaQuery minWidth={1024}>
             <DesktopBar />
           </MediaQuery>
-          <MediaQuery maxWidth={1224}>
+          <MediaQuery maxWidth={1023}>
             <MobileBar setShow={setShow} show={show} />
           </MediaQuery>
         </div>
       </nav>
       <Loader isLoading={isLoading} />
       {show && (
-        <MediaQuery maxWidth={1224}>
+        <MediaQuery maxWidth={1023}>
           <DropDownMenu />
         </MediaQuery>
       )}
