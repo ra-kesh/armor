@@ -14,6 +14,38 @@ export const ProductDetailDescription = ({ currentProduct }) => {
   const location = useLocation();
   const path = location.pathname + location.search;
 
+  const CartButton = isInCart(currentProduct._id) ? (
+    <button className={style.product_button} onClick={() => navigate("/cart")}>
+      go to cart
+    </button>
+  ) : (
+    <button
+      onClick={(event) => handleAddtoCartMuation(event, currentProduct, path)}
+      className={style.product_button}
+      disabled={!currentProduct.inStock}
+    >
+      add to cart
+    </button>
+  );
+
+  const WishlistButton = isInWishList(currentProduct._id) ? (
+    <button
+      className={style.product_button}
+      onClick={() => navigate("/wishlist")}
+    >
+      go to wishlist
+    </button>
+  ) : (
+    <button
+      className={style.product_button}
+      onClick={(event) =>
+        handleAddtoWishlistMuation(event, currentProduct, path)
+      }
+    >
+      add to wishlist
+    </button>
+  );
+
   return (
     <div className="flex-col-lg-6">
       <div className="container product-desc">
@@ -44,48 +76,8 @@ export const ProductDetailDescription = ({ currentProduct }) => {
         </div>
 
         <div className={style.product_button_row}>
-          {!isInWishList(currentProduct._id) && (
-            <div className="flex-col-6">
-              {isInCart(currentProduct._id) ? (
-                <button
-                  className={style.product_button}
-                  onClick={() => navigate("/cart")}
-                >
-                  go to cart
-                </button>
-              ) : (
-                <button
-                  onClick={() => handleAddtoCartMuation(currentProduct, path)}
-                  className={style.product_button}
-                  disabled={!currentProduct.inStock}
-                >
-                  add to cart
-                </button>
-              )}
-            </div>
-          )}
-
-          {!isInCart(currentProduct._id) && (
-            <div className="flex-col-6">
-              {!isInWishList(currentProduct._id) ? (
-                <button
-                  className={style.product_button}
-                  onClick={() =>
-                    handleAddtoWishlistMuation(currentProduct, path)
-                  }
-                >
-                  add to wishlist
-                </button>
-              ) : (
-                <button
-                  className={style.product_button}
-                  onClick={() => navigate("/wishlist")}
-                >
-                  go to wishlist
-                </button>
-              )}
-            </div>
-          )}
+          <div className="flex-col-6">{CartButton}</div>
+          <div className="flex-col-6">{WishlistButton}</div>
         </div>
       </div>
     </div>
