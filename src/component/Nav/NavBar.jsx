@@ -13,11 +13,14 @@ export const Navbar = ({ isLoading = false }) => {
       <div className="site-nav-top">
         <div className="container">
           <div
-            className="flex-row center-vertically "
+            className="flex-row center-vertically"
             style={{ height: "5rem" }}
           >
             <div className="flex-col-xl-4 text-center">
-              <span className="logo-text ">M . A . D</span>
+              <span className="logo-text ">
+                <MediaQuery minWidth={768}>MOTO ARMOR DEPOT.</MediaQuery>
+                <MediaQuery maxWidth={767}>M . A . D</MediaQuery>
+              </span>
             </div>
           </div>
         </div>

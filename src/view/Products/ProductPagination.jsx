@@ -14,7 +14,7 @@ export const ProductPagination = () => {
   };
 
   return (
-    <div className="container flex-row center-vertically gap-1 h-8">
+    <div className="container flex-row center-vertically gap-1 h-8 ">
       <button
         className="button-outline-dark"
         onClick={() => selectPageHandler(page - 1)}

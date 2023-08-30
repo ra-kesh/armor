@@ -138,6 +138,10 @@ button:focus {
   margin-top: 2rem;
 }
 
+.m-top-ten {
+  margin-top: 10rem;
+}
+
 .m-right {
   margin-right: 1rem;
 }
@@ -159,8 +163,9 @@ button:focus {
   margin-bottom: 2rem;
 }
 
-.m-bottom-8 {
-  margin-bottom: 8rem;
+.m-y-two {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 /* width */
@@ -191,7 +196,7 @@ button:focus {
 }
 
 .min-h-100 {
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 .h-screen {

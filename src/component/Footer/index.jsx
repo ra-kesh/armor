@@ -18,11 +18,10 @@ const FooterData = [
 
 const Footer = () => {
   return (
-    <div className="border-y-light  center-vertically">
+    <div className="border-y-light center-vertically m-top-ten">
       <div className="container  ">
-        <div className="flex-dir-col center-vertically gap-2 border-bottom-light p-y-3">
-          <span className="logo-text ">MOTO ARMOR DEPOT.</span>
-          <p>Where Bikers Belong .</p>
+        <div className="flex-dir-col center-vertically gap-2 border-bottom-light p-y-5">
+          <span className="logo-text ">M . A . D</span>
         </div>
         <div className="h-4 flex-row space-between">
           {FooterData.map((dataItem, index) => {

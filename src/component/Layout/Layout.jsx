@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Navbar isLoading={dataloading || loading || routeChanged} />
-      <div className="min-h-100">{children}</div>
+      <div className="m-y-two">{children}</div>
       <Footer />
     </>
   );

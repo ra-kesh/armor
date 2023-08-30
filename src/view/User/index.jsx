@@ -43,7 +43,7 @@ const User = () => {
   return (
     <>
       {!isLoading && (
-        <div className="container m-top-two">
+        <div className="container ">
           <div className=" flex-col">
             <div className={style.avatar}>
               <div className="center-vertically">
