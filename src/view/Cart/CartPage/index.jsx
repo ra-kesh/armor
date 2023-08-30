@@ -1,22 +1,14 @@
 import { useUserData } from "../../../hooks";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { CartPageCard } from "../CartPageCard";
 import { EmptyCartpage } from "../EmptyPageCart";
 import withLayout from "../../../utils/withLayout";
 
 const Cart = () => {
-  const [cartTotal, setCartTotal] = useState(0);
-  const { cartList } = useUserData();
+  const { cartList, cartTotal, userDispatch } = useUserData();
 
   useEffect(() => {
-    if (cartList.length > 0) {
-      const totalAmount = cartList.reduce((total, item) => {
-        return total + item.price * item.quantity;
-      }, 0);
-      setCartTotal(totalAmount);
-    } else {
-      setCartTotal(0);
-    }
+    userDispatch({ type: "CALCULATE CART", payload: cartList });
   }, [cartList]);
 
   if (cartList.length === 0) {

@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useActions = () => {
   const { userInfo } = useAuth();
-  const { cartList, wishList } = useUserData();
+  const { cartList, wishList, userDispatch } = useUserData();
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
@@ -244,6 +244,10 @@ export const useActions = () => {
       }
 
       return { previousData };
+    },
+    onSuccess: () => {
+      const updatedData = queryClient.getQueryData(["userdata", userInfo]);
+      userDispatch({ type: "CALCULATE CART", payload: updatedData.cartList });
     },
     onError: (error, context) => {
       // context is not working as it is supposed to be for some reason
