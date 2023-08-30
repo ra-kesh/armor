@@ -325,6 +325,11 @@ export const useActions = () => {
     },
   });
 
+  const handleMoveFromWishListToCartMutation = (event, product) => {
+    event.stopPropagation();
+    moveFromWishListToCartMutation.mutate(product);
+  };
+
   const moveFromCartToWishList = async (product) => {
     const [removeFromCartResponse, addToWishListResponse] = await Promise.all([
       removeFromCart(product.product._id),
@@ -393,6 +398,7 @@ export const useActions = () => {
     isInWishList,
     removeFromWishListMutation,
     handleRemoveFromWishlistMuation,
+    handleMoveFromWishListToCartMutation,
     handleAddtoWishlistMuation,
     handleAddtoCartMuation,
     removeFromCartMutation,
