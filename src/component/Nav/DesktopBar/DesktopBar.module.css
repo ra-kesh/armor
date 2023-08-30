@@ -1,6 +1,11 @@
 .desktop_bar_item {
-  padding: 0.7rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+}
+.desktop_bar_item_active {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-gray-200);
 }
 
 .desktop_bar_item:hover,
