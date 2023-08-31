@@ -142,11 +142,11 @@ export const useActions = () => {
           cartList: [
             ...previousData.cartList,
             {
-              _id: item._id,
               name: item.name,
               price: item.price,
               quantity: 1,
               product: {
+                _id: item._id,
                 image: item.image,
               },
             },
