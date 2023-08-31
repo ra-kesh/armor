@@ -42,8 +42,8 @@ const User = () => {
 
   return (
     <>
-      {!isLoading && (
-        <div className="container ">
+      {!isLoading ? (
+        <div className="container">
           <div className=" flex-col">
             <div className={style.avatar}>
               <div className="center-vertically">
@@ -82,14 +82,14 @@ const User = () => {
                   readOnly
                 />
               </label>
-              <label htmlFor="password">
+              {/* <label htmlFor="password">
                 <div>Password</div>
                 <input type="password" name="password" value={""} readOnly />
               </label>
               <label htmlFor="mobile">
                 <div>Mobile</div>
                 <input type="text" name="mobile" value={""} readOnly />
-              </label>
+              </label> */}
             </div>
             <div className={style.profile}>
               <span style={{ fontSize: "larger", fontWeight: "600" }}>
@@ -104,6 +104,10 @@ const User = () => {
               </div>
             </div>
           </div>
+        </div>
+      ) : (
+        <div className="center-vertically min-h-100">
+          <h4>Loading...</h4>
         </div>
       )}
     </>

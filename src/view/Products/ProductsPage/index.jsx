@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useProduct, useControl } from "../../../hooks";
-import { FilterPanel, Navbar } from "../../../component";
+import { FilterPanel } from "../../../component";
 import { ProductBar } from "../ProductBar";
 import { ProductCard } from "../ProductCard";
 import { useLocation } from "react-router-dom";
@@ -24,6 +24,14 @@ const Products = () => {
   );
 
   const [showFilterModal, setShowFilterModal] = useState(false);
+
+  if (productList.length === 0) {
+    return (
+      <div className="center-vertically min-h-100">
+        <h4>Loading...</h4>
+      </div>
+    );
+  }
 
   return (
     <>
