@@ -21,6 +21,7 @@ export const UserDataProvider = ({ children }) => {
       ...state,
       cartList: isUserDataFetched ? response.cartList : [],
       wishList: isUserDataFetched ? response.wishList : [],
+      userProfile: isUserDataFetched ? response.userProfile : {},
       loading: isUserDataLoading,
     },
     dispatch,

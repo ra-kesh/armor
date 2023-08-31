@@ -1,48 +1,16 @@
-import { useAuth } from "../../hooks";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { apiUrl } from "../../constants";
+import { useAuth, useUserData } from "../../hooks";
 import { Avatar } from "@mui/material";
 import style from "./User.module.css";
 import { timeAgo } from "../../utils/Date";
 import withLayout from "../../utils/withLayout";
 
 const User = () => {
-  const { logOut, userInfo } = useAuth();
-  const [userProfile, setUserProfile] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!userInfo) {
-      navigate("/login");
-      return;
-    }
-    const fetchUserProfile = async () => {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      };
-      try {
-        setLoading(true);
-        const { data } = await axios.get(`${apiUrl}/users/profile`, config);
-        setUserProfile(data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const unsubscribe = fetchUserProfile();
-    return unsubscribe;
-  }, [userInfo, navigate]);
+  const { logOut } = useAuth();
+  const { userProfile, dataloading } = useUserData();
 
   return (
     <>
-      {!isLoading ? (
+      {!dataloading ? (
         <div className="container">
           <div className=" flex-col">
             <div className={style.avatar}>
@@ -82,14 +50,6 @@ const User = () => {
                   readOnly
                 />
               </label>
-              {/* <label htmlFor="password">
-                <div>Password</div>
-                <input type="password" name="password" value={""} readOnly />
-              </label>
-              <label htmlFor="mobile">
-                <div>Mobile</div>
-                <input type="text" name="mobile" value={""} readOnly />
-              </label> */}
             </div>
             <div className={style.profile}>
               <span style={{ fontSize: "larger", fontWeight: "600" }}>
