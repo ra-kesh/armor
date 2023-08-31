@@ -20,4 +20,5 @@ export const initialState = {
   cartList: [],
   wishList: [],
   loading: false,
+  userProfile: {},
 };

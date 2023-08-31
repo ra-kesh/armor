@@ -9,6 +9,7 @@ export const useUserData = () => {
     wishList: state.wishList,
     cartList: state.cartList,
     dataloading: state.loading,
+    userProfile: state.userProfile,
     userDispatch,
   };
 };

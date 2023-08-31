@@ -13,15 +13,6 @@
   padding: 2rem 0;
 }
 
-@media only screen and (min-width: 1225px) {
-  .profile {
-    padding: 2rem;
-  }
-  .avatar {
-    padding: 2rem;
-  }
-}
-
 .logout {
   justify-content: flex-end;
   background-color: var(--color-gray-900);
