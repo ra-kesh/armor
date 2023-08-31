@@ -1,32 +1,26 @@
 import { useAuth, useUserData } from "../hooks";
-import axios from "axios";
-import { apiUrl } from "../constants";
 import { useNavigate } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCartMutations } from "../view/Cart/hooks/CartMutations";
 import { useWishListMutations } from "../view/WishList/hooks/WishListMutations";
 
 export const useActions = () => {
   const { userInfo } = useAuth();
-  const { cartList, wishList, userDispatch } = useUserData();
+  const { cartList, wishList } = useUserData();
 
   const {
-    addToCart,
-    removeFromCart,
     addToCartMutation,
     removeFromCartMutation,
     updateCartQuantityMutation,
+    moveFromWCartToWishListMutation,
   } = useCartMutations();
 
   const {
-    addToWishList,
-    removeFromWishList,
     removeFromWishListMutation,
     addToWishListMutation,
+    moveFromWishListToCartMutation,
   } = useWishListMutations();
 
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   const isInWishList = (id) => {
     return wishList.some(({ product }) => product._id === id);
@@ -49,6 +43,7 @@ export const useActions = () => {
     }
     addToWishListMutation.mutate(product);
   };
+
   const handleRemoveFromWishlistMuation = (event, productId) => {
     event.stopPropagation();
     removeFromWishListMutation.mutate(productId);
@@ -68,137 +63,10 @@ export const useActions = () => {
     addToCartMutation.mutate(product);
   };
 
-  const moveFromWishListToCart = async (product) => {
-    const [removeFromWishListResponse, addToCartResponse] = await Promise.all([
-      removeFromWishList(product._id),
-      addToCart(product),
-    ]);
-
-    return {
-      removeFromWishListResponse: removeFromWishListResponse.data,
-      addToCartResponse: addToCartResponse.data,
-    };
-  };
-
-  const moveFromWishListToCartMutation = useMutation({
-    mutationFn: moveFromWishListToCart,
-    onMutate: async (item) => {
-      await queryClient.cancelQueries({ queryKey: ["userdata", userInfo] });
-
-      const previousData = queryClient.getQueryData(["userdata", userInfo]);
-
-      if (previousData) {
-        const ifItemAlreadyInCart = previousData.cartList.some(
-          (cartItem) => cartItem.product._id == item._id
-        );
-
-        const updatedCartList = ifItemAlreadyInCart
-          ? previousData.cartList
-          : [
-              ...previousData.cartList,
-              {
-                name: item.name,
-                price: item.price,
-                quantity: 1,
-                product: {
-                  _id: item._id,
-                  image: item.image,
-                },
-              },
-            ];
-
-        const updatedWishList = previousData.wishList.filter(
-          (wishListItem) => wishListItem.product._id !== item._id
-        );
-
-        queryClient.setQueryData(["userdata", userInfo], {
-          ...previousData,
-          wishList: updatedWishList,
-          cartList: updatedCartList,
-        });
-      }
-
-      return { previousData };
-    },
-    onError: (error, context) => {
-      // context is not working as it is supposed to be , need to be fixed later
-      if (context?.previousData) {
-        queryClient.setQueryData(["userdata", userInfo], context.previousData);
-      }
-      console.error(error);
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["userdata", userInfo] });
-    },
-  });
-
   const handleMoveFromWishListToCartMutation = (event, product) => {
     event.stopPropagation();
     moveFromWishListToCartMutation.mutate(product);
   };
-
-  const moveFromCartToWishList = async (product) => {
-    const [removeFromCartResponse, addToWishListResponse] = await Promise.all([
-      removeFromCart(product.product._id),
-      addToWishList(product.product),
-    ]);
-
-    return {
-      removeFromCartResponse: removeFromCartResponse.data,
-      addToWishListResponse: addToWishListResponse.data,
-    };
-  };
-
-  const moveFromWCartToWishListMutation = useMutation({
-    mutationFn: moveFromCartToWishList,
-    onMutate: async (product) => {
-      await queryClient.cancelQueries({ queryKey: ["userdata", userInfo] });
-
-      const previousData = queryClient.getQueryData(["userdata", userInfo]);
-
-      if (previousData) {
-        const ifItemAlreadyInWishlist = previousData.wishList.some(
-          (wishListItem) => wishListItem.product._id === product.product._id
-        );
-
-        const updatedWishList = ifItemAlreadyInWishlist
-          ? previousData.wishList
-          : [
-              ...previousData.wishList,
-              {
-                product: {
-                  _id: product.product._id,
-                  name: product.name,
-                  price: product.price,
-                  image: product.product.image,
-                },
-              },
-            ];
-
-        const updatedCartList = previousData.cartList.filter(
-          (item) => item.product._id !== product.product._id
-        );
-
-        queryClient.setQueryData(["userdata", userInfo], {
-          ...previousData,
-          cartList: updatedCartList,
-          wishList: updatedWishList,
-        });
-      }
-
-      return { previousData };
-    },
-    onError: (error, context) => {
-      // context is not working as it is supposed to be , need to be fixed later
-      if (context?.previousData) {
-        queryClient.setQueryData(["userdata", userInfo], context.previousData);
-      }
-      console.error(error);
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["userdata", userInfo] });
-    },
-  });
 
   return {
     isInCart,

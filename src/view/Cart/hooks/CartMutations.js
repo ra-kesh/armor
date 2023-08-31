@@ -9,6 +9,14 @@ export const useCartMutations = () => {
 
   const queryClient = useQueryClient();
 
+  const addToWishList = async (item) => {
+    const response = await axios.post(`${apiUrl}/wishlist/${userInfo._id}`, {
+      _id: item._id,
+    });
+
+    return response.data;
+  };
+
   const addToCart = async (product) => {
     const response = await axios.post(`${apiUrl}/cart/${userInfo._id}`, {
       _id: product._id,
@@ -141,11 +149,75 @@ export const useCartMutations = () => {
     },
   });
 
+  const moveFromCartToWishList = async (product) => {
+    const [removeFromCartResponse, addToWishListResponse] = await Promise.all([
+      removeFromCart(product.product._id),
+      addToWishList(product.product),
+    ]);
+
+    return {
+      removeFromCartResponse: removeFromCartResponse.data,
+      addToWishListResponse: addToWishListResponse.data,
+    };
+  };
+
+  const moveFromWCartToWishListMutation = useMutation({
+    mutationFn: moveFromCartToWishList,
+    onMutate: async (product) => {
+      await queryClient.cancelQueries({ queryKey: ["userdata", userInfo] });
+
+      const previousData = queryClient.getQueryData(["userdata", userInfo]);
+
+      if (previousData) {
+        const ifItemAlreadyInWishlist = previousData.wishList.some(
+          (wishListItem) => wishListItem.product._id === product.product._id
+        );
+
+        const updatedWishList = ifItemAlreadyInWishlist
+          ? previousData.wishList
+          : [
+              ...previousData.wishList,
+              {
+                product: {
+                  _id: product.product._id,
+                  name: product.name,
+                  price: product.price,
+                  image: product.product.image,
+                },
+              },
+            ];
+
+        const updatedCartList = previousData.cartList.filter(
+          (item) => item.product._id !== product.product._id
+        );
+
+        queryClient.setQueryData(["userdata", userInfo], {
+          ...previousData,
+          cartList: updatedCartList,
+          wishList: updatedWishList,
+        });
+      }
+
+      return { previousData };
+    },
+    onError: (error, context) => {
+      // context is not working as it is supposed to be , need to be fixed later
+      if (context?.previousData) {
+        queryClient.setQueryData(["userdata", userInfo], context.previousData);
+      }
+      console.error(error);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["userdata", userInfo] });
+    },
+  });
+
   return {
     addToCart,
     removeFromCart,
     addToCartMutation,
     removeFromCartMutation,
     updateCartQuantityMutation,
+    moveFromWCartToWishListMutation,
   };
 };
