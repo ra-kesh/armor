@@ -10,7 +10,7 @@ const DesktopBar = () => {
 
   return (
     <ul className="block">
-      <Link to="/">
+      <Link to="/products">
         <li
           className={
             location.pathname === "/"

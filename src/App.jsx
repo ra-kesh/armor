@@ -19,7 +19,7 @@ function App() {
       <ErrorBoundary>
         <Suspense fallback={<FallBack />}>
           <Routes>
-            <Route path="/" element={<Products />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
             <PrivateRoute path="/cart" element={<Cart />} />
             <PrivateRoute path="/wishlist" element={<Wishlist />} />
