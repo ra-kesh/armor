@@ -4,8 +4,9 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import useLinkState from "../../../hooks/useLinkState";
 
-export const ProductCard = ({ item, path }) => {
+export const ProductCard = ({ item }) => {
   const {
     isInCart,
     isInWishList,
@@ -13,6 +14,8 @@ export const ProductCard = ({ item, path }) => {
     handleRemoveFromWishlistMuation,
     handleAddtoCartMuation,
   } = useActions();
+
+  const { path } = useLinkState();
 
   const navigate = useNavigate();
 

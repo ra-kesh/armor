@@ -7,21 +7,18 @@ export const ProductContext = createContext();
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
 
-  const { page, perPage, productCategory } = state;
-
   const {
     data: response,
     isLoading: isProductsLoading,
     isSuccess: isProductsFetched,
     isPreviousData,
-  } = useProductsQuery(page, perPage, productCategory);
+  } = useProductsQuery();
 
   const contextValue = {
     state: {
       ...state,
       productList: isProductsFetched ? response.products : [],
       loading: isProductsLoading,
-      page: !isProductsLoading && response.page,
       totalPages: !isProductsLoading && response.total_pages,
       isPreviousData,
     },
