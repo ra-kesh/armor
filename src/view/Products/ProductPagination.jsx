@@ -1,47 +1,41 @@
+import { Link } from "react-router-dom";
 import { useProduct } from "../../hooks";
+import useLinkState from "../../hooks/useLinkState";
 
 export const ProductPagination = () => {
-  const { page, totalPages, productDispatch, isPreviousData } = useProduct();
-
-  const selectPageHandler = (selectedPage) => {
-    if (
-      selectedPage >= 1 &&
-      selectedPage <= totalPages &&
-      selectedPage !== page
-    ) {
-      productDispatch({ type: "CHANGE PRODUCT PAGE", payload: selectedPage });
-    }
-  };
+  const { totalPages, isPreviousData } = useProduct();
+  const { page, updateQueryParam } = useLinkState();
 
   return (
     <div className="container flex-row center-vertically gap-1 h-8 ">
-      <button
-        className="button-outline-dark"
-        onClick={() => selectPageHandler(page - 1)}
-        disabled={isPreviousData || page === 1}
-      >
-        Previous
-      </button>
+      <Link to={updateQueryParam("page", page - 1)}>
+        <button
+          className="button-outline-dark"
+          disabled={isPreviousData || page === 1}
+        >
+          Previous
+        </button>
+      </Link>
+
+      {/* styling issue active buttons */}
 
       {[...Array(totalPages)].map((_, index) => {
         return (
-          <button
-            className="button-outline-dark"
-            key={index}
-            onClick={() => selectPageHandler(index + 1)}
-          >
-            {index + 1}
-          </button>
+          <Link to={updateQueryParam("page", index + 1)} key={index}>
+            {" "}
+            <button className="button-outline-dark">{index + 1}</button>
+          </Link>
         );
       })}
 
-      <button
-        className="button-outline-dark"
-        onClick={() => selectPageHandler(page + 1)}
-        disabled={isPreviousData || page === totalPages}
-      >
-        Next
-      </button>
+      <Link to={updateQueryParam("page", page + 1)}>
+        <button
+          className="button-outline-dark"
+          disabled={isPreviousData || page === totalPages}
+        >
+          Next
+        </button>
+      </Link>
     </div>
   );
 };

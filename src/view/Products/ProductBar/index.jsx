@@ -1,92 +1,73 @@
-import { useProduct } from "../../../hooks";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import CloseIcon from "@material-ui/icons/Close";
 import style from "./ProductBar.module.css";
 import MediaQuery from "react-responsive";
+import { Link } from "react-router-dom";
+import useLinkState from "../../../hooks/useLinkState";
 
 export const ProductBar = ({ showFilterModal, setShowFilterModal }) => {
-  const { productCategory, productDispatch } = useProduct();
+  const { category, updateQueryParam } = useLinkState();
 
   return (
     <div className="container">
       <div className={style.product_bar}>
         <div className="flex-col-xl-10 flex-col-lg-10 flex-col-md-11 flex-col-sm-11 text-left">
           <div className={style.product_bar_item_container}>
-            <span
-              className={
-                productCategory === "all"
-                  ? style.product_bar_item_active
-                  : style.product_bar_item
-              }
-              onClick={() =>
-                productDispatch({
-                  type: "CHANGE PRODUCT CATEGORY",
-                  payload: "all",
-                })
-              }
-            >
-              All
-            </span>
-            <span
-              className={
-                productCategory === "jackets"
-                  ? style.product_bar_item_active
-                  : style.product_bar_item
-              }
-              onClick={() =>
-                productDispatch({
-                  type: "CHANGE PRODUCT CATEGORY",
-                  payload: "jackets",
-                })
-              }
-            >
-              Jackets
-            </span>
-            <span
-              className={
-                productCategory === "helmets"
-                  ? style.product_bar_item_active
-                  : style.product_bar_item
-              }
-              onClick={() =>
-                productDispatch({
-                  type: "CHANGE PRODUCT CATEGORY",
-                  payload: "helmets",
-                })
-              }
-            >
-              Helmets
-            </span>
-            <span
-              className={
-                productCategory === "gloves"
-                  ? style.product_bar_item_active
-                  : style.product_bar_item
-              }
-              onClick={() =>
-                productDispatch({
-                  type: "CHANGE PRODUCT CATEGORY",
-                  payload: "gloves",
-                })
-              }
-            >
-              Gloves
-            </span>
-            <span
-              className={
-                productCategory === "shoes"
-                  ? style.product_bar_item_active
-                  : style.product_bar_item
-              }
-              onClick={() =>
-                productDispatch({
-                  type: "CHANGE PRODUCT CATEGORY",
-                  payload: "shoes",
-                })
-              }
-            >
-              Shoes
-            </span>
+            <Link to={updateQueryParam("category", "all")}>
+              <span
+                className={
+                  category === "all"
+                    ? style.product_bar_item_active
+                    : style.product_bar_item
+                }
+              >
+                All
+              </span>
+            </Link>
+            <Link to={updateQueryParam("category", "jackets")}>
+              <span
+                className={
+                  category === "jackets"
+                    ? style.product_bar_item_active
+                    : style.product_bar_item
+                }
+              >
+                Jackets
+              </span>
+            </Link>
+            <Link to={updateQueryParam("category", "helmets")}>
+              <span
+                className={
+                  category === "helmets"
+                    ? style.product_bar_item_active
+                    : style.product_bar_item
+                }
+              >
+                Helmets
+              </span>
+            </Link>
+            <Link to={updateQueryParam("category", "gloves")}>
+              <span
+                className={
+                  category === "gloves"
+                    ? style.product_bar_item_active
+                    : style.product_bar_item
+                }
+              >
+                Gloves
+              </span>
+            </Link>
+            <Link to={updateQueryParam("category", "shoes")}>
+              <span
+                className={
+                  category === "shoes"
+                    ? style.product_bar_item_active
+                    : style.product_bar_item
+                }
+              >
+                Shoes
+              </span>
+            </Link>
           </div>
         </div>
 
