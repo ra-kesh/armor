@@ -1,11 +1,12 @@
 import { useMemo } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const useLinkState = () => {
   const { pathname, search } = useLocation();
+  const navigate = useNavigate();
   const searchParams = useMemo(() => new URLSearchParams(search), [search]);
   const category = searchParams.get("category") || "all";
-  const sort = searchParams.get("sort") || "default";
+  const sortBy = searchParams.get("sort_by") || "default";
   const page = useMemo(
     () => parseInt(searchParams.get("page")) || 1,
     [searchParams]
@@ -17,20 +18,34 @@ const useLinkState = () => {
   );
 
   const updateQueryParam = (paramName, paramValue) => {
-    if (paramName === "category") {
-      const newSearchParams = new URLSearchParams();
-      newSearchParams.set(paramName, paramValue);
-      return `${pathname}?${newSearchParams.toString()}`;
-    } else {
-      searchParams.set(paramName, paramValue);
-      return `${pathname}?${searchParams.toString()}`;
-    }
+    const actionMap = {
+      sort_by: () => {
+        searchParams.set(paramName, paramValue);
+        const updatedUrl = `${pathname}?${searchParams.toString()}`;
+        navigate(updatedUrl, { replace: true });
+      },
+      category: () => {
+        const newSearchParams = new URLSearchParams();
+        newSearchParams.set(paramName, paramValue);
+        const updatedUrl = `${pathname}?${newSearchParams.toString()}`;
+        return updatedUrl;
+      },
+
+      default: () => {
+        searchParams.set(paramName, paramValue);
+        const updatedUrl = `${pathname}?${searchParams.toString()}`;
+        return updatedUrl;
+      },
+    };
+
+    const action = actionMap[paramName] || actionMap.default;
+    return action();
   };
 
   return {
     path: `${pathname}${search}`,
     category,
-    sort,
+    sortBy,
     page,
     perPage,
     searchParams,
