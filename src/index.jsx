@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { AuthProvider, ControlProvider, ProductProvider } from "./context";
+import { AuthProvider, ProductProvider } from "./context";
 import { BrowserRouter as Router } from "react-router-dom";
 import { UserDataProvider } from "./context/userData-context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -15,11 +15,9 @@ ReactDOM.render(
       <Router>
         <AuthProvider>
           <UserDataProvider>
-            <ControlProvider>
-              <ProductProvider>
-                <App />
-              </ProductProvider>
-            </ControlProvider>
+            <ProductProvider>
+              <App />
+            </ProductProvider>
           </UserDataProvider>
         </AuthProvider>
       </Router>
