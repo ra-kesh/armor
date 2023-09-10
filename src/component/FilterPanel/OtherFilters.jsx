@@ -1,31 +1,38 @@
 import React from "react";
-import { useControl } from "../../hooks";
 import style from "./FilterPanel.module.css";
+import useLinkState from "../../hooks/useLinkState";
 
 const OtherFilters = () => {
-  const { otherFilters, filterOutOfStock, filterFastDelivery } = useControl();
+  const { updateQueryParam, filters } = useLinkState();
+
   return (
     <>
-      <span className={style.filter_heading}>Other Filters</span>
+      <span className={style.filter_heading}>Filter by Availability</span>
       <label htmlFor="fast-delivery">
         <input
           type="checkbox"
           name="filter"
           id="fast-delivery"
-          onChange={filterFastDelivery}
-          checked={otherFilters.showOnlyFastDelivery}
+          onChange={() =>
+            updateQueryParam("filter", { fast_products: !filters.fastProducts })
+          }
+          checked={filters.fastProducts}
         />
         only fast delivery
       </label>
-      <label htmlFor="out-of-stock">
+      <label htmlFor="in-stock">
         <input
           type="checkbox"
           name="filter"
-          id="out-of-stock"
-          onChange={filterOutOfStock}
-          checked={otherFilters.showAllProducts}
+          id="in-stock"
+          onChange={() =>
+            updateQueryParam("filter", {
+              in_stock_products: !filters.inStockProducts,
+            })
+          }
+          checked={filters.inStockProducts}
         />
-        include out of stock
+        only in stock
       </label>
     </>
   );
