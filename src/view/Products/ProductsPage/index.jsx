@@ -5,12 +5,15 @@ import { ProductBar } from "../ProductBar";
 import { ProductCard } from "../ProductCard";
 import { ProductPagination } from "../ProductPagination";
 import withLayout from "../../../utils/withLayout";
+import useLinkState from "../../../hooks/useLinkState";
 
 const Products = () => {
   const { productList, getSortedProductList, getFilteredProductList } =
     useProduct();
 
-  const { sortBy, otherFilters } = useControl();
+  const { otherFilters } = useControl();
+
+  const { sortBy } = useLinkState();
 
   const sortedProductList = getSortedProductList(productList, sortBy);
 

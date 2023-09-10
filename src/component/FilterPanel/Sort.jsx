@@ -1,9 +1,8 @@
-import { useControl } from "../../hooks";
-import CloseIcon from "@material-ui/icons/Close";
 import style from "./FilterPanel.module.css";
+import useLinkState from "../../hooks/useLinkState";
 
 export const Sort = () => {
-  const { sortBy, sortHighToLow, sortLowToHigh, resetSort } = useControl();
+  const { sortBy, updateQueryParam } = useLinkState();
 
   return (
     <>
@@ -13,28 +12,31 @@ export const Sort = () => {
           type="radio"
           name="sort"
           id="low-to-high"
-          onChange={sortLowToHigh}
-          checked={sortBy === "LOW_TO_HIGH"}
+          onChange={() => updateQueryParam("sort_by", "low_to_high")}
+          checked={sortBy === "low_to_high"}
         />
-        Price low to high
+        low to high
       </label>
       <label htmlFor="high-to-low">
         <input
           type="radio"
           name="sort"
           id="high-to-low"
-          onChange={sortHighToLow}
-          checked={sortBy === "HIGH_TO_LOW"}
+          onChange={() => updateQueryParam("sort_by", "high_to_low")}
+          checked={sortBy === "high_to_low"}
         />
-        Price high to low
+        high to low
       </label>
-      <div
-        onClick={resetSort}
-        className="pointer underline center-vertically m-top justify-end"
-      >
-        <CloseIcon fontSize="small" />
-        <span>reset</span>
-      </div>
+      <label htmlFor="reset">
+        <input
+          type="radio"
+          name="sort"
+          id="reset"
+          onChange={() => updateQueryParam("sort_by", "default")}
+          checked={sortBy === "default"}
+        />
+        default
+      </label>
     </>
   );
 };

@@ -10,16 +10,14 @@ export const useProduct = () => {
 
   const getSortedProductList = (productList, sortBy) => {
     switch (sortBy) {
-      case "LOW_TO_HIGH":
-        return [...productList].sort((a, b) => b.price - a.price);
-
-      case "HIGH_TO_LOW":
+      case "low_to_high":
         return [...productList].sort((a, b) => a.price - b.price);
 
-      case "DEFAULT":
-        return productList;
+      case "high_to_low":
+        return [...productList].sort((a, b) => b.price - a.price);
 
-      default:
+      case "default":
+        return productList;
     }
   };
 
