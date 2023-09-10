@@ -5,8 +5,6 @@ export const ControlContext = createContext();
 
 export const ControlProvider = ({ children }) => {
   const [state, dispatch] = useReducer(controlReducer, {
-    sortBy: "DEFAULT",
-    filterByCategory: "ALL",
     otherFilters: {
       showAllProducts: true,
       showOnlyFastDelivery: false,

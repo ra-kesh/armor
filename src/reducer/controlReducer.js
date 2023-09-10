@@ -1,16 +1,5 @@
 export const controlReducer = (state, action) => {
   switch (action.type) {
-    case "SORT":
-      return {
-        ...state,
-        sortBy: action.payload,
-      };
-    case "FILTER_BY_CATEGORY":
-      return {
-        ...state,
-        filterByCategory: action.payload,
-      };
-
     case "PRICE_RANGE_SORT":
       return {
         ...state,
