@@ -21,28 +21,17 @@ export const useProduct = () => {
     }
   };
 
-  const getFilteredProductList = (
-    productList,
-    {
-      showAllProducts,
-      showOnlyFastDelivery,
-      showOnlyRatingsAboveFour,
-      showOnlyRatingsAboveThree,
-      showOnlyRatingsAboveTwo,
-      showOnlyRatingsAboveOne,
-      priceRangeControl,
-    }
-  ) => {
+  const getFilteredProductList = (productList, filters) => {
     return [...productList]
-      ?.filter(({ inStock }) => (showAllProducts ? true : inStock))
+      ?.filter(({ inStock }) => (filters.inStockProducts ? inStock : true))
       ?.filter(({ fastDelivery }) =>
-        showOnlyFastDelivery ? fastDelivery : true
+        filters.fastProducts ? fastDelivery : true
       )
-      .filter((item) => item.price <= Number(priceRangeControl))
-      .filter(({ rating }) => (showOnlyRatingsAboveFour ? rating >= 4 : true))
-      .filter(({ rating }) => (showOnlyRatingsAboveThree ? rating >= 3 : true))
-      .filter(({ rating }) => (showOnlyRatingsAboveTwo ? rating >= 2 : true))
-      .filter(({ rating }) => (showOnlyRatingsAboveOne ? rating >= 1 : true));
+      .filter((item) => item.price <= Number(filters.priceRange))
+      .filter(({ rating }) => (filters.ratingsAboveFour ? rating >= 4 : true))
+      .filter(({ rating }) => (filters.ratingsAboveThree ? rating >= 3 : true))
+      .filter(({ rating }) => (filters.ratingsAboveTwo ? rating >= 2 : true))
+      .filter(({ rating }) => (filters.ratingsAboveOne ? rating >= 1 : true));
   };
 
   const {

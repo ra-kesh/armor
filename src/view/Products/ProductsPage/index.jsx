@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useProduct, useControl } from "../../../hooks";
+import { useProduct } from "../../../hooks";
 import { FilterPanel } from "../../../component";
 import { ProductBar } from "../ProductBar";
 import { ProductCard } from "../ProductCard";
@@ -11,15 +11,13 @@ const Products = () => {
   const { productList, getSortedProductList, getFilteredProductList } =
     useProduct();
 
-  const { otherFilters } = useControl();
-
-  const { sortBy } = useLinkState();
+  const { sortBy, filters } = useLinkState();
 
   const sortedProductList = getSortedProductList(productList, sortBy);
 
   const filteredProductList = getFilteredProductList(
     sortedProductList,
-    otherFilters
+    filters
   );
 
   const [showFilterModal, setShowFilterModal] = useState(false);
