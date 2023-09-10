@@ -5,8 +5,22 @@ const useLinkState = () => {
   const { pathname, search } = useLocation();
   const navigate = useNavigate();
   const searchParams = useMemo(() => new URLSearchParams(search), [search]);
+
   const category = searchParams.get("category") || "all";
   const sortBy = searchParams.get("sort_by") || "default";
+
+  const filters = {
+    inStockProducts: searchParams.get("in_stock_products") === "true" || false,
+    fastProducts: searchParams.get("fast_products") === "true" || false,
+    ratingsAboveFour:
+      searchParams.get("ratings_above_four") === "true" || false,
+    ratingsAboveThree:
+      searchParams.get("ratings_above_three") === "true" || false,
+    ratingsAboveTwo: searchParams.get("ratings_above_two") === "true" || false,
+    ratingsAboveOne: searchParams.get("ratings_above_one") === "true" || false,
+    priceRange: parseInt(searchParams.get("price_range")) || 10000,
+  };
+
   const page = useMemo(
     () => parseInt(searchParams.get("page")) || 1,
     [searchParams]
@@ -23,6 +37,14 @@ const useLinkState = () => {
         searchParams.set(paramName, paramValue);
         const updatedUrl = `${pathname}?${searchParams.toString()}`;
         navigate(updatedUrl, { replace: true });
+      },
+      filter: () => {
+        for (const key in paramValue) {
+          const value = paramValue[key];
+          searchParams.set(key, value);
+          const updatedUrl = `${pathname}?${searchParams.toString()}`;
+          navigate(updatedUrl, { replace: true });
+        }
       },
       category: () => {
         const newSearchParams = new URLSearchParams();
@@ -50,6 +72,7 @@ const useLinkState = () => {
     perPage,
     searchParams,
     updateQueryParam,
+    filters,
   };
 };
 
