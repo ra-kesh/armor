@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { AuthProvider, ProductProvider } from "./context";
+import { AuthProvider } from "./context";
 import { BrowserRouter as Router } from "react-router-dom";
 import { UserDataProvider } from "./context/userData-context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -15,9 +15,7 @@ ReactDOM.render(
       <Router>
         <AuthProvider>
           <UserDataProvider>
-            <ProductProvider>
-              <App />
-            </ProductProvider>
+            <App />
           </UserDataProvider>
         </AuthProvider>
       </Router>
