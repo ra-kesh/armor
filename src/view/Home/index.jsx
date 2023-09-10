@@ -5,7 +5,7 @@ import { useProduct, useUserData } from "../../hooks";
 
 export const Home = () => {
   const { dataloading } = useUserData();
-  const { loading } = useProduct();
+  const { isProductsLoading } = useProduct();
   return (
     <>
       <Navbar />

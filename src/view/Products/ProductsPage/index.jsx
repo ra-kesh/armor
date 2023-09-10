@@ -5,24 +5,13 @@ import { ProductBar } from "../ProductBar";
 import { ProductCard } from "../ProductCard";
 import { ProductPagination } from "../ProductPagination";
 import withLayout from "../../../utils/withLayout";
-import useLinkState from "../../../hooks/useLinkState";
 
 const Products = () => {
-  const { productList, getSortedProductList, getFilteredProductList } =
-    useProduct();
-
-  const { sortBy, filters } = useLinkState();
-
-  const sortedProductList = getSortedProductList(productList, sortBy);
-
-  const filteredProductList = getFilteredProductList(
-    sortedProductList,
-    filters
-  );
-
   const [showFilterModal, setShowFilterModal] = useState(false);
 
-  if (productList.length === 0) {
+  const { filteredProductList, isProductsLoading } = useProduct();
+
+  if (isProductsLoading) {
     return (
       <div className="center-vertically min-h-100">
         <h4>Loading...</h4>
