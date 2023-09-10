@@ -6,8 +6,6 @@ import useLinkState from "../../hooks/useLinkState";
 const RatingFilter = () => {
   const { updateQueryParam, filters } = useLinkState();
 
-  console.log(filters);
-
   return (
     <>
       <span className={style.filter_heading}>Filter by Ratings</span>
