@@ -9,6 +9,10 @@ function valueLabelFormat(value) {
 export default function PriceSlider({ priceRangeValue, filterByPrice }) {
   const [value, setValue] = React.useState(priceRangeValue);
 
+  React.useEffect(() => {
+    setValue(priceRangeValue);
+  }, [priceRangeValue]);
+
   const handleChange = (event, newValue) => {
     if (typeof newValue === "number") {
       setValue(newValue);
