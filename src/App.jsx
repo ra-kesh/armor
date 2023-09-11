@@ -4,9 +4,10 @@ import { Routes, Route } from "react-router-dom";
 import { PrivateRoute } from "./utils/PrivateRoute";
 import ErrorBoundary from "./utils/ErrorBoundary";
 
-import { Home, Login, Signup } from "./view";
+import { Login, Signup } from "./view";
 import User from "./view/User";
 import FallBack from "./component/Fallback/FallBack";
+import Home from "./view/Home/Home.component";
 
 const Products = lazy(() => import("./view/Products/ProductsPage"));
 const ProductDetail = lazy(() => import("./view/Products/ProductDetailPage"));
