@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { PrivateRoute } from "./utils/PrivateRoute";
 import ErrorBoundary from "./utils/ErrorBoundary";
 
-import { Login, Signup } from "./view";
+import { Home, Login, Signup } from "./view";
 import User from "./view/User";
 import FallBack from "./component/Fallback/FallBack";
 
@@ -19,6 +19,7 @@ function App() {
       <ErrorBoundary>
         <Suspense fallback={<FallBack />}>
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
             <PrivateRoute path="/cart" element={<Cart />} />

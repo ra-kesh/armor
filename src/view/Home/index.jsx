@@ -1,7 +1,6 @@
 import React from "react";
 import { Navbar, Hero } from "../../component";
 import { useProduct, useUserData } from "../../hooks";
-// import HomePageLoader from "../component/Skelletons/HomePageLoader";
 
 export const Home = () => {
   const { dataloading } = useUserData();
@@ -9,7 +8,7 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-      {!loading && !dataloading && (
+      {!isProductsLoading && !dataloading && (
         <>
           <Hero />
         </>
