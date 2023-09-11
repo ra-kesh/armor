@@ -16,7 +16,6 @@ const Carousel = ({ images }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            maxWidth: "80rem",
           }}
         >
           <div
