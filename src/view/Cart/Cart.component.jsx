@@ -1,11 +1,21 @@
-import { useUserData } from "../../../hooks";
+import { useUserData } from "../../hooks";
 import { useEffect } from "react";
-import { CartPageCard } from "../CartPageCard";
-import { EmptyCartpage } from "../EmptyPageCart";
-import withLayout from "../../../utils/withLayout";
+import { CartPageCard } from "./CartPageCard";
+import { EmptyCartpage } from "./EmptyPageCart";
+import withLayout from "../../utils/withLayout";
+import Pagination from "../../component/Pagination/Pagination.component";
+import useLinkState from "../../hooks/useLinkState";
 
 const Cart = () => {
-  const { cartList, cartTotal, userDispatch } = useUserData();
+  const {
+    cartList,
+    cartTotal,
+    userDispatch,
+    pagiNatedCartlist,
+    totalCartlistPages,
+  } = useUserData();
+
+  const { page, updateQueryParam } = useLinkState();
 
   useEffect(() => {
     userDispatch({ type: "CALCULATE CART", payload: cartList });
@@ -19,9 +29,15 @@ const Cart = () => {
     <div className="container cart-wrapper">
       <div className="flex-row">
         <div className="flex-col-lg-8 cart-card-wrapper">
-          {cartList.map((item) => (
+          {pagiNatedCartlist.map((item) => (
             <CartPageCard item={item} key={item._id} />
           ))}
+
+          <Pagination
+            page={page}
+            totalPages={totalCartlistPages}
+            updateQueryParam={updateQueryParam}
+          />
         </div>
 
         <div className="flex-col-lg-4 ">
