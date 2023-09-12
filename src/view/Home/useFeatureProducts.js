@@ -14,15 +14,6 @@ export const useFeaturedProducts = () => {
   const page = isFeaturedProductsFetched ? response.page : 1;
   const totalPages = !isFeaturedProductsLoading && response.total_pages;
 
-  //   const { sortBy, filters } = useLinkState();
-
-  //   const sortedProductList = getSortedProductList(productList, sortBy);
-
-  //   const filteredProductList = getFilteredProductList(
-  //     sortedProductList,
-  //     filters
-  //   );
-
   return {
     page,
     totalPages,
