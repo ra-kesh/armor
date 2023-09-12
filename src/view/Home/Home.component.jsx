@@ -5,6 +5,7 @@ import { useFeaturedProducts } from "./useFeatureProducts";
 import FeaturedProducts from "./FeaturedProducts.component";
 import useLinkState from "../../hooks/useLinkState";
 import Pagination from "../../component/Pagination/Pagination.component";
+import { carouselImages } from "./data";
 
 const Home = () => {
   const { featuredProductList, totalPages, isPreviousData } =
@@ -14,7 +15,7 @@ const Home = () => {
 
   return (
     <div className="container">
-      <Carousel images={images} />
+      <Carousel images={carouselImages} />
 
       <div className="flex-col gap-2">
         <h4>Featured Products</h4>
@@ -33,10 +34,3 @@ const Home = () => {
 };
 
 export default withLayout(Home);
-
-const images = [
-  "/hero/image_8_v1.webp",
-  "/hero/image_2_v1.webp",
-  "/hero/image_5_v1.webp",
-  "/hero/image_7_v1.webp",
-];

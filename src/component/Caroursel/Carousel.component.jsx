@@ -30,8 +30,9 @@ const Carousel = ({ images }) => {
             >
               {images.map((image) => (
                 <img
-                  key={image}
-                  src={image}
+                  key={image.id}
+                  src={image.src}
+                  alt={`Image ${image.id}`}
                   style={{
                     width: "100%",
                     objectFit: "cover",
