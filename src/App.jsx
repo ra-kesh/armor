@@ -13,8 +13,8 @@ const Products = lazy(() => import("./view/Products/Products.component"));
 const ProductDetail = lazy(() =>
   import("./view/ProductDetail/ProductDetail.component")
 );
-const Cart = lazy(() => import("./view/Cart/CartPage"));
-const Wishlist = lazy(() => import("./view/WishList/WishListPage"));
+const Cart = lazy(() => import("./view/Cart/Cart.page"));
+const Wishlist = lazy(() => import("./view/WishList/Wishlist.page"));
 
 function App() {
   return (
