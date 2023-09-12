@@ -9,8 +9,10 @@ import User from "./view/User";
 import FallBack from "./component/Fallback/FallBack";
 import Home from "./view/Home/Home.component";
 
-const Products = lazy(() => import("./view/Products/ProductsPage"));
-const ProductDetail = lazy(() => import("./view/Products/ProductDetailPage"));
+const Products = lazy(() => import("./view/Products/Products.component"));
+const ProductDetail = lazy(() =>
+  import("./view/ProductDetail/ProductDetail.component")
+);
 const Cart = lazy(() => import("./view/Cart/CartPage"));
 const Wishlist = lazy(() => import("./view/WishList/WishListPage"));
 

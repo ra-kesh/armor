@@ -1,12 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import {
-  JacketFeatures,
-  HelmetFeatures,
-  GloveFeatures,
-} from "../../../component";
-import withLayout from "../../../utils/withLayout";
-import useProductDetailQuery from "../../../hooks/useProductDetailQuery";
+import { JacketFeatures, HelmetFeatures, GloveFeatures } from "../../component";
+import withLayout from "../../utils/withLayout";
+import useProductDetailQuery from "../../hooks/useProductDetailQuery";
 import { ProductDetailImage } from "./ProductDetailImage";
 import { ProductDetailDescription } from "./ProductDetailDescription";
 

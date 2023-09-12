@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useActions } from "../../../hooks";
+import { useActions } from "../../hooks";
 import style from "./ProductDetail.module.css";
 import Rating from "@mui/material/Rating";
 
