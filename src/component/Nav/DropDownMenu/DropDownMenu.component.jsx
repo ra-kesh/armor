@@ -8,6 +8,12 @@ const DropDownMenu = () => {
     <div className={style.drop_down_container}>
       <div className={style.drop_down}>
         <div className={style.drop_down_item} onClick={() => navigate("/")}>
+          Home
+        </div>
+        <div
+          className={style.drop_down_item}
+          onClick={() => navigate("/products")}
+        >
           Products
         </div>
         <div className={style.drop_down_item} onClick={() => navigate("/user")}>

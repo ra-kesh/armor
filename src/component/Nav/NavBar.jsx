@@ -1,9 +1,9 @@
 import { Loader } from "./Loader";
 import MediaQuery from "react-responsive";
-import DesktopBar from "./DesktopBar";
+import DesktopBar from "./DesktopBar/DesktopBar.component";
 import { MobileBar } from "./MobileBar";
 import { useState } from "react";
-import DropDownMenu from "./DropDownMenu";
+import DropDownMenu from "./DropDownMenu/DropDownMenu.component";
 
 export const Navbar = ({ isLoading = false }) => {
   const [show, setShow] = useState(false);
