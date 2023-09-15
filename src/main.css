@@ -713,10 +713,17 @@ button:active,
   color: var(--primary-white);
 }
 
+.button-outline-dark-active {
+  background: var(--primary-black);
+  color: var(--primary-white);
+}
+
 .button-outline-dark:disabled {
   border: none;
   cursor: not-allowed;
   opacity: 0.6;
+  background: transparent;
+  color: var(--primary-black);
 }
 
 /* mote wale buttons */
@@ -1223,6 +1230,12 @@ dd {
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1400px;
   }
 }
 

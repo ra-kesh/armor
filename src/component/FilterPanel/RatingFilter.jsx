@@ -1,16 +1,11 @@
 import React from "react";
 import style from "./FilterPanel.module.css";
-import { useControl } from "../../hooks";
 import Rating from "@mui/material/Rating";
+import useLinkState from "../../hooks/useLinkState";
 
 const RatingFilter = () => {
-  const {
-    otherFilters,
-    showRatingsAboveFour,
-    showRatingsAboveThree,
-    showRatingsAboveTwo,
-    showRatingsAboveOne,
-  } = useControl();
+  const { updateQueryParam, filters } = useLinkState();
+
   return (
     <>
       <span className={style.filter_heading}>Filter by Ratings</span>
@@ -19,8 +14,12 @@ const RatingFilter = () => {
           type="checkbox"
           name="filter"
           id="Ratings Above 4"
-          onChange={showRatingsAboveFour}
-          checked={otherFilters.showOnlyRatingsAboveFour}
+          onChange={() =>
+            updateQueryParam("filter", {
+              ratings_above_four: !filters.ratingsAboveFour,
+            })
+          }
+          checked={filters.ratingsAboveFour}
         />
         <Rating value={4} readOnly style={{ marginLeft: ".5rem" }} />
       </label>
@@ -29,8 +28,12 @@ const RatingFilter = () => {
           type="checkbox"
           name="filter"
           id="Ratings Above 3"
-          onChange={showRatingsAboveThree}
-          checked={otherFilters.showOnlyRatingsAboveThree}
+          onChange={() =>
+            updateQueryParam("filter", {
+              ratings_above_three: !filters.ratingsAboveThree,
+            })
+          }
+          checked={filters.ratingsAboveThree}
         />
         <Rating value={3} readOnly style={{ marginLeft: ".5rem" }} />
       </label>
@@ -39,8 +42,12 @@ const RatingFilter = () => {
           type="checkbox"
           name="filter"
           id="Ratings Above 2"
-          onChange={showRatingsAboveTwo}
-          checked={otherFilters.showOnlyRatingsAboveTwo}
+          onChange={() =>
+            updateQueryParam("filter", {
+              ratings_above_two: !filters.ratingsAboveTwo,
+            })
+          }
+          checked={filters.ratingsAboveTwo}
         />
         <Rating value={2} readOnly style={{ marginLeft: ".5rem" }} />
       </label>
@@ -49,8 +56,12 @@ const RatingFilter = () => {
           type="checkbox"
           name="filter"
           id="Ratings Above 1"
-          onChange={showRatingsAboveOne}
-          checked={otherFilters.showOnlyRatingsAboveOne}
+          onChange={() =>
+            updateQueryParam("filter", {
+              ratings_above_one: !filters.ratingsAboveOne,
+            })
+          }
+          checked={filters.ratingsAboveOne}
         />
         <Rating value={1} readOnly style={{ marginLeft: ".5rem" }} />
       </label>

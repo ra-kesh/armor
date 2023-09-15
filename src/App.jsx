@@ -7,11 +7,14 @@ import ErrorBoundary from "./utils/ErrorBoundary";
 import { Login, Signup } from "./view";
 import User from "./view/User";
 import FallBack from "./component/Fallback/FallBack";
+import Home from "./view/Home/Home.component";
 
-const Products = lazy(() => import("./view/Products/ProductsPage"));
-const ProductDetail = lazy(() => import("./view/Products/ProductDetailPage"));
-const Cart = lazy(() => import("./view/Cart/CartPage"));
-const Wishlist = lazy(() => import("./view/WishList/WishListPage"));
+const Products = lazy(() => import("./view/Products/Products.component"));
+const ProductDetail = lazy(() =>
+  import("./view/ProductDetail/ProductDetail.component")
+);
+const Cart = lazy(() => import("./view/Cart/Cart.page"));
+const Wishlist = lazy(() => import("./view/WishList/Wishlist.page"));
 
 function App() {
   return (
@@ -19,7 +22,8 @@ function App() {
       <ErrorBoundary>
         <Suspense fallback={<FallBack />}>
           <Routes>
-            <Route path="/" element={<Products />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/products/:productId" element={<ProductDetail />} />
             <PrivateRoute path="/cart" element={<Cart />} />
             <PrivateRoute path="/wishlist" element={<Wishlist />} />

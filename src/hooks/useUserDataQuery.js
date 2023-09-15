@@ -1,6 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { apiUrl } from "../constants";
+import { useAuth } from "./useAuth";
+
+const useUserDataQuery = () => {
+  const { userInfo } = useAuth();
+
+  return useQuery({
+    queryKey: ["userdata", userInfo],
+    queryFn: () => fetchUserData(userInfo),
+    retry: 3,
+    enabled: !!userInfo,
+  });
+};
+
+export default useUserDataQuery;
 
 const fetchUserData = async (userInfo) => {
   const config = {
@@ -17,14 +31,3 @@ const fetchUserData = async (userInfo) => {
 
   return response;
 };
-
-const useUserDataQuery = (userInfo) => {
-  return useQuery({
-    queryKey: ["userdata", userInfo],
-    queryFn: () => fetchUserData(userInfo),
-    retry: 3,
-    enabled: !!userInfo,
-  });
-};
-
-export default useUserDataQuery;
