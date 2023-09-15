@@ -6,6 +6,8 @@ import FeaturedProducts from "./FeaturedProducts.component";
 import useLinkState from "../../hooks/useLinkState";
 import Pagination from "../../component/Pagination/Pagination.component";
 import { carouselImages } from "./data";
+import { Link } from "react-router-dom";
+import WhyUs from "./WhyUs.component";
 
 const Home = () => {
   const { featuredProductList, totalPages, isPreviousData } =
@@ -18,7 +20,12 @@ const Home = () => {
       <Carousel images={carouselImages} />
 
       <div className="flex-col gap-2">
-        <h4>Featured Products</h4>
+        <div className="h-12 center-vertically">
+          <div>
+            <h3>Some products we know you will like</h3>
+            <p className="text-center text-mute">see what's trending new</p>
+          </div>
+        </div>
 
         <FeaturedProducts featuredProductList={featuredProductList} />
 
@@ -28,6 +35,14 @@ const Home = () => {
           isPreviousData={isPreviousData}
           updateQueryParam={updateQueryParam}
         />
+
+        <div className="h-12 center-vertically">
+          <Link to="/products">
+            <button className="button-outline-dark">VIEW ALL PRODUCTS</button>
+          </Link>
+        </div>
+
+        <WhyUs />
       </div>
     </div>
   );
