@@ -5,6 +5,7 @@ import { EmptyCartpage } from "./EmptyPageCart";
 import withLayout from "../../utils/withLayout";
 import Pagination from "../../component/Pagination/Pagination.component";
 import useLinkState from "../../hooks/useLinkState";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const {
@@ -17,12 +18,19 @@ const Cart = () => {
 
   const { page, updateQueryParam } = useLinkState();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     userDispatch({ type: "CALCULATE CART", payload: cartList });
   }, [cartList]);
 
   if (cartList.length === 0) {
     return <EmptyCartpage />;
+  }
+
+  if (pagiNatedCartlist.length === 0 && page > 1) {
+    const updatedUrl = updateQueryParam("page", page - 1);
+    navigate(updatedUrl, { replace: true });
   }
 
   return (

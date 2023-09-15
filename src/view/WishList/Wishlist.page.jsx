@@ -4,14 +4,22 @@ import { EmptyWishlitPage } from "./EmptyPageWishlist";
 import withLayout from "../../utils/withLayout";
 import Pagination from "../../component/Pagination/Pagination.component";
 import useLinkState from "../../hooks/useLinkState";
+import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
   const { wishList, totalWishlistPages, pagiNatedWishlist } = useUserData();
 
   const { page, updateQueryParam } = useLinkState();
 
+  const navigate = useNavigate();
+
   if (wishList.length === 0) {
     return <EmptyWishlitPage />;
+  }
+
+  if (pagiNatedWishlist.length === 0 && page > 1) {
+    const updatedUrl = updateQueryParam("page", page - 1);
+    navigate(updatedUrl, { replace: true });
   }
 
   return (
