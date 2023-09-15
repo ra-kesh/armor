@@ -5,71 +5,45 @@ import MediaQuery from "react-responsive";
 import { Link } from "react-router-dom";
 import useLinkState from "../../../hooks/useLinkState";
 
+const categories = [
+  { label: "All", value: "all" },
+  { label: "Jackets", value: "jackets" },
+  { label: "Helmets", value: "helmets" },
+  { label: "Gloves", value: "gloves" },
+  { label: "Shoes", value: "shoes" },
+];
+
 export const ProductBar = ({ showFilterModal, setShowFilterModal }) => {
   const { category, updateQueryParam } = useLinkState();
+
+  const prouductBarCategories = categories.map((singleCategory) => (
+    <Link
+      key={singleCategory.value}
+      to={updateQueryParam("category", singleCategory.value)}
+      style={{ textDecoration: "none" }}
+    >
+      <span
+        className={
+          category === singleCategory.value
+            ? style.product_bar_item_active
+            : style.product_bar_item
+        }
+      >
+        {singleCategory.label}
+      </span>
+    </Link>
+  ));
 
   return (
     <div className="container">
       <div className={style.product_bar}>
         <div className="flex-col-xl-10 flex-col-lg-10 flex-col-md-11 flex-col-sm-11 text-left">
           <div className={style.product_bar_item_container}>
-            <Link to={updateQueryParam("category", "all")}>
-              <span
-                className={
-                  category === "all"
-                    ? style.product_bar_item_active
-                    : style.product_bar_item
-                }
-              >
-                All
-              </span>
-            </Link>
-            <Link to={updateQueryParam("category", "jackets")}>
-              <span
-                className={
-                  category === "jackets"
-                    ? style.product_bar_item_active
-                    : style.product_bar_item
-                }
-              >
-                Jackets
-              </span>
-            </Link>
-            <Link to={updateQueryParam("category", "helmets")}>
-              <span
-                className={
-                  category === "helmets"
-                    ? style.product_bar_item_active
-                    : style.product_bar_item
-                }
-              >
-                Helmets
-              </span>
-            </Link>
-            <Link to={updateQueryParam("category", "gloves")}>
-              <span
-                className={
-                  category === "gloves"
-                    ? style.product_bar_item_active
-                    : style.product_bar_item
-                }
-              >
-                Gloves
-              </span>
-            </Link>
-            <Link to={updateQueryParam("category", "shoes")}>
-              <span
-                className={
-                  category === "shoes"
-                    ? style.product_bar_item_active
-                    : style.product_bar_item
-                }
-              >
-                Shoes
-              </span>
-            </Link>
+            {prouductBarCategories}
           </div>
         </div>
+
+        {/* below codes need optimisation asap */}
 
         <div className="flex-col-xl-2 flex-col-lg-2 flex-col-md-1 flex-col-sm-1 flex-col-1">
           <div
